@@ -36,11 +36,8 @@ button {
   align-items: center;
 }
 
-.navbar .logo a {
-  font-size: 24px;
-  font-weight: 700;
-  color: white;
-  margin-left: 12px;
+.navbar .logo img {
+  width: 23vh;
 }
 
 .menu {
@@ -52,8 +49,8 @@ button {
 .menu-links {
   display: flex;
   gap: 24px;
-  border-right: 1px solid #999999;
   padding-inline: 24px;
+  align-items: center;
 }
 
 .menu-link a {
