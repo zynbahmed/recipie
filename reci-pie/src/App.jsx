@@ -1,14 +1,42 @@
-import { useState } from 'react'
-import { Routes, Route } from 'react-router-dom'
-import RegistrationForm from './pages/RegisterForm'
+import { useState, useEffect } from "react"
+import { Routes, Route } from "react-router-dom"
 
-import './App.css'
+// import { CheckSession } from "./services/Auth"
+
+import NavBar from "./components/NavBar"
+import RegistartionForm from "./pages/RegisterForm"
+
+import "./App.css"
 
 const App = () => {
+  const [user, setUser] = useState(null)
+
+  const checkToken = async () => {
+    const user = await CheckSession()
+    setUser(user)
+  }
+
+  const handleLogOut = () => {
+    //Reset all auth related state and clear localStorage
+    setUser(null)
+    localStorage.clear()
+  }
+
+  useEffect(() => {
+    const token = localStorage.getItem("token")
+    if (token) {
+      checkToken()
+    }
+  }, [])
+
   return (
     <div>
-      HELLO
-      <RegistrationForm />
+      <header>
+        <NavBar user={user} handleLogOut={handleLogOut} />
+      </header>
+      <main>
+        <RegistartionForm />
+      </main>
     </div>
   )
 }
