@@ -1,14 +1,14 @@
-import { useState, useEffect } from "react"
-import { Routes, Route } from "react-router-dom"
+import { useState, useEffect } from 'react'
+import { Routes, Route } from 'react-router-dom'
 
 // import { CheckSession } from "./services/Auth"
 
-import Header from "./components/Header"
+import Header from './components/Header'
+import Profile from './pages/Profile'
+import NavBar from './components/NavBar'
+import RegistartionForm from './pages/RegisterForm'
 
-import NavBar from "./components/NavBar"
-import RegistartionForm from "./pages/RegisterForm"
-
-import "./styles/App.scss"
+import './styles/App.scss'
 
 
 const App = () => {
@@ -26,7 +26,7 @@ const App = () => {
   }
 
   useEffect(() => {
-    const token = localStorage.getItem("token")
+    const token = localStorage.getItem('token')
     if (token) {
       checkToken()
     }
@@ -34,8 +34,15 @@ const App = () => {
 
   return (
     <div>
-      <Header user={user} handleLogOut={handleLogOut} />
-      <RegistartionForm />
+      <div>
+        <Header user={user} handleLogOut={handleLogOut} />
+      </div>
+      <div>
+        <Routes>
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/register" element={<RegistartionForm />} />
+        </Routes>
+      </div>
     </div>
   )
 }
