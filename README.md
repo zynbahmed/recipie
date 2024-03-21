@@ -14,7 +14,7 @@ The building of the site will be a team effort. The team was composed of:
 - [Nayef](https://github.com/nakz57)
 - [Nabeel](https://github.com/nabeelmaklai)
 
-The development of the app was organized using a Trello board linked below. 
+The development of the app was organized using a [Trello](https://trello.com/invite/b/75oI9coU/ATTI8aa1116eb4ecb9d6892709c094b05ebd1C27A656/recipi) board. 
 
 
 ## Development Outline
