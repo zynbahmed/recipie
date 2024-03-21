@@ -27,6 +27,8 @@ button {
   cursor: pointer;
 }
 
+/*****NAV BAR*****/
+
 .navbar {
   height: 90px;
   background-color: #1a1a1a;
@@ -77,6 +79,8 @@ button {
   background-color: #0aa5ff;
   color: white;
 }
+
+/*****************/
 
 @media (max-width: 30rem) {
   .menu {
