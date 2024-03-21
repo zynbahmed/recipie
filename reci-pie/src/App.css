@@ -15,6 +15,10 @@ a {
   text-decoration: none;
 }
 
+a:visited {
+  color: #999999;
+}
+
 button {
   border: 0;
   outline: none;

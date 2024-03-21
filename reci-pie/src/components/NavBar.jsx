@@ -1,20 +1,6 @@
-import { NavLink, useLocation } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 
 const Nav = ({ user, handleLogOut }) => {
-  const location = useLocation()
-
-  // let navbarClass = ""
-  // let headerClass = ""
-  // let textClass = ""
-
-  // if (location.pathname === "/") {
-  //   navbarClass = "home-navbar"
-  //   headerClass = "header"
-  // } else {
-  //   navbarClass = "reg-navbar"
-  //   headerClass = "header2"
-  //   textClass = "header-text"
-  // }
   let userOptions
   if (user) {
     userOptions = (
@@ -46,7 +32,7 @@ const Nav = ({ user, handleLogOut }) => {
           <NavLink to="/">Home</NavLink>
           <NavLink to="/register">Registration</NavLink>
           <NavLink to="/login">
-            <button className="log-in">Logout</button>
+            <button className="log-in">Login</button>
           </NavLink>
         </div>
       </div>
