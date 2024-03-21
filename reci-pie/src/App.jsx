@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom"
 // import { CheckSession } from "./services/Auth"
 
 import NavBar from "./components/NavBar"
+import RegistartionForm from "./pages/RegisterForm"
 
 import "./App.css"
 
@@ -33,6 +34,9 @@ const App = () => {
       <header>
         <NavBar user={user} handleLogOut={handleLogOut} />
       </header>
+      <main>
+        <RegistartionForm />
+      </main>
     </div>
   )
 }
