@@ -8,7 +8,7 @@ import Header from "./components/Header"
 import NavBar from "./components/NavBar"
 import RegistartionForm from "./pages/RegisterForm"
 
-import "./App.scss"
+import "./styles/App.scss"
 
 const App = () => {
   const [user, setUser] = useState(null)
