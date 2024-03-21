@@ -1,11 +1,12 @@
-import { useState } from 'react'
+import { useState } from "react"
+import "../styles/form.css"
 
 const RegistrationForm = () => {
   const [formValues, setFormValues] = useState({
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: ''
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: ""
   })
   const handleChange = (event) => {
     setFormValues({ ...formValues, [event.target.name]: event.target.value })
@@ -21,53 +22,95 @@ const RegistrationForm = () => {
     // )
   }
 
+  const handleToggleContainer = (isActive) => {
+    const container = document.getElementById("container")
+    container.classList.toggle("right-panel-active", isActive)
+  }
+
   return (
-    <div>
-      Register User
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="username">User Name</label>
-        <input
-          onChange={handleChange}
-          name="name"
-          type="text"
-          placeholder="Please enter a username"
-          value={formValues.name}
-        />
-        <br />
-        <label htmlFor="email">Email</label>
-        <input
-          onChange={handleChange}
-          name="email"
-          type="email"
-          placeholder="your email"
-          value={formValues.email}
-        />
-      </form>
-      <label htmlFor="email">Password</label>
-      <input
-        onChange={handleChange}
-        name="password"
-        type="password"
-        placeholder="enter your password"
-        value={formValues.password}
-      />
-      <br />
-      <label htmlFor="email">Confirm Password</label>
-      <input
-        onChange={handleChange}
-        type="password"
-        name="confirmPassword"
-        value={formValues.confirmPassword}
-        required
-      />
-      <button
-        className="loginBtn"
-        disabled={
-          !formValues.email ||
-          (!formValues.password &&
-            formValues.confirmPassword === formValues.password)
-        }
-      ></button>
+    <div className="body">
+      <div className="container" id="container">
+        <div className="form-container sign-up-container">
+          <form className="reg-form" onSubmit={handleSubmit}>
+            <h1>Create Account</h1>
+            <input
+              type="text"
+              onChange={handleChange}
+              name="name"
+              placeholder="Please enter a username"
+              value={formValues.name}
+            />
+            <input
+              type="email"
+              onChange={handleChange}
+              name="email"
+              placeholder="your email"
+              value={formValues.email}
+            />
+            <input
+              type="password"
+              onChange={handleChange}
+              name="password"
+              placeholder="enter your password"
+              value={formValues.password}
+            />
+            <input
+              type="password"
+              placeholder="confirm passord"
+              onChange={handleChange}
+              name="confirmPassword"
+              value={formValues.confirmPassword}
+              required
+            />
+            <button
+              type="submit"
+              disabled={
+                !formValues.email ||
+                (!formValues.password &&
+                  formValues.confirmPassword === formValues.password)
+              }
+            >
+              Sign Up
+            </button>
+          </form>
+        </div>
+        <div className="form-container sign-in-container">
+          <form className="reg-form" action="#">
+            <h1>Sign in</h1>
+            <input type="email" placeholder="Email" />
+            <input type="password" placeholder="Password" />
+            <button>Sign In</button>
+          </form>
+        </div>
+        <div className="overlay-container">
+          <div className="overlay">
+            <div className="overlay-panel overlay-left">
+              <h1>Welcome Back!</h1>
+              <p>
+                To keep connected with us please login with your personal info
+              </p>
+              <button
+                className="ghost"
+                id="signIn"
+                onClick={() => handleToggleContainer(false)}
+              >
+                Sign In
+              </button>
+            </div>
+            <div className="overlay-panel overlay-right">
+              <h1>Hello, Friend!</h1>
+              <p>Enter your personal details and start journey with us</p>
+              <button
+                className="ghost"
+                id="signUp"
+                onClick={() => handleToggleContainer(true)}
+              >
+                Sign Up
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
