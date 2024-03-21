@@ -63,7 +63,7 @@ const RegistrationForm = () => {
               required
             />
             <button
-              className="btn"
+              className="reg-btn"
               disabled={
                 !formValues.email ||
                 (!formValues.password &&
@@ -79,7 +79,7 @@ const RegistrationForm = () => {
             <h1 className="form-title">Sign in</h1>
             <input type="email" placeholder="Email" />
             <input type="password" placeholder="Password" />
-            <button className="btn">Sign In</button>
+            <button className="reg-btn">Sign In</button>
           </form>
         </div>
         <div className="overlay-container">
@@ -90,7 +90,7 @@ const RegistrationForm = () => {
                 To keep connected with us please login with your personal info
               </p>
               <button
-                className="ghost btn"
+                className="ghost reg-btn"
                 id="signIn"
                 onClick={() => handleToggleContainer(false)}
               >
@@ -101,7 +101,7 @@ const RegistrationForm = () => {
               <h1 className="form-title">Hello, Friend!</h1>
               <p>Enter your personal details and start journey with us</p>
               <button
-                className="ghost btn"
+                className="ghost reg-btn"
                 id="signUp"
                 onClick={() => handleToggleContainer(true)}
               >
