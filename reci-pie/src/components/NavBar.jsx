@@ -6,7 +6,9 @@ const Nav = ({ user, handleLogOut }) => {
     userOptions = (
       <nav className="navbar">
         <div className="logo">
-          <a href="#">LOGO</a>
+          <a href="#">
+            <img src="../public/logo2.png" />
+          </a>
         </div>
         <div className="menu">
           <div className="menu-links">
@@ -25,7 +27,9 @@ const Nav = ({ user, handleLogOut }) => {
   const publicOptions = (
     <nav className="navbar">
       <div className="logo">
-        <a href="#">LOGO</a>
+        <a href="#">
+          <img src="../public/logo2.png" />
+        </a>
       </div>
       <div className="menu">
         <div className="menu-links">
