@@ -10,6 +10,7 @@ import RegistartionForm from "./pages/RegisterForm"
 
 import "./styles/App.scss"
 
+
 const App = () => {
   const [user, setUser] = useState(null)
 
