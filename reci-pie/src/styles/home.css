@@ -30,8 +30,8 @@
 
 .banner-button button {
   border-radius: 20px;
-  border: 1px solid #5a65b3;
-  background-color: #5a65b3;
+  border: 1px solid #BB0507;
+  background-color: #BB0507;
   color: #ffffff;
   font-size: 1rem; 
   font-weight: bold;
@@ -52,8 +52,8 @@
 
 .banner-button button:hover {
   background-color: black;
-  color: #5a65b3;
-  border: 2px solid #5a65b3;
+  color: #BB0507;
+  border: 2px solid #BB0507;
 }
 
 @media (max-width: 768px) {
