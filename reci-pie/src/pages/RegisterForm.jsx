@@ -1,25 +1,35 @@
-import { useState } from "react"
+import { useState, useRef } from "react"
 import "../styles/form.css"
 
 const RegistrationForm = () => {
-  const [formValues, setFormValues] = useState({
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: ""
-  })
-  const handleChange = (event) => {
-    setFormValues({ ...formValues, [event.target.name]: event.target.value })
-  }
+  // const [formValues, setFormValues] = useState({
+  //   name: "",
+  //   email: "",
+  //   password: "",
+  //   confirmPassword: ""
+  // })
 
-  const handleSubmit = async (event) => {
+  const nameRef = useRef(null)
+  const emailRef = useRef(null)
+  const passRef = useRef(null)
+  const conPassRef = useRef(null)
+
+  // const handleChange = (event) => {
+  //   setFormValues({ ...formValues, [event.target.name]: event.target.value })
+  // }
+
+  const handleReg = async (event) => {
     event.preventDefault()
-    // await ({
-    //   name: formValues.name,
-    //   email: formValues,email,
-    //   password: formValues.password
-    // }
-    // )
+    // Client.post('/Auth', {
+    //   name: nameRef.current.value,
+    //   email: emailRef.current.value,
+    //   passwordDigaset: passRef.current.value
+    // }).then((response) => {
+    // })
+    nameRef.current.value = null
+    emailRef.current.value = null
+    passRef.current.value = null
+    conPassRef.current.value = null
   }
 
   const handleToggleContainer = (isActive) => {
@@ -31,48 +41,44 @@ const RegistrationForm = () => {
     <div className="body">
       <div className="reg-container" id="container">
         <div className="form-container sign-up-container">
-          <form className="reg-form" onSubmit={handleSubmit}>
+          <form className="reg-form" onSubmit={handleReg}>
             <h1 className="form-title">Create Account</h1>
             <input
               className="mx-0 my-2 py-3 px-4"
               type="text"
-              onChange={handleChange}
               name="name"
+              ref={nameRef}
               placeholder="Please Enter a Username"
-              value={formValues.name}
             />
             <input
               className="mx-0 my-2 py-3 px-4"
               type="email"
-              onChange={handleChange}
               name="email"
+              ref={emailRef}
               placeholder="Please Enter Your E-mail"
-              value={formValues.email}
             />
             <input
               className="mx-0 my-2 py-3 px-4"
               type="password"
-              onChange={handleChange}
               name="password"
+              ref={passRef}
               placeholder="Please Enter a Password"
-              value={formValues.password}
             />
             <input
               className="mx-0 my-2 py-3 px-4"
               type="password"
               placeholder="Please Enter a Password Again"
-              onChange={handleChange}
               name="confirmPassword"
-              value={formValues.confirmPassword}
+              ref={conPassRef}
               required
             />
             <button
               className="reg-btn"
-              disabled={
-                !formValues.email ||
-                (!formValues.password &&
-                  formValues.confirmPassword === formValues.password)
-              }
+              // disabled={
+              //   !formValues.email ||
+              //   (!formValues.password &&
+              //     formValues.confirmPassword === formValues.password)
+              // }
             >
               Sign Up
             </button>
