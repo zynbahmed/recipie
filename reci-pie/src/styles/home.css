@@ -18,7 +18,7 @@
 }
 
 .banner-button {
-  top: 60%;
+  top: 65%;
 }
 
 .banner-text h1 {
@@ -32,16 +32,16 @@
 
 .banner-button button {
   border-radius: 20px;
-  border: 1px solid #BB0507;
-  background-color: #BB0507;
+  border: 1px solid #bb0507;
+  background-color: #bb0507;
   color: #ffffff;
-  font-size: 1rem; 
+  font-size: 1rem;
   font-weight: bold;
-  padding: 12px 25px; 
+  padding: 12px 25px;
   letter-spacing: 1px;
   text-transform: uppercase;
   transition: transform 80ms ease-in;
-  margin-top: 15px; 
+  margin-top: 15px;
 }
 
 .banner-button button:active {
@@ -54,8 +54,8 @@
 
 .banner-button button:hover {
   background-color: black;
-  color: #BB0507;
-  border: 2px solid #BB0507;
+  color: #bb0507;
+  border: 2px solid #bb0507;
 }
 
 @media (max-width: 768px) {
@@ -66,6 +66,6 @@
   .banner-button button {
     font-size: 1.2vw;
     padding: 10px 20px;
-    width: 80%; 
+    width: 80%;
   }
 }
