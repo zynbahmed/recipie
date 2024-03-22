@@ -77,9 +77,9 @@ const RegistrationForm = () => {
             <button
               className="reg-btn"
               disabled={
-                !emailRef ||
-                (!passRef &&
-                  conPassRef === passRef)
+                !emailRef.current.value &&
+                !passRef.current.value &&
+                conPassRef.current.value === passRef.current.value
               }
             >
               Sign Up
@@ -101,7 +101,15 @@ const RegistrationForm = () => {
               ref={loginPassRef}
               placeholder="Password"
             />
-            <button className="reg-btn">Sign In</button>
+            <button
+              className="reg-btn"
+              disabled={
+                !loginEmailRef.current.value &&
+                !loginPassRef.current.value
+              }
+            >
+              Sign In
+            </button>
           </form>
         </div>
         <div className="overlay-container">

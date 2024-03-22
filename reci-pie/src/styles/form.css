@@ -15,8 +15,8 @@ a {
 
 .reg-btn {
   border-radius: 20px;
-  border: 1px solid #BB0507;
-  background-color: #BB0507;
+  border: 1px solid #bb0507;
+  background-color: #bb0507;
   color: #ffffff;
   font-size: 12px;
   font-weight: bold;
@@ -33,6 +33,11 @@ a {
 
 .reg-btn:focus {
   outline: none;
+}
+
+.reg-btn[disabled] {
+  background-color: grey;
+  border: 1px solid black;
 }
 
 input {
@@ -137,9 +142,9 @@ form.reg-form {
 }
 
 .overlay {
-  background: #81000D;
-  background: -webkit-linear-gradient(to right, #BB0507, #81000D);
-  background: linear-gradient(to right, #BB0507, #81000D);
+  background: #81000d;
+  background: -webkit-linear-gradient(to right, #bb0507, #81000d);
+  background: linear-gradient(to right, #bb0507, #81000d);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 0 0;
@@ -187,4 +192,3 @@ form.reg-form {
 .reg-container.right-panel-active .overlay-right {
   transform: translateX(20%);
 }
-
