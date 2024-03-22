@@ -1,9 +1,24 @@
+import "../styles/home.css"
+
+import { useNavigate } from "react-router-dom"
+
 const Home = () => {
+  let navigate = useNavigate()
+
+  const navigation = () => {
+    navigate("/register")
+  }
+
   return (
-    <div>
-      <h1>HomePage</h1>
-      <h2>Welcome to Reci-pie</h2>
-      <h2>Your destination to great recipes and ease of life</h2>
+    <div className="home-container">
+      <div className="banner-text">
+        <h1 className="text-3xl text-white">Reci-Pie</h1>
+      </div>
+      <div className="banner-button">
+        <button className="" onClick={navigation}>
+          Join Us
+        </button>
+      </div>
     </div>
   )
 }
