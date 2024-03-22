@@ -1,4 +1,5 @@
-import { useState, useRef } from "react"
+import { useRef } from "react"
+import { useNavigate } from "react-router-dom"
 import "../styles/form.css"
 
 const RegistrationForm = () => {
@@ -8,6 +9,8 @@ const RegistrationForm = () => {
   //   password: "",
   //   confirmPassword: ""
   // })
+
+  let navigate = useNavigate()
 
   const nameRef = useRef(null)
   const emailRef = useRef(null)
@@ -32,6 +35,18 @@ const RegistrationForm = () => {
     emailRef.current.value = null
     passRef.current.value = null
     conPassRef.current.value = null
+  }
+
+  const handleLogin = async (event) => {
+    event.preventDefault()
+    // Client.post('/Auth/login', {
+    //   email: loginEmailRef.current.value,
+    //   password: loginPassRef.current.value
+    // }).then((response) => {
+    // navigate('/recipes')
+    // })
+    loginEmailRef.current.value = null
+    loginPassRef.current.value = null
   }
 
   const handleToggleContainer = (isActive) => {
@@ -87,7 +102,7 @@ const RegistrationForm = () => {
           </form>
         </div>
         <div className="form-container sign-in-container">
-          <form className="reg-form" action="#">
+          <form className="reg-form" onSubmit={handleLogin}>
             <h1 className="form-title">Sign in</h1>
             <input
               className="mx-0 my-2 py-3 px-4"
@@ -104,8 +119,7 @@ const RegistrationForm = () => {
             <button
               className="reg-btn"
               disabled={
-                !loginEmailRef.current.value &&
-                !loginPassRef.current.value
+                !loginEmailRef.current.value && !loginPassRef.current.value
               }
             >
               Sign In
