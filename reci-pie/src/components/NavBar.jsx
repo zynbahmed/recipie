@@ -3,7 +3,7 @@ import { motion } from "framer-motion"
 import { menuSlide } from "../constants/anime"
 import { navItems, userItem } from "../constants"
 import Curve from "./Curve"
-import { useState, useEffect } from "react"
+import ThemeToggle from "./ThemeToggle"
 
 const Nav = ({ user, handleLogOut }) => {
   let userOptions
@@ -22,23 +22,6 @@ const Nav = ({ user, handleLogOut }) => {
     )
   }
 
-  const [theme, setTheme] = useState(
-    localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
-  )
-
-  const handleToggle = (e) => {
-    if (e.target.checked) {
-      setTheme("dark")
-    } else {
-      setTheme("light")
-    }
-  }
-
-  useEffect(() => {
-    localStorage.setItem("theme", theme)
-    const localTheme = localStorage.getItem("theme")
-    document.querySelector("html").setAttribute("data-theme", localTheme)
-  }, [theme])
   return (
     <motion.div
       variants={menuSlide}
@@ -60,13 +43,7 @@ const Nav = ({ user, handleLogOut }) => {
                 </NavLink>
               ))}
         </div>
-        <input
-          type="checkbox"
-          onChange={handleToggle}
-          checked={theme === "light" ? false : true}
-          value="synthwave"
-          className="toggle theme-controller bg-amber-300 border-sky-400 [--tglbg:theme(colors.sky.500)] checked:bg-blue-300 checked:border-blue-800 checked:[--tglbg:theme(colors.blue.900)] row-start-1 col-start-1 col-span-2"
-        />
+        <ThemeToggle />
       </div>
       <Curve />
     </motion.div>
