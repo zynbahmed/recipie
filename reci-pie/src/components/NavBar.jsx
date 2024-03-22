@@ -26,8 +26,8 @@ const Nav = ({ user, handleLogOut }) => {
     <motion.div
       variants={menuSlide}
       initial="initial"
-      animate="enter"
-      exit="exit"
+      animate={{ transform: "translateX(50px)" }}
+      exit={{ transform: "translateX(200px)" }}
       className="menu"
     >
       <div className="body">
@@ -45,7 +45,7 @@ const Nav = ({ user, handleLogOut }) => {
         </div>
         <ThemeToggle />
       </div>
-      <Curve />
+      {/* <Curve /> */}
     </motion.div>
   )
 }
