@@ -1,12 +1,12 @@
-import { useState } from "react"
-import "../styles/form.css"
+import { useState } from 'react'
+import '../styles/form.css'
 
 const RegistrationForm = () => {
   const [formValues, setFormValues] = useState({
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: ""
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
   })
   const handleChange = (event) => {
     setFormValues({ ...formValues, [event.target.name]: event.target.value })
@@ -23,8 +23,8 @@ const RegistrationForm = () => {
   }
 
   const handleToggleContainer = (isActive) => {
-    const container = document.getElementById("container")
-    container.classList.toggle("right-panel-active", isActive)
+    const container = document.getElementById('container')
+    container.classList.toggle('right-panel-active', isActive)
   }
 
   return (
