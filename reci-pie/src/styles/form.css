@@ -188,7 +188,3 @@ form.reg-form {
   transform: translateX(20%);
 }
 
-#form_alignment {
-  display: flex;
-  flex: 1;
-}
