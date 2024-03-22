@@ -1,31 +1,27 @@
 import { NavLink } from "react-router-dom"
 import { motion } from "framer-motion"
 import { menuSlide } from "../constants/anime"
-import { navItems } from "../constants"
+import { navItems, userItem } from "../constants"
 import Curve from "./Curve"
+import ThemeToggle from "./ThemeToggle"
 
 const Nav = ({ user, handleLogOut }) => {
-  // let userOptions
-  // if (user) {
-  //   userOptions = (
-  //     <div>
-  //       <NavLink to="/">Home</NavLink>
-  //       <NavLink to="/profile">Profile</NavLink>
-  //       <NavLink to="/recipes">Recipes</NavLink>
-  //       <NavLink to="/shoopingList">ShoppingList</NavLink>
-  //       <NavLink onClick={handleLogOut} to="/">
-  //         Logout
-  //       </NavLink>
-  //     </div>
-  //   )
-  // }
-  // const publicOptions = (
-  //   <div>
-  //     <NavLink to="/">Home</NavLink>
-  //     <NavLink to="/register">Registration</NavLink>
-  //     <NavLink to="/login">Login</NavLink>
-  //   </div>
-  // )
+  let userOptions
+  if (user) {
+    userOptions = (
+      <div>
+        {userItem.map((data, index) => (
+          <NavLink key={index} to={data.href}>
+            {data.title}
+          </NavLink>
+        ))}
+        <NavLink onClick={handleLogOut} to="/">
+          Logout
+        </NavLink>
+      </div>
+    )
+  }
+
   return (
     <motion.div
       variants={menuSlide}
@@ -39,16 +35,15 @@ const Nav = ({ user, handleLogOut }) => {
           <div className="header">
             <img src="/logo2.png" />
           </div>
-          {/* {user ? userOptions : publicOptions} */}
-          {navItems.map((data, index) => (
-            // <a key={index} href={data.href}>
-            //   {data.title}
-            // </a>
-            <NavLink key={index} to={data.href}>
-              {data.title}
-            </NavLink>
-          ))}
+          {user
+            ? userOptions
+            : navItems.map((data, index) => (
+                <NavLink key={index} to={data.href}>
+                  {data.title}
+                </NavLink>
+              ))}
         </div>
+        <ThemeToggle />
       </div>
       <Curve />
     </motion.div>
