@@ -1,5 +1,5 @@
 import { useRef } from "react"
-import { useNavigate } from "react-router-dom"
+// import { useNavigate } from "react-router-dom"
 import "../styles/form.css"
 
 const RegistrationForm = () => {
@@ -10,7 +10,7 @@ const RegistrationForm = () => {
   //   confirmPassword: ""
   // })
 
-  let navigate = useNavigate()
+  // let navigate = useNavigate()
 
   const nameRef = useRef(null)
   const emailRef = useRef(null)
@@ -91,11 +91,11 @@ const RegistrationForm = () => {
             />
             <button
               className="reg-btn"
-              disabled={
-                !emailRef.current.value &&
-                !passRef.current.value &&
-                conPassRef.current.value === passRef.current.value
-              }
+              // disabled={
+              //   !emailRef.current.value &&
+              //   !passRef.current.value &&
+              //   conPassRef.current.value === passRef.current.value
+              // }
             >
               Sign Up
             </button>
@@ -118,9 +118,9 @@ const RegistrationForm = () => {
             />
             <button
               className="reg-btn"
-              disabled={
-                !loginEmailRef.current.value && !loginPassRef.current.value
-              }
+              // disabled={
+              //   !loginEmailRef.current.value && !loginPassRef.current.value
+              // }
             >
               Sign In
             </button>
