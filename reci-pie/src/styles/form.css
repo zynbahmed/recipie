@@ -5,8 +5,10 @@
 }
 
 .form-title {
+  font-size: xx-large;
   font-weight: bold;
-  margin: 0;
+  margin-top: 0;
+  margin-bottom: 50px;
 }
 
 a {
@@ -27,6 +29,7 @@ a {
   letter-spacing: 1px;
   text-transform: uppercase;
   transition: transform 80ms ease-in;
+  margin-top: 90px;
 }
 
 .reg-btn:active {
@@ -39,9 +42,6 @@ a {
 
 input {
   background-color: #eee;
-  border: none;
-  padding: 12px 15px;
-  margin: 8px 0;
   width: 100%;
 }
 
@@ -64,7 +64,6 @@ input {
   width: 1000px;
   max-width: 100%;
   min-height: 580px;
-  z-index: -1;
 }
 
 .form-container {

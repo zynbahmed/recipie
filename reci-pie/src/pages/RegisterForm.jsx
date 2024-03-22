@@ -34,29 +34,33 @@ const RegistrationForm = () => {
           <form className="reg-form" onSubmit={handleSubmit}>
             <h1 className="form-title">Create Account</h1>
             <input
+              className="mx-0 my-2 py-3 px-4"
               type="text"
               onChange={handleChange}
               name="name"
-              placeholder="Please enter a username"
+              placeholder="Please Enter a Username"
               value={formValues.name}
             />
             <input
+              className="mx-0 my-2 py-3 px-4"
               type="email"
               onChange={handleChange}
               name="email"
-              placeholder="your email"
+              placeholder="Please Enter Your E-mail"
               value={formValues.email}
             />
             <input
+              className="mx-0 my-2 py-3 px-4"
               type="password"
               onChange={handleChange}
               name="password"
-              placeholder="enter your password"
+              placeholder="Please Enter a Password"
               value={formValues.password}
             />
             <input
+              className="mx-0 my-2 py-3 px-4"
               type="password"
-              placeholder="confirm passord"
+              placeholder="Please Enter a Password Again"
               onChange={handleChange}
               name="confirmPassword"
               value={formValues.confirmPassword}
@@ -77,8 +81,16 @@ const RegistrationForm = () => {
         <div className="form-container sign-in-container">
           <form className="reg-form" action="#">
             <h1 className="form-title">Sign in</h1>
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
+            <input
+              className="mx-0 my-2 py-3 px-4"
+              type="email"
+              placeholder="Email"
+            />
+            <input
+              className="mx-0 my-2 py-3 px-4"
+              type="password"
+              placeholder="Password"
+            />
             <button className="reg-btn">Sign In</button>
           </form>
         </div>
