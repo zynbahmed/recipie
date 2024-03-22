@@ -1,6 +1,12 @@
 import { useState } from 'react'
 const AddRecipe = () => {
-  const [inputs, setInputs] = useState([{ value: '' }])
+  const [ingredients, setIngredients] = useState([
+    {
+      name: '',
+      amount: '',
+      unit: ''
+    }
+  ])
   const [addRecipeformValues, setAddRecipeFormValues] = useState({
     title: '',
     description: '',
@@ -16,19 +22,25 @@ const AddRecipe = () => {
       [event.target.name]: event.target.value
     })
   }
-  const handleAdd = (index, event) => {
-    event.preventDefault()
-    // const values = [...inputs]
-    // values[index].value = event.target.value
-    setInputs([...inputs, { value: '' }])
-  }
-  const handleInputChange = (index, event) => {
-    const values = [...inputs]
-    values[index].value = event.target.value
-    setInputs(values)
+  // const handleAdd = (index, event) => {
+  //   // event.preventDefault()
+  //   // const values = [...inputs]
+  //   // values[index].value = event.target.value
+  //   setIngredients([...ingredients, { value: '' }])
+  // }
+  const handleIngredientChange = (index, event) => {
+    const{name,value}=e.target
+    setAddRecipeFormValues(prevState=>{const ingredients=[...prevState.ingredients] 
+      ingredients[index][name]=value
+      return {...prevState,ingredients}
+    })
+    // const values = [...ingredients]
+    // values[index][field].value = event.target.value
+    // setIngredients(values)
   }
   const handleSubmit = (event) => {
     event.preventDefault()
+    console.log(addRecipeformValues)
   }
 
   return (
@@ -86,26 +98,32 @@ const AddRecipe = () => {
         />
         <label htmlFor="ingredients">ingredients</label>
         <br />
-        <textarea
-          type="text"
-          name="ingredients"
-          placeholder="ingredients"
-          id=""
-          cols="100"
-          rows="10"
-          onChange={handleChange}
-          // value={addRecipeformValues.ingredients}
-        />
-        {inputs.map((input, index) => (
+        {addRecipeformValues.ingredients.map((ingredient, index) => (
           <div key={index}>
+            <h4>Add an ingredient</h4>
             <input
               type="text"
               placeholder="Enter an ingredient"
-              onChange={(event) => handleInputChange(index, event)}
+              value={ingredient.key}
+              onChange={(event) => handleIngredientChange(index, event)}
+            />
+            <input
+              type="text"
+              placeholder="Amount"
+              value={ingredient.key}
+              onChange={(event) =>
+                handleIngredientChange(index, event)
+              }
+            />
+            <input
+              type="text"
+              placeholder="units"
+              value={ingredient.key}
+              onChange={(event) => handleIngredientChange(index, event)}
             />
           </div>
         ))}
-        <button onClick={handleAdd}>submit</button>
+        <button onClick={handleAdd}>Add more ingredients</button>
       </form>
     </div>
   )
