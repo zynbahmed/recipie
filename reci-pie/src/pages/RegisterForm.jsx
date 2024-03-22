@@ -13,6 +13,8 @@ const RegistrationForm = () => {
   const emailRef = useRef(null)
   const passRef = useRef(null)
   const conPassRef = useRef(null)
+  const loginEmailRef = useRef(null)
+  const loginPassRef = useRef(null)
 
   // const handleChange = (event) => {
   //   setFormValues({ ...formValues, [event.target.name]: event.target.value })
@@ -74,11 +76,11 @@ const RegistrationForm = () => {
             />
             <button
               className="reg-btn"
-              // disabled={
-              //   !formValues.email ||
-              //   (!formValues.password &&
-              //     formValues.confirmPassword === formValues.password)
-              // }
+              disabled={
+                !emailRef ||
+                (!passRef &&
+                  conPassRef === passRef)
+              }
             >
               Sign Up
             </button>
@@ -90,11 +92,13 @@ const RegistrationForm = () => {
             <input
               className="mx-0 my-2 py-3 px-4"
               type="email"
+              ref={loginEmailRef}
               placeholder="Email"
             />
             <input
               className="mx-0 my-2 py-3 px-4"
               type="password"
+              ref={loginPassRef}
               placeholder="Password"
             />
             <button className="reg-btn">Sign In</button>
