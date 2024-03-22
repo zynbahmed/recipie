@@ -21,9 +21,5 @@ export const userItem = [
   {
     title: "Profile",
     href: "/profile"
-  },
-  {
-    title: "Logout",
-    href: "/"
   }
 ]
