@@ -9,7 +9,7 @@ const Recipes = () => {
   useEffect(() => {
     const getRecipe = async () => {
       let food = await axios.get(
-        `http://www.themealdb.com/api/json/v1/1/search.php?s=${search}`
+        `http://www.themealdb.com/api/json/v1/1/lookup.php?i=52772`
       )
       setRec(food.data.meals)
     }
@@ -20,7 +20,6 @@ const Recipes = () => {
     e.preventDefault()
     const foodSearch = mealRef.current.value
     setSearch(foodSearch)
-    console.log(search)
   }
 
   return (

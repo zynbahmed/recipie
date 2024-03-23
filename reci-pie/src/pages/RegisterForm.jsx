@@ -50,8 +50,8 @@ const RegistrationForm = () => {
   }
 
   const handleToggleContainer = (isActive) => {
-    const container = document.getElementById("container")
-    container.classList.toggle("right-panel-active", isActive)
+    const container = document.getElementById('container')
+    container.classList.toggle('right-panel-active', isActive)
   }
 
   return (
