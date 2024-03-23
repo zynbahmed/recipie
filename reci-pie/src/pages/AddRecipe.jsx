@@ -27,7 +27,7 @@ const AddRecipe = () => {
     }))
   }
 
-  const handleIngredientChange = (index, event) => {
+  const handleIngredientChange = (index, event) => { 
     const { name, value } = event.target
     setAddRecipeFormValues((prevState) => {
       const ingredients = [...prevState.ingredients]
