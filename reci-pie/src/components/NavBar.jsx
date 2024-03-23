@@ -11,9 +11,9 @@ const Nav = ({ user, handleLogOut }) => {
     userOptions = (
       <div>
         {userItem.map((data, index) => (
-          <NavLink key={index} to={data.href}>
+          <a key={index} href={data.href}>
             {data.title}
-          </NavLink>
+          </a>
         ))}
         <NavLink onClick={handleLogOut} to="/">
           Logout
@@ -38,9 +38,9 @@ const Nav = ({ user, handleLogOut }) => {
           {user
             ? userOptions
             : navItems.map((data, index) => (
-                <NavLink key={index} to={data.href}>
+                <a key={index} href={data.href}>
                   {data.title}
-                </NavLink>
+                </a>
               ))}
         </div>
         <ThemeToggle />
