@@ -28,6 +28,7 @@ const AddRecipe = () => {
   }
 
   const handleIngredientChange = (index, event) => {
+    event.preventDefault()
     const { name, value } = event.target
     setAddRecipeFormValues((prevState) => {
       const ingredients = [...prevState.ingredients]
@@ -37,19 +38,17 @@ const AddRecipe = () => {
   }
 
   const handleSubmit = async (event) => {
-    await Client.post(`/recipe`, addRecipeformValues)
     event.preventDefault()
+    await Client.post(`/recipe`, addRecipeformValues)
 
     console.log(addRecipeformValues)
   }
   const handleDelete = (index, event) => {
-    event.preventDefault()
-    event.stopPropagation()
     if (index > 0) {
-      event.preventDefault()
       setAddRecipeFormValues((prevState) => {
         const ingredients = [...prevState.ingredients]
         ingredients.splice(index, 1)
+        return { ...prevState, ingredients }
       })
     }
   }
@@ -133,7 +132,7 @@ const AddRecipe = () => {
               value={ingredient.unit}
               onChange={(event) => handleIngredientChange(index, event)}
             />
-            <button onClick={() => handleDelete(index)}>
+            <button type="buton" onClick={() => handleDelete(index)}>
               Delete an ingredient
             </button>
           </div>
