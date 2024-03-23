@@ -90,7 +90,7 @@ const RegistrationForm = () => {
               required
             />
             <button
-              className="reg-btn"
+              className="reg-btn mt-16"
               // disabled={
               //   !emailRef.current.value &&
               //   !passRef.current.value &&
@@ -117,7 +117,7 @@ const RegistrationForm = () => {
               placeholder="Password"
             />
             <button
-              className="reg-btn"
+              className="reg-btn mt-16"
               // disabled={
               //   !loginEmailRef.current.value && !loginPassRef.current.value
               // }
@@ -134,7 +134,7 @@ const RegistrationForm = () => {
                 To keep connected with us please login with your personal info
               </p>
               <button
-                className="ghost reg-btn"
+                className="ghost reg-btn mt-16"
                 id="signIn"
                 onClick={() => handleToggleContainer(false)}
               >
@@ -145,7 +145,7 @@ const RegistrationForm = () => {
               <h1 className="form-title">Hello, Friend!</h1>
               <p>Enter your personal details and start journey with us</p>
               <button
-                className="ghost reg-btn"
+                className="ghost reg-btn mt-16"
                 id="signUp"
                 onClick={() => handleToggleContainer(true)}
               >
