@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Client from '../services/api'
 const AddRecipe = () => {
   const [addRecipeformValues, setAddRecipeFormValues] = useState({
     title: '',
@@ -15,7 +16,8 @@ const AddRecipe = () => {
       [event.target.name]: event.target.value
     })
   }
-  const handleAdd = () => {
+  const handleAdd = (event) => {
+    event.preventDefault()
     setAddRecipeFormValues((prevState) => ({
       ...prevState,
       ingredients: [
@@ -34,14 +36,27 @@ const AddRecipe = () => {
     })
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
+    await Client.post(`/recipe`, addRecipeformValues)
     event.preventDefault()
+
     console.log(addRecipeformValues)
+  }
+  const handleDelete = (index, event) => {
+    event.preventDefault()
+    event.stopPropagation()
+    if (index > 0) {
+      event.preventDefault()
+      setAddRecipeFormValues((prevState) => {
+        const ingredients = [...prevState.ingredients]
+        ingredients.splice(index, 1)
+      })
+    }
   }
 
   return (
     <div className="form-container sign-in-container">
-      <form action="submit" onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="">Title</label>
         <input
           type="text"
@@ -101,27 +116,31 @@ const AddRecipe = () => {
               type="text"
               placeholder="Enter an ingredient"
               name="name"
-              value={ingredient.key}
+              value={ingredient.name}
               onChange={(event) => handleIngredientChange(index, event)}
             />
             <input
               type="text"
               placeholder="amount"
               name="amount"
-              value={ingredient.key}
+              value={ingredient.amount}
               onChange={(event) => handleIngredientChange(index, event)}
             />
             <input
               type="text"
               placeholder="units"
               name="unit"
-              value={ingredient.key}
+              value={ingredient.unit}
               onChange={(event) => handleIngredientChange(index, event)}
             />
-            <button onClick={handleSubmit}>Add Recipe</button>
+            <button onClick={() => handleDelete(index)}>
+              Delete an ingredient
+            </button>
           </div>
         ))}
         <button onClick={handleAdd}>Add more ingredients</button>
+        <br />
+        <button>Add Recipe</button>
       </form>
     </div>
   )
