@@ -10,7 +10,7 @@ import Recipes from "./pages/Recipes"
 import Profile from "./pages/Profile"
 import ShoppingList from "./pages/ShoppingList"
 import RegistartionForm from "./pages/RegisterForm"
-
+import AddRecipe from './pages/AddRecipe'
 import "./styles/App.scss"
 
 const App = () => {
@@ -46,6 +46,8 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/recipes" element={<Recipes />} />
           <Route path="/shopping-list" element={<ShoppingList />} />
+          <Route path="/addrecipe" element={<AddRecipe />} />
+
         </Routes>
       </div>
     </div>
