@@ -1,19 +1,12 @@
 import { useState } from 'react'
 const AddRecipe = () => {
-  const [ingredients, setIngredients] = useState([
-    {
-      name: '',
-      amount: '',
-      unit: ''
-    }
-  ])
   const [addRecipeformValues, setAddRecipeFormValues] = useState({
     title: '',
     description: '',
     cookingTime: '',
     steps: '',
     photo: '',
-    ingredients: []
+    ingredients: [{ name: '', amount: '', unit: '' }]
   })
   const handleChange = (event) => {
     event.preventDefault()
@@ -22,22 +15,25 @@ const AddRecipe = () => {
       [event.target.name]: event.target.value
     })
   }
-  // const handleAdd = (index, event) => {
-  //   // event.preventDefault()
-  //   // const values = [...inputs]
-  //   // values[index].value = event.target.value
-  //   setIngredients([...ingredients, { value: '' }])
-  // }
-  const handleIngredientChange = (index, event) => {
-    const{name,value}=e.target
-    setAddRecipeFormValues(prevState=>{const ingredients=[...prevState.ingredients] 
-      ingredients[index][name]=value
-      return {...prevState,ingredients}
-    })
-    // const values = [...ingredients]
-    // values[index][field].value = event.target.value
-    // setIngredients(values)
+  const handleAdd = () => {
+    setAddRecipeFormValues((prevState) => ({
+      ...prevState,
+      ingredients: [
+        ...prevState.ingredients,
+        { name: '', amount: '', unit: '' }
+      ]
+    }))
   }
+
+  const handleIngredientChange = (index, event) => {
+    const { name, value } = event.target
+    setAddRecipeFormValues((prevState) => {
+      const ingredients = [...prevState.ingredients]
+      ingredients[index][name] = value
+      return { ...prevState, ingredients }
+    })
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault()
     console.log(addRecipeformValues)
@@ -100,27 +96,29 @@ const AddRecipe = () => {
         <br />
         {addRecipeformValues.ingredients.map((ingredient, index) => (
           <div key={index}>
-            <h4>Add an ingredient</h4>
+            <h4>Add Ingredients</h4>
             <input
               type="text"
               placeholder="Enter an ingredient"
+              name="name"
               value={ingredient.key}
               onChange={(event) => handleIngredientChange(index, event)}
             />
             <input
               type="text"
-              placeholder="Amount"
+              placeholder="amount"
+              name="amount"
               value={ingredient.key}
-              onChange={(event) =>
-                handleIngredientChange(index, event)
-              }
+              onChange={(event) => handleIngredientChange(index, event)}
             />
             <input
               type="text"
               placeholder="units"
+              name="unit"
               value={ingredient.key}
               onChange={(event) => handleIngredientChange(index, event)}
             />
+            <button onClick={handleSubmit}>Add Recipe</button>
           </div>
         ))}
         <button onClick={handleAdd}>Add more ingredients</button>
