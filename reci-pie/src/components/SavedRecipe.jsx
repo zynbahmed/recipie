@@ -1,7 +1,7 @@
 const SavedRecipe = () => {
   return (
     <div>
-      <h1>Saved Recipes</h1>
+      <h1 className="text-xl font-bold mb-4">Saved Recipes</h1>
     </div>
   )
 }
