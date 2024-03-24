@@ -8,6 +8,10 @@ export const navItems = [
     href: "/recipes"
   },
   {
+    title: "RecipesDB",
+    href: "/allrecipes"
+  },
+  {
     title: "Registartion",
     href: "/register"
   }
@@ -21,6 +25,10 @@ export const userItem = [
   {
     title: "Recipes",
     href: "/recipes"
+  },
+  {
+    title: "RecipesDB",
+    href: "/allrecipes"
   },
   {
     title: "Profile",
