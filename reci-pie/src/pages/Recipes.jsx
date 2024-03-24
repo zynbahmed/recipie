@@ -6,6 +6,7 @@ const Recipes = () => {
   const mealRef = useRef(null)
   const [search, setSearch] = useState([])
   const [rec, setRec] = useState([])
+  const [click, setClick] = useState(false)
   useEffect(() => {
     const getRecipe = async () => {
       let food = await axios.get(
@@ -21,14 +22,20 @@ const Recipes = () => {
     e.preventDefault()
     const foodSearch = mealRef.current.value
     setSearch(foodSearch)
+    setClick(true)
   }
 
   return (
     <div>
-      <h1>Recipes</h1>
       <Search onSubmit={handleSubmit} mealRef={mealRef} />
-      <Recipe key={rec.idMeal} rec={rec} />
-      {console.log(rec)}
+      {click ? (
+        <div>
+          <h1>Recipes</h1>
+          <Recipe key={rec.idMeal} rec={rec} />
+        </div>
+      ) : (
+        <h2>Please Search for Recipes</h2>
+      )}
     </div>
   )
 }
