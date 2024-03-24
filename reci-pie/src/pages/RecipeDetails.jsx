@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import Client from '../services/api'
 const RecipeDetails = () => {
+  const navigate = useNavigate()
   let { id } = useParams()
   const [recipe, setRecipe] = useState(null)
   useEffect(() => {
@@ -15,6 +16,9 @@ const RecipeDetails = () => {
   const handleDelete = async (id) => {
     console.log(`/recipe/${id}`)
     await Client.delete(`/recipe/${id}`)
+  }
+  const handleEditPage = () => {
+    navigate(`/editrecipe/${id}`)
   }
 
   return (
@@ -39,6 +43,8 @@ const RecipeDetails = () => {
       >
         Delete Recipe
       </button>
+      <br />
+      <button onClick={handleEditPage}>Edit Recipe</button>
     </div>
   )
 }

@@ -1,48 +1,19 @@
-import { useState } from 'react'
+import { useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 import Client from '../services/api'
-import { Link } from 'react-router-dom'
-const AddRecipe = () => {
-  const [addRecipeformValues, setAddRecipeFormValues] = useState({
-    title: '',
-    description: '',
-    cookingTime: '',
-    steps: '',
-    photo: '',
-    ingredients: [{ name: '', amount: '', unit: '' }]
-  })
+const EditRecipe = () => {
+  let { id } = useParams()
+  const [editRecipe, setEditRecipe] = useState(null)
+  useEffect(() => {
+    const getRecipe = async () => {
+      const response = await Client.get(`/recipe/${id}`)
+      console.log(response.data)
+      setEditRecipe(response.data)
+    }
+    getRecipe()
+  }, [])
   const handleChange = (event) => {
-    event.preventDefault()
-    setAddRecipeFormValues({
-      ...addRecipeformValues,
-      [event.target.name]: event.target.value
-    })
-  }
-  const handleAdd = (event) => {
-    event.preventDefault()
-    setAddRecipeFormValues((prevState) => ({
-      ...prevState,
-      ingredients: [
-        ...prevState.ingredients,
-        { name: '', amount: '', unit: '' }
-      ]
-    }))
-  }
-
-  const handleIngredientChange = (index, event) => {
-    event.preventDefault()
-    const { name, value } = event.target
-    setAddRecipeFormValues((prevState) => {
-      const ingredients = [...prevState.ingredients]
-      ingredients[index][name] = value
-      return { ...prevState, ingredients }
-    })
-  }
-
-  const handleSubmit = async (event) => {
-    event.preventDefault()
-    await Client.post(`/recipe`, addRecipeformValues)
-
-    console.log(addRecipeformValues)
+    console.log(event.target.value)
   }
   const handleDelete = (index, event) => {
     if (index > 0) {
@@ -53,9 +24,8 @@ const AddRecipe = () => {
       })
     }
   }
-
   return (
-    <div className="form-container sign-in-container">
+    <div>
       <form>
         <label htmlFor="">Title</label>
         <input
@@ -63,7 +33,7 @@ const AddRecipe = () => {
           name="title"
           placeholder="title"
           onChange={handleChange}
-          value={addRecipeformValues.title}
+          defaultValue={editRecipe?.title}
         />
         <label htmlFor="description">Description</label>
         <br />
@@ -74,7 +44,7 @@ const AddRecipe = () => {
           cols="100"
           rows="10"
           onChange={handleChange}
-          value={addRecipeformValues.description}
+          defaultValue={editRecipe?.description}
         ></textarea>
         <br />
         <label htmlFor="cookingTime">Cooking Time</label>
@@ -84,7 +54,7 @@ const AddRecipe = () => {
           placeholder="Cooking Time"
           id=""
           onChange={handleChange}
-          value={addRecipeformValues.cookingTime}
+          defaultValue={editRecipe?.cookingTime}
         />
         <label htmlFor="steps">Steps</label>
         <br />
@@ -95,7 +65,7 @@ const AddRecipe = () => {
           cols="100"
           rows="10"
           onChange={handleChange}
-          value={addRecipeformValues.steps}
+          defaultValue={editRecipe?.steps}
         ></textarea>
         <br />
         <label htmlFor="photo">Photo</label>
@@ -105,32 +75,32 @@ const AddRecipe = () => {
           placeholder="Picture"
           id=""
           onChange={handleChange}
-          value={addRecipeformValues.photo}
+          defaultValue={editRecipe?.photo}
         />
         <label htmlFor="ingredients">ingredients</label>
         <br />
-        {addRecipeformValues.ingredients.map((ingredient, index) => (
+        {editRecipe?.ingredient?.map((item, index) => (
           <div key={index}>
             <h4>Add Ingredients</h4>
             <input
               type="text"
               placeholder="Enter an ingredient"
               name="name"
-              value={ingredient.name}
+              defaultValue={item.name}
               onChange={(event) => handleIngredientChange(index, event)}
             />
             <input
               type="text"
               placeholder="amount"
               name="amount"
-              value={ingredient.amount}
+              defaultValue={item.amount}
               onChange={(event) => handleIngredientChange(index, event)}
             />
             <input
               type="text"
               placeholder="units"
               name="unit"
-              value={ingredient.unit}
+              defaultValuee={item.unit}
               onChange={(event) => handleIngredientChange(index, event)}
             />
             <button type="button" onClick={() => handleDelete(index)}>
@@ -138,12 +108,10 @@ const AddRecipe = () => {
             </button>
           </div>
         ))}
-        <button onClick={handleAdd}>Add more ingredients</button>
+        <button>Add more ingredients</button>
         <br />
-        <button onClick={handleSubmit}>Add Recipe</button>
       </form>
     </div>
   )
 }
-
-export default AddRecipe
+export default EditRecipe
