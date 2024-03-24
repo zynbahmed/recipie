@@ -119,7 +119,7 @@ const RecipeDetails = () => {
           </div>
         </div>
         <div className="">
-          {/* <Reviews reviews={recipe.reviews} /> */}
+          <Reviews reviews={recipe.reviews} />
           <AddReview id={id} ali={ali} />
         </div>
       </div>
