@@ -10,7 +10,7 @@ const AllRecipes = () => {
       setAllRecipes(response.data)
     }
     getAllRecipes()
-  }, [allRecipes])
+  }, [])
 
   return (
     <div>
