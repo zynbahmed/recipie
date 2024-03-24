@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { useState, useEffect } from "react"
+import { Routes, Route } from "react-router-dom"
 
 // import { CheckSession } from "./services/Auth"
 
@@ -31,7 +31,7 @@ const App = () => {
   }
 
   useEffect(() => {
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem("token")
     if (token) {
       checkToken()
     }
@@ -44,7 +44,7 @@ const App = () => {
       </div>
       <div>
         <Routes>
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile" element={<Profile user={user} />} />
           <Route
             path="/register"
             element={<RegistartionForm setUser={setUser} />}
