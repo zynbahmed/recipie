@@ -1,7 +1,15 @@
 import { useState } from 'react'
+import { RegisterUser } from '../services/Auth'
+import { SignInUser } from '../services/Auth'
 import '../styles/form.css'
+import { useNavigate } from 'react-router-dom'
 
-const RegistrationForm = () => {
+const RegistrationForm = ({ setUser }) => {
+  let navigate = useNavigate()
+  const initialState = {
+    email: '',
+    password: ''
+  }
   const [formValues, setFormValues] = useState({
     name: '',
     email: '',
@@ -14,12 +22,20 @@ const RegistrationForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    // await ({
-    //   name: formValues.name,
-    //   email: formValues,email,
-    //   password: formValues.password
-    // }
-    // )
+    await RegisterUser({
+      name: formValues.name,
+      email: formValues.email,
+      password: formValues.password
+    })
+  }
+
+  const handleSubmitIn = async (e) => {
+    e.preventDefault()
+    const payload = await SignInUser(formValues)
+    setFormValues(initialState)
+    setUser(payload)
+
+    navigate('/')
   }
 
   const handleToggleContainer = (isActive) => {
@@ -79,7 +95,7 @@ const RegistrationForm = () => {
           </form>
         </div>
         <div className="form-container sign-in-container">
-          <form className="reg-form" action="#">
+          <form className="reg-form" action="#" onSubmit={handleSubmitIn}>
             <h1 className="form-title">Sign in</h1>
             <input
               className="mx-0 my-2 py-3 px-4"
