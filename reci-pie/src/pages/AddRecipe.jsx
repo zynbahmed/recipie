@@ -1,14 +1,14 @@
-import { useState } from "react"
-import Client from "../services/api"
-import { Link } from "react-router-dom"
+import { useState } from 'react'
+import Client from '../services/api'
+import { Link } from 'react-router-dom'
 const AddRecipe = () => {
   const [addRecipeformValues, setAddRecipeFormValues] = useState({
-    title: "",
-    description: "",
-    cookingTime: "",
-    steps: "",
-    photo: "",
-    ingredients: [{ name: "", amount: "", unit: "" }]
+    title: '',
+    description: '',
+    cookingTime: '',
+    steps: '',
+    photo: '',
+    ingredients: [{ name: '', amount: '', unit: '' }]
   })
   const handleChange = (event) => {
     event.preventDefault()
@@ -23,7 +23,7 @@ const AddRecipe = () => {
       ...prevState,
       ingredients: [
         ...prevState.ingredients,
-        { name: "", amount: "", unit: "" }
+        { name: '', amount: '', unit: '' }
       ]
     }))
   }
@@ -59,7 +59,7 @@ const AddRecipe = () => {
       <div className="absolute inset-0 bg-center bg-[url('/pies.jpg')]"></div>
       <div className="relative mx-auto w-full max-w-max px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 sm:rounded-xl sm:px-10 bg-base-100">
         <div class="w-full">
-          <form onSubmit={handleSubmit}>
+          <form>
             <h1 className="text-2xl font-bold uppercase"> Add a Recipe</h1>
             <br />
             <div className="relative">
@@ -208,7 +208,7 @@ const AddRecipe = () => {
                 </div>
                 <br />
                 <button
-                  type="buton"
+                  type="button"
                   className="text-red-500 font-extrabold uppercase hover:text-red-900 m-2"
                   onClick={() => handleDelete(index)}
                 >
@@ -217,13 +217,16 @@ const AddRecipe = () => {
               </div>
             ))}
             <button
+              type="button"
               className="text-blue-500 font-extrabold uppercase hover:text-blue-900 m-2"
               onClick={handleAdd}
             >
               Add more ingredients
             </button>
             <br />
-            <button className="reg-btn m-2">Add Recipe</button>
+            <button onClick={handleSubmit} className="reg-btn m-2">
+              Add Recipe
+            </button>
           </form>
         </div>
       </div>
