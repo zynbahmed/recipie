@@ -1,15 +1,16 @@
-import { NavLink } from "react-router-dom"
-import { motion } from "framer-motion"
-import { menuSlide } from "../constants/anime"
-import { navItems, userItem } from "../constants"
-import Curve from "./Curve"
-import ThemeToggle from "./ThemeToggle"
+import { NavLink } from 'react-router-dom'
+import { motion } from 'framer-motion'
+import { menuSlide } from '../constants/anime'
+import { navItems, userItem } from '../constants'
+import Curve from './Curve'
+import ThemeToggle from './ThemeToggle'
 
 const Nav = ({ user, handleLogOut }) => {
   let userOptions
   if (user) {
     userOptions = (
       <div>
+        <h1>{user.name}</h1>
         {userItem.map((data, index) => (
           <NavLink key={index} to={data.href}>
             {data.title}

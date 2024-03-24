@@ -1,12 +1,12 @@
-import "../styles/home.css"
+import '../styles/home.css'
 
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from 'react-router-dom'
 
-const Home = () => {
+const Home = ({ user }) => {
   let navigate = useNavigate()
 
   const navigation = () => {
-    navigate("/register")
+    navigate('/register')
   }
 
   const recRavigation = () => {

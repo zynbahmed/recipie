@@ -9,7 +9,8 @@ const Recipes = () => {
   useEffect(() => {
     const getRecipe = async () => {
       let food = await axios.get(
-        `http://www.themealdb.com/api/json/v1/1/lookup.php?i=52772`
+        `http://www.themealdb.com/api/json/v1/1/search.php?s=${search}
+      `
       )
       setRec(food.data.meals)
     }
