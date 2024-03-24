@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { useState, useEffect } from "react"
+import { Routes, Route } from "react-router-dom"
 
 // import { CheckSession } from "./services/Auth"
 
@@ -13,6 +13,7 @@ import RegistartionForm from './pages/RegisterForm'
 import AddRecipe from './pages/AddRecipe'
 import AllRecipes from './pages/AllRecipes'
 import RecipeDetails from './pages/RecipeDetails'
+import EditRecipe from './pages/EditRecipe'
 import './styles/App.scss'
 
 const App = () => {
@@ -30,7 +31,7 @@ const App = () => {
   }
 
   useEffect(() => {
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem("token")
     if (token) {
       checkToken()
     }
@@ -43,7 +44,7 @@ const App = () => {
       </div>
       <div>
         <Routes>
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile" element={<Profile user={user} />} />
           <Route
             path="/register"
             element={<RegistartionForm setUser={setUser} />}
@@ -54,6 +55,8 @@ const App = () => {
           <Route path="/addrecipe" element={<AddRecipe />} />
           <Route path="/allrecipes" element={<AllRecipes />} />
           <Route path="/recipeDetails/:id" element={<RecipeDetails />} />
+          <Route path="/editrecipe/:id" element={<EditRecipe />} />
+
         </Routes>
       </div>
     </div>
