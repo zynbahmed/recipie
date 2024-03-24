@@ -35,9 +35,7 @@ const RecipeDetails = () => {
               >
                 Delete
               </button>
-              <button
-                className="text-blue-500 font-extrabold uppercase hover:text-blue-900"
-              >
+              <button className="text-blue-500 font-extrabold uppercase hover:text-blue-900">
                 Edit
               </button>
             </div>
@@ -104,14 +102,6 @@ const RecipeDetails = () => {
               <hr></hr>
               <p className="text-l mt-4">{recipe?.steps}</p>
             </div>
-            <button
-              className="text-red-500 font-extrabold uppercase hover:text-red-900 mt-3"
-              onClick={() => {
-                handleDelete(recipe._id)
-              }}
-            >
-              Delete Recipe
-            </button>
           </div>
         </div>
       </div>
