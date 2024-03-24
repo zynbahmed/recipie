@@ -1,29 +1,45 @@
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Client from '../services/api'
 const EditRecipe = () => {
+  let navigate = useNavigate()
   let { id } = useParams()
   const [editRecipe, setEditRecipe] = useState(null)
+  const [addRecipeformValues, setAddRecipeFormValues] = useState({
+    title: '',
+    description: '',
+    cookingTime: '',
+    steps: '',
+    photo: ''
+  })
   useEffect(() => {
     const getRecipe = async () => {
       const response = await Client.get(`/recipe/${id}`)
       console.log(response.data)
       setEditRecipe(response.data)
+      setAddRecipeFormValues({
+        title: response.data.title,
+        description: response.data.description,
+        cookingTime: response.data.cookingTime,
+        steps: response.data.steps,
+        photo: response.data.photo
+      })
     }
     getRecipe()
   }, [])
   const handleChange = (event) => {
-    console.log(event.target.value)
+    event.preventDefault()
+    setAddRecipeFormValues({
+      ...addRecipeformValues,
+      [event.target.name]: event.target.value
+    })
   }
-  const handleDelete = (index, event) => {
-    if (index > 0) {
-      setAddRecipeFormValues((prevState) => {
-        const ingredients = [...prevState.ingredients]
-        ingredients.splice(index, 1)
-        return { ...prevState, ingredients }
-      })
-    }
+  const handleSubmit = async () => {
+    await Client.put(`/recipe/${id}`, addRecipeformValues)
+    navigate('/allrecipes')
   }
+
   return (
     <div>
       <form>
@@ -77,39 +93,9 @@ const EditRecipe = () => {
           onChange={handleChange}
           defaultValue={editRecipe?.photo}
         />
-        <label htmlFor="ingredients">ingredients</label>
-        <br />
-        {editRecipe?.ingredient?.map((item, index) => (
-          <div key={index}>
-            <h4>Add Ingredients</h4>
-            <input
-              type="text"
-              placeholder="Enter an ingredient"
-              name="name"
-              defaultValue={item.name}
-              onChange={(event) => handleIngredientChange(index, event)}
-            />
-            <input
-              type="text"
-              placeholder="amount"
-              name="amount"
-              defaultValue={item.amount}
-              onChange={(event) => handleIngredientChange(index, event)}
-            />
-            <input
-              type="text"
-              placeholder="units"
-              name="unit"
-              defaultValuee={item.unit}
-              onChange={(event) => handleIngredientChange(index, event)}
-            />
-            <button type="button" onClick={() => handleDelete(index)}>
-              Delete an ingredient
-            </button>
-          </div>
-        ))}
-        <button>Add more ingredients</button>
-        <br />
+        <button type="button" onClick={handleSubmit}>
+          Submit
+        </button>
       </form>
     </div>
   )
