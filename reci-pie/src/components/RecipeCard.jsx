@@ -1,30 +1,31 @@
 import { Link } from "react-router-dom"
 const RecipeCard = ({ allRecipes }) => {
   console.log(allRecipes, "in recipe")
+
   const getTimeAgo = (timestamp) => {
-    const now = new Date();
-    const timeElapsed = now - timestamp;
-  
-    const minute = 60 * 1000;
-    const hour = 60 * minute;
-    const day = 24 * hour;
-    const month = 30 * day;
-    const year = 365 * day;
-  
+    const now = new Date()
+    const timeElapsed = parseInt(now) - parseInt(timestamp)
+    const minute = 60 * 1000
+    const hour = 60 * minute
+    const day = 24 * hour
+    const month = 30 * day
+    const year = 365 * day
+
     if (timeElapsed < minute) {
-      return Math.floor(timeElapsed / 1000) + ' seconds ago';
+      return Math.floor(timeElapsed / 1000) + " seconds ago"
     } else if (timeElapsed < hour) {
-      return Math.floor(timeElapsed / minute) + ' minutes ago';
+      return Math.floor(timeElapsed / minute) + " minutes ago"
     } else if (timeElapsed < day) {
-      return Math.floor(timeElapsed / hour) + ' hours ago';
+      return Math.floor(timeElapsed / hour) + " hours ago"
     } else if (timeElapsed < month) {
-      return Math.floor(timeElapsed / day) + ' days ago';
+      return Math.floor(timeElapsed / day) + " days ago"
     } else if (timeElapsed < year) {
-      return Math.floor(timeElapsed / month) + ' months ago';
+      return Math.floor(timeElapsed / month) + " months ago"
     } else {
-      return Math.floor(timeElapsed / year) + ' years ago';
+      return Math.floor(timeElapsed / year) + " years ago"
     }
   }
+  
   return (
     <div class="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
