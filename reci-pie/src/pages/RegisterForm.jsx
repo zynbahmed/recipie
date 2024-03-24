@@ -1,25 +1,52 @@
-import { useState } from 'react'
-import '../styles/form.css'
+import { useRef } from "react"
+// import { useNavigate } from "react-router-dom"
+import "../styles/form.css"
 
 const RegistrationForm = () => {
-  const [formValues, setFormValues] = useState({
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: ''
-  })
-  const handleChange = (event) => {
-    setFormValues({ ...formValues, [event.target.name]: event.target.value })
+  // const [formValues, setFormValues] = useState({
+  //   name: "",
+  //   email: "",
+  //   password: "",
+  //   confirmPassword: ""
+  // })
+
+  // let navigate = useNavigate()
+
+  const nameRef = useRef(null)
+  const emailRef = useRef(null)
+  const passRef = useRef(null)
+  const conPassRef = useRef(null)
+  const loginEmailRef = useRef(null)
+  const loginPassRef = useRef(null)
+
+  // const handleChange = (event) => {
+  //   setFormValues({ ...formValues, [event.target.name]: event.target.value })
+  // }
+
+  const handleReg = async (event) => {
+    event.preventDefault()
+    // Client.post('/Auth', {
+    //   name: nameRef.current.value,
+    //   email: emailRef.current.value,
+    //   passwordDigaset: passRef.current.value
+    // }).then((response) => {
+    // })
+    nameRef.current.value = null
+    emailRef.current.value = null
+    passRef.current.value = null
+    conPassRef.current.value = null
   }
 
-  const handleSubmit = async (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault()
-    // await ({
-    //   name: formValues.name,
-    //   email: formValues,email,
-    //   password: formValues.password
-    // }
-    // )
+    // Client.post('/Auth/login', {
+    //   email: loginEmailRef.current.value,
+    //   password: loginPassRef.current.value
+    // }).then((response) => {
+    // navigate('/recipes')
+    // })
+    loginEmailRef.current.value = null
+    loginPassRef.current.value = null
   }
 
   const handleToggleContainer = (isActive) => {
@@ -31,67 +58,72 @@ const RegistrationForm = () => {
     <div className="body">
       <div className="reg-container" id="container">
         <div className="form-container sign-up-container">
-          <form className="reg-form" onSubmit={handleSubmit}>
+          <form className="reg-form" onSubmit={handleReg}>
             <h1 className="form-title">Create Account</h1>
             <input
               className="mx-0 my-2 py-3 px-4"
               type="text"
-              onChange={handleChange}
               name="name"
+              ref={nameRef}
               placeholder="Please Enter a Username"
-              value={formValues.name}
             />
             <input
               className="mx-0 my-2 py-3 px-4"
               type="email"
-              onChange={handleChange}
               name="email"
+              ref={emailRef}
               placeholder="Please Enter Your E-mail"
-              value={formValues.email}
             />
             <input
               className="mx-0 my-2 py-3 px-4"
               type="password"
-              onChange={handleChange}
               name="password"
+              ref={passRef}
               placeholder="Please Enter a Password"
-              value={formValues.password}
             />
             <input
               className="mx-0 my-2 py-3 px-4"
               type="password"
               placeholder="Please Enter a Password Again"
-              onChange={handleChange}
               name="confirmPassword"
-              value={formValues.confirmPassword}
+              ref={conPassRef}
               required
             />
             <button
-              className="reg-btn"
-              disabled={
-                !formValues.email ||
-                (!formValues.password &&
-                  formValues.confirmPassword === formValues.password)
-              }
+              className="reg-btn mt-16"
+              // disabled={
+              //   !emailRef.current.value &&
+              //   !passRef.current.value &&
+              //   conPassRef.current.value === passRef.current.value
+              // }
             >
               Sign Up
             </button>
           </form>
         </div>
         <div className="form-container sign-in-container">
-          <form className="reg-form" action="#">
+          <form className="reg-form" onSubmit={handleLogin}>
             <h1 className="form-title">Sign in</h1>
             <input
               className="mx-0 my-2 py-3 px-4"
               type="email"
+              ref={loginEmailRef}
               placeholder="Email"
             />
             <input
               className="mx-0 my-2 py-3 px-4"
               type="password"
+              ref={loginPassRef}
               placeholder="Password"
             />
-            <button className="reg-btn">Sign In</button>
+            <button
+              className="reg-btn mt-16"
+              // disabled={
+              //   !loginEmailRef.current.value && !loginPassRef.current.value
+              // }
+            >
+              Sign In
+            </button>
           </form>
         </div>
         <div className="overlay-container">
@@ -102,7 +134,7 @@ const RegistrationForm = () => {
                 To keep connected with us please login with your personal info
               </p>
               <button
-                className="ghost reg-btn"
+                className="ghost reg-btn mt-16"
                 id="signIn"
                 onClick={() => handleToggleContainer(false)}
               >
@@ -113,7 +145,7 @@ const RegistrationForm = () => {
               <h1 className="form-title">Hello, Friend!</h1>
               <p>Enter your personal details and start journey with us</p>
               <button
-                className="ghost reg-btn"
+                className="ghost reg-btn mt-16"
                 id="signUp"
                 onClick={() => handleToggleContainer(true)}
               >
