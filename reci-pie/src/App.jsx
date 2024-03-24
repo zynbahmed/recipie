@@ -12,6 +12,7 @@ import ShoppingList from './pages/ShoppingList'
 import RegistartionForm from './pages/RegisterForm'
 import AddRecipe from './pages/AddRecipe'
 import AllRecipes from './pages/AllRecipes'
+import RecipeDetails from './pages/RecipeDetails'
 import './styles/App.scss'
 
 const App = () => {
@@ -52,6 +53,7 @@ const App = () => {
           <Route path="/shopping-list" element={<ShoppingList />} />
           <Route path="/addrecipe" element={<AddRecipe />} />
           <Route path="/allrecipes" element={<AllRecipes />} />
+          <Route path="/recipeDetails/:id" element={<RecipeDetails />} />
         </Routes>
       </div>
     </div>
