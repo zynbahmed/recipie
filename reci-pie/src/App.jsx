@@ -3,17 +3,18 @@ import { Routes, Route } from "react-router-dom"
 
 // import { CheckSession } from "./services/Auth"
 
-import Header from "./components/Header"
-import NavBar from "./components/NavBar"
-import Home from "./pages/Home"
-import Recipes from "./pages/Recipes"
-import Profile from "./pages/Profile"
-import ShoppingList from "./pages/ShoppingList"
-import RegistartionForm from "./pages/RegisterForm"
-import AddRecipe from "./pages/AddRecipe"
-import AllRecipes from "./pages/AllRecipes"
-import RecipeDetails from "./pages/RecipeDetails"
-import "./styles/App.scss"
+import Header from './components/Header'
+import NavBar from './components/NavBar'
+import Home from './pages/Home'
+import Recipes from './pages/Recipes'
+import Profile from './pages/Profile'
+import ShoppingList from './pages/ShoppingList'
+import RegistartionForm from './pages/RegisterForm'
+import AddRecipe from './pages/AddRecipe'
+import AllRecipes from './pages/AllRecipes'
+import RecipeDetails from './pages/RecipeDetails'
+import EditRecipe from './pages/EditRecipe'
+import './styles/App.scss'
 
 const App = () => {
   const [user, setUser] = useState(null)
@@ -54,6 +55,8 @@ const App = () => {
           <Route path="/addrecipe" element={<AddRecipe />} />
           <Route path="/allrecipes" element={<AllRecipes />} />
           <Route path="/recipeDetails/:id" element={<RecipeDetails />} />
+          <Route path="/editrecipe/:id" element={<EditRecipe />} />
+
         </Routes>
       </div>
     </div>
