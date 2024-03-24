@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react'
-import Client from '../services/api'
-import RecipeCard from '../components/RecipeCard'
+import { useEffect, useState } from "react"
+import Client from "../services/api"
+import RecipeCard from "../components/RecipeCard"
 const AllRecipes = () => {
   const [allRecipes, setAllRecipes] = useState([])
   useEffect(() => {
     const getAllRecipes = async () => {
-      const response = await Client.get('/recipe')
+      const response = await Client.get("/recipe")
       console.log(response.data)
       setAllRecipes(response.data)
     }
@@ -14,8 +14,8 @@ const AllRecipes = () => {
 
   return (
     <div>
-      {/* {allRecipes.length > 0 && <RecipeCard allRecipes={allRecipes} />} */}
-      <RecipeCard allRecipes={allRecipes} />
+        {/* {allRecipes.length > 0 && <RecipeCard allRecipes={allRecipes} />} */}
+        <RecipeCard allRecipes={allRecipes} />
     </div>
   )
 }
