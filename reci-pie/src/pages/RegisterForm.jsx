@@ -1,52 +1,46 @@
-import { useRef } from "react"
-// import { useNavigate } from "react-router-dom"
-import "../styles/form.css"
+import { useState } from 'react'
+import { RegisterUser } from '../services/Auth'
+import { SignInUser } from '../services/Auth'
+import '../styles/form.css'
+import { useNavigate } from 'react-router-dom'
 
-const RegistrationForm = () => {
-  // const [formValues, setFormValues] = useState({
-  //   name: "",
-  //   email: "",
-  //   password: "",
-  //   confirmPassword: ""
-  // })
-
-  // let navigate = useNavigate()
-
-  const nameRef = useRef(null)
-  const emailRef = useRef(null)
-  const passRef = useRef(null)
-  const conPassRef = useRef(null)
-  const loginEmailRef = useRef(null)
-  const loginPassRef = useRef(null)
-
-  // const handleChange = (event) => {
-  //   setFormValues({ ...formValues, [event.target.name]: event.target.value })
-  // }
-
-  const handleReg = async (event) => {
-    event.preventDefault()
-    // Client.post('/Auth', {
-    //   name: nameRef.current.value,
-    //   email: emailRef.current.value,
-    //   passwordDigaset: passRef.current.value
-    // }).then((response) => {
-    // })
-    nameRef.current.value = null
-    emailRef.current.value = null
-    passRef.current.value = null
-    conPassRef.current.value = null
+const RegistrationForm = ({ setUser }) => {
+  let navigate = useNavigate()
+  const initialState = {
+    email: '',
+    password: ''
+  }
+  const [init, setInit] = useState(initialState)
+  const [formValues, setFormValues] = useState({
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
+  })
+  const handleChange = (event) => {
+    setFormValues({ ...formValues, [event.target.name]: event.target.value })
   }
 
   const handleLogin = async (event) => {
     event.preventDefault()
-    // Client.post('/Auth/login', {
-    //   email: loginEmailRef.current.value,
-    //   password: loginPassRef.current.value
-    // }).then((response) => {
-    // navigate('/recipes')
-    // })
-    loginEmailRef.current.value = null
-    loginPassRef.current.value = null
+    await RegisterUser({
+      name: formValues.name,
+      email: formValues.email,
+      password: formValues.password
+    })
+  }
+
+  const handleChangeIn = (event) => {
+    setInit({ ...init, [event.target.name]: event.target.value })
+  }
+
+  const handleSubmitIn = async (e) => {
+    e.preventDefault()
+    const payload = await SignInUser(init)
+    setInit(initialState)
+    setUser(payload)
+    console.log(init)
+    navigate('/')
   }
 
   const handleToggleContainer = (isActive) => {
@@ -58,35 +52,35 @@ const RegistrationForm = () => {
     <div className="body">
       <div className="reg-container" id="container">
         <div className="form-container sign-up-container">
-          <form className="reg-form" onSubmit={handleReg}>
+          <form className="reg-form" onSubmit={handleLogin}>
             <h1 className="form-title">Create Account</h1>
             <input
+              onChange={handleChange}
               className="mx-0 my-2 py-3 px-4"
               type="text"
               name="name"
-              ref={nameRef}
               placeholder="Please Enter a Username"
             />
             <input
+              onChange={handleChange}
               className="mx-0 my-2 py-3 px-4"
               type="email"
               name="email"
-              ref={emailRef}
               placeholder="Please Enter Your E-mail"
             />
             <input
+              onChange={handleChange}
               className="mx-0 my-2 py-3 px-4"
               type="password"
               name="password"
-              ref={passRef}
               placeholder="Please Enter a Password"
             />
             <input
+              onChange={handleChange}
               className="mx-0 my-2 py-3 px-4"
               type="password"
               placeholder="Please Enter a Password Again"
               name="confirmPassword"
-              ref={conPassRef}
               required
             />
             <button
@@ -102,19 +96,21 @@ const RegistrationForm = () => {
           </form>
         </div>
         <div className="form-container sign-in-container">
-          <form className="reg-form" onSubmit={handleLogin}>
+          <form className="reg-form" action="#" onSubmit={handleSubmitIn}>
             <h1 className="form-title">Sign in</h1>
             <input
               className="mx-0 my-2 py-3 px-4"
               type="email"
-              ref={loginEmailRef}
+              name="email"
               placeholder="Email"
+              onChange={handleChangeIn}
             />
             <input
               className="mx-0 my-2 py-3 px-4"
               type="password"
-              ref={loginPassRef}
+              name="password"
               placeholder="Password"
+              onChange={handleChangeIn}
             />
             <button
               className="reg-btn mt-16"

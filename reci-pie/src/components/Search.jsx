@@ -5,7 +5,7 @@ const Search = ({ onSubmit, mealRef }) => {
         className="searchTerm"
         type="text"
         ref={mealRef}
-        placeholder="SEARCH ACTIVITIES"
+        placeholder="SEARCH RECIPE NAME"
       />
       <button className="" type="submit">
         SEARCH
