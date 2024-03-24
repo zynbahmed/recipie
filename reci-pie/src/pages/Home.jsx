@@ -9,14 +9,22 @@ const Home = ({ user }) => {
     navigate('/register')
   }
 
+  const recRavigation = () => {
+    navigate("/recipes")
+  }
+
   return (
     <div className="home-container">
       <div className="banner-text">
         <h1 className="text-3xl text-white">Reci-Pie</h1>
       </div>
       <div className="banner-button">
-        <button className="" onClick={navigation}>
+        <button onClick={navigation}>
           Join Us
+        </button>
+        <br/>
+        <button onClick={recRavigation}>
+          Discover Recipes
         </button>
       </div>
     </div>

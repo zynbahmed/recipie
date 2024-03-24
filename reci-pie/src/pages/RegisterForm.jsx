@@ -10,6 +10,7 @@ const RegistrationForm = ({ setUser }) => {
     email: '',
     password: ''
   }
+  const [init, setInit] = useState(initialState)
   const [formValues, setFormValues] = useState({
     name: '',
     email: '',
@@ -20,7 +21,7 @@ const RegistrationForm = ({ setUser }) => {
     setFormValues({ ...formValues, [event.target.name]: event.target.value })
   }
 
-  const handleSubmit = async (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault()
     await RegisterUser({
       name: formValues.name,
@@ -29,12 +30,16 @@ const RegistrationForm = ({ setUser }) => {
     })
   }
 
+  const handleChangeIn = (event) => {
+    setInit({ ...init, [event.target.name]: event.target.value })
+  }
+
   const handleSubmitIn = async (e) => {
     e.preventDefault()
-    const payload = await SignInUser(formValues)
-    setFormValues(initialState)
+    const payload = await SignInUser(init)
+    setInit(initialState)
     setUser(payload)
-
+    console.log(init)
     navigate('/')
   }
 
@@ -47,48 +52,44 @@ const RegistrationForm = ({ setUser }) => {
     <div className="body">
       <div className="reg-container" id="container">
         <div className="form-container sign-up-container">
-          <form className="reg-form" onSubmit={handleSubmit}>
+          <form className="reg-form" onSubmit={handleLogin}>
             <h1 className="form-title">Create Account</h1>
             <input
+              onChange={handleChange}
               className="mx-0 my-2 py-3 px-4"
               type="text"
-              onChange={handleChange}
               name="name"
               placeholder="Please Enter a Username"
-              value={formValues.name}
             />
             <input
+              onChange={handleChange}
               className="mx-0 my-2 py-3 px-4"
               type="email"
-              onChange={handleChange}
               name="email"
               placeholder="Please Enter Your E-mail"
-              value={formValues.email}
             />
             <input
+              onChange={handleChange}
               className="mx-0 my-2 py-3 px-4"
               type="password"
-              onChange={handleChange}
               name="password"
               placeholder="Please Enter a Password"
-              value={formValues.password}
             />
             <input
+              onChange={handleChange}
               className="mx-0 my-2 py-3 px-4"
               type="password"
               placeholder="Please Enter a Password Again"
-              onChange={handleChange}
               name="confirmPassword"
-              value={formValues.confirmPassword}
               required
             />
             <button
-              className="reg-btn"
-              disabled={
-                !formValues.email ||
-                (!formValues.password &&
-                  formValues.confirmPassword === formValues.password)
-              }
+              className="reg-btn mt-16"
+              // disabled={
+              //   !emailRef.current.value &&
+              //   !passRef.current.value &&
+              //   conPassRef.current.value === passRef.current.value
+              // }
             >
               Sign Up
             </button>
@@ -100,14 +101,25 @@ const RegistrationForm = ({ setUser }) => {
             <input
               className="mx-0 my-2 py-3 px-4"
               type="email"
+              name="email"
               placeholder="Email"
+              onChange={handleChangeIn}
             />
             <input
               className="mx-0 my-2 py-3 px-4"
               type="password"
+              name="password"
               placeholder="Password"
+              onChange={handleChangeIn}
             />
-            <button className="reg-btn">Sign In</button>
+            <button
+              className="reg-btn mt-16"
+              // disabled={
+              //   !loginEmailRef.current.value && !loginPassRef.current.value
+              // }
+            >
+              Sign In
+            </button>
           </form>
         </div>
         <div className="overlay-container">
@@ -118,7 +130,7 @@ const RegistrationForm = ({ setUser }) => {
                 To keep connected with us please login with your personal info
               </p>
               <button
-                className="ghost reg-btn"
+                className="ghost reg-btn mt-16"
                 id="signIn"
                 onClick={() => handleToggleContainer(false)}
               >
@@ -129,7 +141,7 @@ const RegistrationForm = ({ setUser }) => {
               <h1 className="form-title">Hello, Friend!</h1>
               <p>Enter your personal details and start journey with us</p>
               <button
-                className="ghost reg-btn"
+                className="ghost reg-btn mt-16"
                 id="signUp"
                 onClick={() => handleToggleContainer(true)}
               >
