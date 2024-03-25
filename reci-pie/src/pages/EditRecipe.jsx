@@ -3,7 +3,6 @@ import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import Client from "../services/api"
 const EditRecipe = () => {
-  let navigate = useNavigate()
   let { id } = useParams()
   const [editRecipe, setEditRecipe] = useState(null)
   const [addRecipeformValues, setAddRecipeFormValues] = useState({

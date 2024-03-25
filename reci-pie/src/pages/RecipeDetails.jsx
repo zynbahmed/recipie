@@ -136,7 +136,9 @@ const RecipeDetails = ({ user }) => {
             <div className="mt-8">
               <h3 className="text-lg font-bold">Step by Step</h3>
               <hr></hr>
-              <p className="text-l mt-4">{recipe?.steps}</p>
+              <p className="text-l mt-4">
+                {recipe?.steps.replace(/(?:\\[rn]|[\r\n]+)+/g, '')}
+              </p>
             </div>
           </div>
         </div>
