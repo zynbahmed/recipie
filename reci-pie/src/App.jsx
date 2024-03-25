@@ -52,9 +52,9 @@ const App = () => {
           <Route path="/" element={<Home user={user} />} />
           <Route path="/recipes" element={<Recipes />} />
           <Route path="/shopping-list" element={<ShoppingList />} />
-          <Route path="/addrecipe" element={<AddRecipe />} />
+          <Route path="/addrecipe" element={<AddRecipe user={user} />} />
           <Route path="/allrecipes" element={<AllRecipes />} />
-          <Route path="/recipeDetails/:id" element={<RecipeDetails />} />
+          <Route path="/recipeDetails/:id" element={<RecipeDetails user={user}/>} />
           <Route path="/editrecipe/:id" element={<EditRecipe />} />
         </Routes>
       </div>
