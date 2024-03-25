@@ -1,16 +1,15 @@
-import { useEffect, useState } from "react"
-import { useParams, useNavigate } from "react-router-dom"
-import Client from "../services/api"
+import { useEffect, useState } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
+import Client from '../services/api'
 
-import Reviews from "../components/Reviews"
-import AddReview from "../components/AddReview"
-import Creator from "../components/Creator"
+import Reviews from '../components/Reviews'
+import AddReview from '../components/AddReview'
+import Creator from '../components/Creator'
 
 const RecipeDetails = ({ user }) => {
   const navigate = useNavigate()
   let { id } = useParams()
   const [recipe, setRecipe] = useState(null)
-  const [savedId, setSavedId] = useState({})
 
   useEffect(() => {
     const getRecipe = async () => {
