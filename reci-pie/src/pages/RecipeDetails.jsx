@@ -8,6 +8,8 @@ const RecipeDetails = () => {
   const navigate = useNavigate()
   let { id } = useParams()
   const [recipe, setRecipe] = useState(null)
+  const [savedId, setSavedId] = useState({})
+
   useEffect(() => {
     const getRecipe = async () => {
       const response = await Client.get(`/recipe/${id}`)
@@ -16,16 +18,23 @@ const RecipeDetails = () => {
     }
     getRecipe()
   }, [])
+
   const handleDelete = async (id) => {
     console.log(`/recipe/${id}`)
     await Client.delete(`/recipe/${id}`)
   }
+
   const handleEditPage = () => {
     navigate(`/editrecipe/${id}`)
   }
 
   const ali = (a) => {
     setRecipe(a)
+  }
+
+  const saveRecipe = async () => {
+    console.log(id)
+    await Client.post(`/recipe/${id}`, id)
   }
 
   return (
@@ -118,6 +127,9 @@ const RecipeDetails = () => {
                 {recipe?.steps.replace(/(?:\\[rn]|[\r\n]+)+/g, '')}
               </p>
             </div>
+          </div>
+          <div>
+            <button onClick={saveRecipe}>Save Recipe</button>
           </div>
         </div>
         <div className="">

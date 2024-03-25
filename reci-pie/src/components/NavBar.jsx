@@ -18,7 +18,17 @@ const Nav = ({ user, handleLogOut }) => {
         <div className="nav">
           <div className="header">
             <img src="/logo2.png" />
+            {/* <img
+              src={user.avatar}
+              class="flex-shrink-0 w-10 h-10 bg-gray-400 rounded-full"
+            />
+            <div class="flex flex-col ml-2">
+              <span class="mt-1 text-sm font-semibold leading-none">
+                {user.name}
+              </span>
+            </div> */}
           </div>
+
           {user ? (
             <>
               {userItem.map((data, index) => (
