@@ -39,23 +39,23 @@ const AddReview = ({ id, ali }) => {
   return (
     <div>
       <form className="" onSubmit={handleSubmit}>
-      <div className="rating">
-      {[1, 2, 3, 4, 5].map((starValue) => (
-        <label key={starValue}>
-          <input
-            type="radio"
-            name="rating" // Use a single name for the group
-            value={starValue}
-            checked={rating >= starValue}
-            onChange={() => handleClick(starValue)}
-            className={`mask mask-star-2 ${
-              rating >= starValue ? "bg-red-500" : ""
-            }`}
-          />
-          <span className="star" />
-        </label>
-      ))}
-    </div>
+        <div className="rating">
+          {[1, 2, 3, 4, 5].map((starValue) => (
+            <label key={starValue}>
+              <input
+                type="radio"
+                name="rating" // Use a single name for the group
+                value={starValue}
+                checked={rating >= starValue}
+                onChange={() => handleClick(starValue)}
+                className={`mask mask-star-2 ${
+                  rating >= starValue ? "bg-red-800" : ""
+                }`}
+              />
+              <span className="star" />
+            </label>
+          ))}
+        </div>
         <textarea
           className=""
           placeholder="add a review"
