@@ -11,9 +11,7 @@ const RecipeCard = ({ allRecipes }) => {
     const month = 30 * day
     const year = 365 * day
 
-    if (isNaN(timeElapsed)) {
-      return "Invalid Time"
-    } else if (timeElapsed < minute) {
+    if (timeElapsed < minute) {
       return Math.floor(timeElapsed / 1000) + " seconds ago"
     } else if (timeElapsed < hour) {
       return Math.floor(timeElapsed / minute) + " minutes ago"

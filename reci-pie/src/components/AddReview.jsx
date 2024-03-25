@@ -4,7 +4,10 @@ import Client from "../services/api"
 const AddReview = ({ id, ali }) => {
   const initialState = {
     rating: "",
-    content: ""
+    content: "",
+    user: "",
+    userAvatar: "",
+    userName: ""
   }
 
   const [review, setReview] = useState(initialState)
