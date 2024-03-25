@@ -1,14 +1,15 @@
-import { useState } from "react"
-import Client from "../services/api"
-import { Link } from "react-router-dom"
+import { useState } from 'react'
+import Client from '../services/api'
+import { Link } from 'react-router-dom'
 const AddRecipe = ({ user }) => {
   const [addRecipeformValues, setAddRecipeFormValues] = useState({
-    title: "",
-    description: "",
-    cookingTime: "",
-    steps: "",
-    photo: "",
-    ingredients: [{ name: "", amount: "", unit: "" }],
+    title: '',
+    description: '',
+    cookingTime: '',
+    steps: '',
+    photo: '',
+    ingredients: [{ name: '', amount: '', unit: '' }],
+    category: '',
     creator: user.id
   })
   const handleChange = (event) => {
@@ -24,7 +25,7 @@ const AddRecipe = ({ user }) => {
       ...prevState,
       ingredients: [
         ...prevState.ingredients,
-        { name: "", amount: "", unit: "" }
+        { name: '', amount: '', unit: '' }
       ]
     }))
   }
@@ -64,6 +65,16 @@ const AddRecipe = ({ user }) => {
             <h1 className="text-2xl font-bold uppercase"> Add a Recipe</h1>
             <br />
             <div className="relative">
+              <label>Select Category</label>
+              <select name="category" id="category" onChange={handleChange}>
+                <option value="Beef">Beef</option>
+                <option value="Lamb">Lamb</option>
+                <option value="Chicken">Chicken</option>
+                <option value="Sea-Food">Sea-Food</option>
+                <option value="Dessert">Dessert</option>
+                <option value="Breakfast">Breakfast</option>
+              </select>
+
               <input
                 type="text"
                 name="title"
