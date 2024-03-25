@@ -27,8 +27,8 @@ const RecipeCard = ({ allRecipes }) => {
   }
 
   return (
-    <div class="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
+    <div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
         {allRecipes.map((recipe) => (
           <div className="overflow-hidden shadow-lg flex flex-col w-full">
             <div key={recipe._id} className="relative">

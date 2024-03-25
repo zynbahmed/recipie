@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
 import Client from "../services/api"
 import RecipeCard from "../components/RecipeCard"
 const AllRecipes = () => {
+  let navigate = useNavigate()
   const [allRecipes, setAllRecipes] = useState([])
   useEffect(() => {
     const getAllRecipes = async () => {
@@ -12,9 +14,14 @@ const AllRecipes = () => {
     getAllRecipes()
   }, [])
 
+  const adding = () =>{
+    navigate('/addrecipe')
+  }
+
   return (
-    <div>
+    <div className="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
         {/* {allRecipes.length > 0 && <RecipeCard allRecipes={allRecipes} />} */}
+        <button className="reg-btn m-2" onClick={adding}>Add Recipe</button>
         <RecipeCard allRecipes={allRecipes} />
     </div>
   )
