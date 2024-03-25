@@ -3,7 +3,7 @@ import Client from "../services/api"
 
 const AddReview = ({ id, ali }) => {
   const initialState = {
-    rating: "",
+    rating: 0,
     content: "",
     user: "",
     userAvatar: "",
@@ -11,6 +11,13 @@ const AddReview = ({ id, ali }) => {
   }
 
   const [review, setReview] = useState(initialState)
+
+  const [rating, setRating] = useState(0) // Initial rating state
+
+  const handleClick = (value) => {
+    setRating(value)
+    setReview({ ...review, rating: value }) // Update review state
+  }
 
   const handleChange = (event) => {
     setReview({ ...review, [event.target.id]: event.target.value })
@@ -32,18 +39,23 @@ const AddReview = ({ id, ali }) => {
   return (
     <div>
       <form className="" onSubmit={handleSubmit}>
-        <input
-          type="number"
-          placeholder="rate"
-          max={5}
-          min={1}
-          id="rating"
-          onChange={handleChange}
-          value={review.rating}
-        />
-        <label className="" htmlFor="content">
-          Rating
+      <div className="rating">
+      {[1, 2, 3, 4, 5].map((starValue) => (
+        <label key={starValue}>
+          <input
+            type="radio"
+            name="rating" // Use a single name for the group
+            value={starValue}
+            checked={rating >= starValue}
+            onChange={() => handleClick(starValue)}
+            className={`mask mask-star-2 ${
+              rating >= starValue ? "bg-red-500" : ""
+            }`}
+          />
+          <span className="star" />
         </label>
+      ))}
+    </div>
         <textarea
           className=""
           placeholder="add a review"
