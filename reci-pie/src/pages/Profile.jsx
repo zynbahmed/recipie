@@ -1,5 +1,5 @@
-import SavedRecipe from "../components/SavedRecipe"
-import CreatedRecipe from "../components/CreatedRecipe"
+import SavedRecipe from '../components/SavedRecipe'
+import CreatedRecipe from '../components/CreatedRecipe'
 
 const Profile = ({ user }) => {
   return (
@@ -15,6 +15,7 @@ const Profile = ({ user }) => {
                   className="w-32 h-32 rounded-full mb-4 shrink-0"
                 />
                 <h1 className="text-xl font-bold">{user.name}</h1>
+                <h2>HEREEEEE{user.savedRecipes}</h2>
               </div>
               <hr className="my-6 border-t border-gray-300"></hr>
               {/* <div className="flex flex-col">
@@ -34,7 +35,7 @@ const Profile = ({ user }) => {
           <div className="col-span-4 sm:col-span-9">
             <div className=" shadow p-6">
               <CreatedRecipe />
-              <SavedRecipe />
+              <SavedRecipe user={user} />
             </div>
           </div>
         </div>
