@@ -5,6 +5,7 @@ const RecipeDetails = () => {
   const navigate = useNavigate()
   let { id } = useParams()
   const [recipe, setRecipe] = useState(null)
+
   useEffect(() => {
     const getRecipe = async () => {
       const response = await Client.get(`/recipe/${id}`)
@@ -13,10 +14,12 @@ const RecipeDetails = () => {
     }
     getRecipe()
   }, [])
+
   const handleDelete = async (id) => {
     console.log(`/recipe/${id}`)
     await Client.delete(`/recipe/${id}`)
   }
+
   const handleEditPage = () => {
     navigate(`/editrecipe/${id}`)
   }
