@@ -8,6 +8,7 @@ const RecipeDetails = () => {
   const navigate = useNavigate()
   let { id } = useParams()
   const [recipe, setRecipe] = useState(null)
+  const [savedId, setSavedId] = useState({})
 
   useEffect(() => {
     const getRecipe = async () => {
@@ -29,6 +30,11 @@ const RecipeDetails = () => {
 
   const ali = (a) => {
     setRecipe(a)
+  }
+
+  const saveRecipe = async () => {
+    console.log(id)
+    await Client.post(`/recipe/${id}`, id)
   }
 
   return (
@@ -121,10 +127,11 @@ const RecipeDetails = () => {
             </div>
           </div>
           <div>
-            <button>Save Recipe</button>
+            <button onClick={saveRecipe}>Save Recipe</button>
           </div>
         </div>
         <div className="">
+          <Reviews reviews={recipe?.reviews} />
           <AddReview id={id} ali={ali} />
         </div>
       </div>
