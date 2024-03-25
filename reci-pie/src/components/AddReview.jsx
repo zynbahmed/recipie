@@ -37,7 +37,7 @@ const AddReview = ({ id, ali }) => {
   }
 
   return (
-    <div>
+    <div class="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-8">
       <form onSubmit={handleSubmit}>
         <h1 className="text-2xl font-bold uppercase"> Add a Review</h1>
         <div className="rating">

@@ -4,7 +4,7 @@ const Reviews = ({ reviews }) => {
       <div class="mx-auto text-center md:max-w-xl lg:max-w-3xl">
         <h3 class="mb-6 text-3xl font-bold">Reviews</h3>
       </div>
-      <div class="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
+      <div class="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-8">
         <div class="grid gap-6 text-center md:grid-cols-3 lg:gap-12">
           {reviews.map((review) => (
             <div className="" key={review._id}>
