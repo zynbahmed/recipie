@@ -38,7 +38,8 @@ const AddReview = ({ id, ali }) => {
 
   return (
     <div>
-      <form className="" onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
+        <h1 className="text-2xl font-bold uppercase"> Add a Review</h1>
         <div className="rating">
           {[1, 2, 3, 4, 5].map((starValue) => (
             <label key={starValue}>
@@ -56,22 +57,25 @@ const AddReview = ({ id, ali }) => {
             </label>
           ))}
         </div>
-        <textarea
-          className=""
-          placeholder="add a review"
-          id="content"
-          type="text"
-          onChange={handleChange}
-          value={review.content}
-          rows={8}
-          cols={100}
-        />
-        <label className="" htmlFor="content">
-          Content
-        </label>
-        <button className="" type="submit">
-          Add Review
-        </button>
+        <div className="relative">
+          <textarea
+            className="block px-2.5 pb-2.5 pt-4 w-full text-sm  bg-transparent rounded-lg border-1 border border-gray-300 appearance-none dark:border-gray-600 dark:focus:bored-red-500 focus:outline-none focus:ring-0 focus:border-red-600 peer"
+            placeholder=""
+            id="content"
+            type="text"
+            onChange={handleChange}
+            value={review.content}
+            rows={8}
+            cols={100}
+          />
+          <label
+            className="absolute bg-base-100 text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0]  px-2 peer-focus:px-2 peer-focus:text-red-600 peer-focus:dark:text-red-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+            htmlFor="content"
+          >
+            Content
+          </label>
+        </div>
+        <button className="reg-btn m-2">Add Review</button>
       </form>
     </div>
   )
