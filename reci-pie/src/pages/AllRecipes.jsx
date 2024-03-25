@@ -19,7 +19,7 @@ const AllRecipes = () => {
   }
 
   return (
-    <div>
+    <div className="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
         {/* {allRecipes.length > 0 && <RecipeCard allRecipes={allRecipes} />} */}
         <button className="reg-btn m-2" onClick={adding}>Add Recipe</button>
         <RecipeCard allRecipes={allRecipes} />
