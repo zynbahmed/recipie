@@ -12,11 +12,11 @@ const Reviews = ({ reviews }) => {
                 <img
                   className=""
                   src={review.userAvatar}
-                  class="w-32 rounded-full shadow-lg dark:shadow-black/30"
+                  class="w-32 rounded-full shadow-lg "
                 />
               </div>
               <h5 class="mb-4 text-xl font-semibold">{review.userName}</h5>
-              <p class="mb-4 text-neutral-600 dark:text-neutral-300">
+              <p class="mb-4">
                 <span class="inline-block pe-2 [&>svg]:w-5">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
