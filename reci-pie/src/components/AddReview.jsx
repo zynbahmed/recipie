@@ -3,7 +3,7 @@ import Client from "../services/api"
 
 const AddReview = ({ id, ali }) => {
   const initialState = {
-    rating: "",
+    rating: 0,
     content: "",
     user: "",
     userAvatar: "",
@@ -11,6 +11,13 @@ const AddReview = ({ id, ali }) => {
   }
 
   const [review, setReview] = useState(initialState)
+
+  const [rating, setRating] = useState(0) // Initial rating state
+
+  const handleClick = (value) => {
+    setRating(value)
+    setReview({ ...review, rating: value }) // Update review state
+  }
 
   const handleChange = (event) => {
     setReview({ ...review, [event.target.id]: event.target.value })
@@ -30,36 +37,45 @@ const AddReview = ({ id, ali }) => {
   }
 
   return (
-    <div>
-      <form className="" onSubmit={handleSubmit}>
-        <input
-          type="number"
-          placeholder="rate"
-          max={5}
-          min={1}
-          id="rating"
-          onChange={handleChange}
-          value={review.rating}
-        />
-        <label className="" htmlFor="content">
-          Rating
-        </label>
-        <textarea
-          className=""
-          placeholder="add a review"
-          id="content"
-          type="text"
-          onChange={handleChange}
-          value={review.content}
-          rows={8}
-          cols={100}
-        />
-        <label className="" htmlFor="content">
-          Content
-        </label>
-        <button className="" type="submit">
-          Add Review
-        </button>
+    <div class="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-8">
+      <form onSubmit={handleSubmit}>
+        <h1 className="text-2xl font-bold uppercase"> Add a Review</h1>
+        <div className="rating">
+          {[1, 2, 3, 4, 5].map((starValue) => (
+            <label key={starValue}>
+              <input
+                type="radio"
+                name="rating" // Use a single name for the group
+                value={starValue}
+                checked={rating >= starValue}
+                onChange={() => handleClick(starValue)}
+                className={`mask mask-star-2 ${
+                  rating >= starValue ? "bg-red-800" : ""
+                }`}
+              />
+              <span className="star" />
+            </label>
+          ))}
+        </div>
+        <div className="relative">
+          <textarea
+            className="block px-2.5 pb-2.5 pt-4 w-full text-sm  bg-transparent rounded-lg border-1 border border-gray-300 appearance-none dark:border-gray-600 dark:focus:bored-red-500 focus:outline-none focus:ring-0 focus:border-red-600 peer"
+            placeholder=""
+            id="content"
+            type="text"
+            onChange={handleChange}
+            value={review.content}
+            rows={8}
+            cols={100}
+          />
+          <label
+            className="absolute bg-base-100 text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0]  px-2 peer-focus:px-2 peer-focus:text-red-600 peer-focus:dark:text-red-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+            htmlFor="content"
+          >
+            Content
+          </label>
+        </div>
+        <button className="reg-btn m-2">Add Review</button>
       </form>
     </div>
   )
