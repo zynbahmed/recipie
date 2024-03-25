@@ -1,14 +1,15 @@
-import { useState } from 'react'
-import Client from '../services/api'
-import { Link } from 'react-router-dom'
-const AddRecipe = () => {
+import { useState } from "react"
+import Client from "../services/api"
+import { Link } from "react-router-dom"
+const AddRecipe = ({ user }) => {
   const [addRecipeformValues, setAddRecipeFormValues] = useState({
-    title: '',
-    description: '',
-    cookingTime: '',
-    steps: '',
-    photo: '',
-    ingredients: [{ name: '', amount: '', unit: '' }]
+    title: "",
+    description: "",
+    cookingTime: "",
+    steps: "",
+    photo: "",
+    ingredients: [{ name: "", amount: "", unit: "" }],
+    creator: user.id
   })
   const handleChange = (event) => {
     event.preventDefault()
@@ -23,7 +24,7 @@ const AddRecipe = () => {
       ...prevState,
       ingredients: [
         ...prevState.ingredients,
-        { name: '', amount: '', unit: '' }
+        { name: "", amount: "", unit: "" }
       ]
     }))
   }
@@ -163,7 +164,7 @@ const AddRecipe = () => {
                     placeholder=""
                     value={ingredient.name}
                     onChange={(event) => handleIngredientChange(index, event)}
-                    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:bored-red-500 focus:outline-none focus:ring-0 focus:border-red-600 peer"
+                    className="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:border-gray-600 dark:focus:bored-red-500 focus:outline-none focus:ring-0 focus:border-red-600 peer"
                   />
                   <label
                     htmlFor="name"
@@ -180,7 +181,7 @@ const AddRecipe = () => {
                     placeholder=""
                     value={ingredient.amount}
                     onChange={(event) => handleIngredientChange(index, event)}
-                    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:bored-red-500 focus:outline-none focus:ring-0 focus:border-red-600 peer"
+                    className="block px-2.5 pb-2.5 pt-4 w-full text-sm  bg-transparent rounded-lg border-1 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:bored-red-500 focus:outline-none focus:ring-0 focus:border-red-600 peer"
                   />
                   <label
                     htmlFor="amount"
@@ -197,7 +198,7 @@ const AddRecipe = () => {
                     placeholder=""
                     value={ingredient.unit}
                     onChange={(event) => handleIngredientChange(index, event)}
-                    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:bored-red-500 focus:outline-none focus:ring-0 focus:border-red-600 peer"
+                    className="block px-2.5 pb-2.5 pt-4 w-full text-sm  bg-transparent rounded-lg border-1 border-gray-300 appearance-none d dark:border-gray-600 dark:focus:bored-red-500 focus:outline-none focus:ring-0 focus:border-red-600 peer"
                   />
                   <label
                     htmlFor="unit"

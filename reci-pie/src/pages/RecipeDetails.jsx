@@ -1,10 +1,12 @@
-import { useEffect, useState } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
-import Client from '../services/api'
+import { useEffect, useState } from "react"
+import { useParams, useNavigate } from "react-router-dom"
+import Client from "../services/api"
 
-import Reviews from '../components/Reviews'
-import AddReview from '../components/AddReview'
-const RecipeDetails = () => {
+import Reviews from "../components/Reviews"
+import AddReview from "../components/AddReview"
+import Creator from "../components/Creator"
+
+const RecipeDetails = ({ user }) => {
   const navigate = useNavigate()
   let { id } = useParams()
   const [recipe, setRecipe] = useState(null)
@@ -47,20 +49,32 @@ const RecipeDetails = () => {
           <div className="lg:col-span-2">
             <div class="flex flex-wrap gap-4 mt-4">
               <h1 className="text-2xl font-extrabold">{recipe?.title}</h1>
-              <button
-                className="text-red-500 font-extrabold uppercase hover:text-red-900"
-                onClick={() => {
-                  handleDelete(recipe._id)
-                }}
-              >
-                Delete
-              </button>
-              <button
-                onClick={handleEditPage}
-                className="text-blue-500 font-extrabold uppercase hover:text-blue-900"
-              >
-                Edit
-              </button>
+              {user?.id === recipe?.creator?._id && (
+                <div class="flex flex-wrap gap-4 mt-4">
+                  <button
+                    className="text-red-500 font-extrabold uppercase hover:text-red-900"
+                    onClick={() => {
+                      handleDelete(recipe._id)
+                    }}
+                  >
+                    Delete
+                  </button>
+                  <button
+                    onClick={handleEditPage}
+                    className="text-blue-500 font-extrabold uppercase hover:text-blue-900"
+                  >
+                    Edit
+                  </button>
+                </div>
+              )}
+              <div className="flex flex-wrap gap-4 mt-4">
+                <button
+                  onClick={saveRecipe}
+                  className="text-green-500 font-extrabold uppercase hover:text-green-900"
+                >
+                  Save Recipe
+                </button>
+              </div>
             </div>
             <div class="flex space-x-2 mt-4">
               <svg
@@ -126,13 +140,11 @@ const RecipeDetails = () => {
               <p className="text-l mt-4">{recipe?.steps}</p>
             </div>
           </div>
-          <div>
-            <button onClick={saveRecipe}>Save Recipe</button>
-          </div>
         </div>
         <div className="">
+          <Creator creator={recipe?.creator} />
           <Reviews reviews={recipe?.reviews} />
-          <AddReview id={id} ali={ali} />
+          {user ? <AddReview id={id} ali={ali} /> : null}
         </div>
       </div>
     </div>
