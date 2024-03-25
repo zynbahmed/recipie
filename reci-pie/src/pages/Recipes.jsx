@@ -25,7 +25,6 @@ const Recipes = () => {
 
   return (
     <div>
-      <h1>Recipes</h1>
       <Search onSubmit={handleSubmit} mealRef={mealRef} />
       <Recipe key={rec.idMeal} rec={rec} />
       {console.log(rec)}
