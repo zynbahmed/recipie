@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react"
-import { useParams, useNavigate } from "react-router-dom"
-import Client from "../services/api"
+import { useEffect, useState } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
+import Client from '../services/api'
 
-import Reviews from "../components/Reviews"
-import AddReview from "../components/AddReview"
+import Reviews from '../components/Reviews'
+import AddReview from '../components/AddReview'
 const RecipeDetails = () => {
   const navigate = useNavigate()
   let { id } = useParams()
@@ -114,12 +114,14 @@ const RecipeDetails = () => {
             <div className="mt-8">
               <h3 className="text-lg font-bold">Step by Step</h3>
               <hr></hr>
-              <p className="text-l mt-4">{recipe?.steps}</p>
+              <p className="text-l mt-4">
+                {recipe?.steps.replace(/(?:\\[rn]|[\r\n]+)+/g, '')}
+              </p>
             </div>
           </div>
         </div>
         <div className="">
-          <Reviews reviews={recipe.reviews} />
+          {/* <Reviews reviews={recipe.reviews} /> */}
           <AddReview id={id} ali={ali} />
         </div>
       </div>
