@@ -10,8 +10,6 @@ const SavedRecipe = ({ user }) => {
 
   const getRecipe = async () => {
     const response = await Client.get(`/recipe`)
-    console.log(response.data)
-    console.log(user.savedRecipes)
   }
 
   return (
