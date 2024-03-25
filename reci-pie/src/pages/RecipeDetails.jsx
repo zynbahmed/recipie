@@ -1,13 +1,15 @@
-import { useEffect, useState } from "react"
-import { useParams, useNavigate } from "react-router-dom"
-import Client from "../services/api"
+import { useEffect, useState } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
+import Client from '../services/api'
 
-import Reviews from "../components/Reviews"
-import AddReview from "../components/AddReview"
+import Reviews from '../components/Reviews'
+import AddReview from '../components/AddReview'
 const RecipeDetails = () => {
   const navigate = useNavigate()
   let { id } = useParams()
   const [recipe, setRecipe] = useState(null)
+  const [savedId, setSavedId] = useState({})
+
   useEffect(() => {
     const getRecipe = async () => {
       const response = await Client.get(`/recipe/${id}`)
@@ -16,16 +18,23 @@ const RecipeDetails = () => {
     }
     getRecipe()
   }, [])
+
   const handleDelete = async (id) => {
     console.log(`/recipe/${id}`)
     await Client.delete(`/recipe/${id}`)
   }
+
   const handleEditPage = () => {
     navigate(`/editrecipe/${id}`)
   }
 
   const ali = (a) => {
     setRecipe(a)
+  }
+
+  const saveRecipe = async () => {
+    console.log(id)
+    await Client.post(`/recipe/${id}`, id)
   }
 
   return (
@@ -116,6 +125,9 @@ const RecipeDetails = () => {
               <hr></hr>
               <p className="text-l mt-4">{recipe?.steps}</p>
             </div>
+          </div>
+          <div>
+            <button onClick={saveRecipe}>Save Recipe</button>
           </div>
         </div>
         <div className="">
