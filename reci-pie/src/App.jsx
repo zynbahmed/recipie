@@ -19,6 +19,7 @@ import './styles/App.scss'
 
 const App = () => {
   const [user, setUser] = useState(null)
+  const [list, setList] = useState([])
 
   const checkToken = async () => {
     const user = await CheckSession()
@@ -56,12 +57,17 @@ const App = () => {
           />
           <Route path="/" element={<Home user={user} />} />
           <Route path="/recipes" element={<Recipes />} />
-          <Route path="/shopping-list" element={<ShoppingList />} />
+          <Route
+            path="/shopping-list"
+            element={<ShoppingList list={list} setList={setList} user={user} />}
+          />
           <Route path="/addrecipe" element={<AddRecipe user={user} />} />
           <Route path="/allrecipes" element={<AllRecipes />} />
           <Route
             path="/recipeDetails/:id"
-            element={<RecipeDetails user={user} />}
+            element={
+              <RecipeDetails list={list} setList={setList} user={user} />
+            }
           />
           <Route path="/editrecipe/:id" element={<EditRecipe />} />
         </Routes>
