@@ -70,7 +70,7 @@ const AddRecipe = ({ user }) => {
                 <option value="Beef">Beef</option>
                 <option value="Lamb">Lamb</option>
                 <option value="Chicken">Chicken</option>
-                <option value="Sea-Food">Sea-Food</option>
+                <option value="Sea-food">Sea-Food</option>
                 <option value="Dessert">Dessert</option>
                 <option value="Breakfast">Breakfast</option>
               </select>
