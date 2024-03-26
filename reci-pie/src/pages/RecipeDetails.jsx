@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
-import Client from '../services/api'
+import { useEffect, useState } from "react"
+import { useParams, useNavigate } from "react-router-dom"
+import Client from "../services/api"
 
-import Reviews from '../components/Reviews'
-import AddReview from '../components/AddReview'
-import Creator from '../components/Creator'
+import Reviews from "../components/Reviews"
+import AddReview from "../components/AddReview"
+import Creator from "../components/Creator"
 
 const RecipeDetails = ({ user, list, setList }) => {
   const navigate = useNavigate()
@@ -60,84 +60,80 @@ const RecipeDetails = ({ user, list, setList }) => {
     setList([...list, shoppingList])
     console.log(list)
   }
+
+  function calculateAverageRating(reviews) {
+    if (!reviews || reviews.length === 0) return 0
+
+    const totalRating = reviews.reduce((acc, review) => acc + review.rating, 0)
+    const averageRating = totalRating / reviews.length
+    return averageRating
+  }
+
+  function renderStars(averageRating) {
+    const filledStars = Math.floor(averageRating)
+    const emptyStars = 5 - filledStars
+
+    return (
+      <div className="flex space-x-2 mt-4">
+        {[...Array(filledStars)]
+          .fill(true)
+          .concat(Array(emptyStars).fill(false))
+          .map((isFilled, index) => (
+            <svg
+              key={index}
+              className={`w-5 fill-${isFilled ? "red-800" : "gray !important"}`}
+              viewBox="0 0 14 13"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
+            </svg>
+          ))}
+      </div>
+    )
+  }
+
+  const averageRating = calculateAverageRating(recipe?.reviews)
+
   return (
-    <div className="font-[sans-serif]">
+    <div className="font-[sans-serif] mx-60">
       <div className="lg:max-w-7xl max-w-2xl max-lg:mx-auto">
-        <div className="grid items-start grid-cols-1 lg:grid-cols-5 gap-12">
-          <div className="lg:col-span-3 bg-base-100 w-full lg:sticky top-0 text-center p-8">
+        <div className="grid items-start grid-cols-1 lg:grid-cols-5 gap-12 border border-grey-200 p-10 mb-5 shadow-xl">
+          <div className="lg:col-span-3 bg-base-100 w-full top-0 text-center p-8">
             <img src={recipe?.photo} alt={recipe?.title} />
-          </div>
-          <div className="lg:col-span-2">
-            <div class="flex flex-wrap gap-4 mt-4">
-              <h1 className="text-2xl font-extrabold">{recipe?.title}</h1>
-              {user?.id === recipe?.creator?._id && (
-                <div class="flex flex-wrap gap-4 mt-4">
-                  <button
-                    className="text-red-500 font-extrabold uppercase hover:text-red-900"
-                    onClick={() => {
-                      handleDelete(recipe._id)
-                    }}
-                  >
-                    Delete
-                  </button>
-                  <button
-                    onClick={handleEditPage}
-                    className="text-blue-500 font-extrabold uppercase hover:text-blue-900"
-                  >
-                    Edit
-                  </button>
-                </div>
-              )}
-              <div className="flex flex-wrap gap-4 mt-4">
+            {user?.id === recipe?.creator?._id && (
+              <div class="flex flex-wrap gap-4 mt-4">
                 <button
-                  onClick={saveRecipe}
-                  className="text-green-500 font-extrabold uppercase hover:text-green-900"
+                  className="text-red-500 font-extrabold uppercase hover:text-red-900"
+                  onClick={() => {
+                    handleDelete(recipe._id)
+                  }}
                 >
-                  Save Recipe
+                  Delete
+                </button>
+                <button
+                  onClick={handleEditPage}
+                  className="text-blue-500 font-extrabold uppercase hover:text-blue-900"
+                >
+                  Edit
                 </button>
               </div>
+            )}
+            <div className="flex flex-wrap gap-4 mt-4">
+              <button
+                onClick={saveRecipe}
+                className="text-green-500 font-extrabold uppercase hover:text-green-900"
+              >
+                Save Recipe
+              </button>
             </div>
-            <div class="flex space-x-2 mt-4">
-              <svg
-                class="w-5 fill-red-800"
-                viewBox="0 0 14 13"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
-              </svg>
-              <svg
-                class="w-5 fill-red-800"
-                viewBox="0 0 14 13"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
-              </svg>
-              <svg
-                class="w-5 fill-red-800"
-                viewBox="0 0 14 13"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
-              </svg>
-              <svg
-                class="w-5 fill-red-800"
-                viewBox="0 0 14 13"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
-              </svg>
-              <svg
-                class="w-5 fill-[#CED5D8]"
-                viewBox="0 0 14 13"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
-              </svg>
+          </div>
+          <div className="lg:col-span-2">
+            <div className="flex flex-wrap gap-4 mt-4">
+              <h1 className="text-2xl font-extrabold">{recipe?.title}</h1>
+            </div>
+            <div className="flex space-x-2 mt-4">
+              {renderStars(averageRating)}
             </div>
             <div className="mt-8">
               <h3 className="text-lg font-bold">About the Recipe</h3>
@@ -147,9 +143,9 @@ const RecipeDetails = ({ user, list, setList }) => {
             <div className="mt-8">
               <h3 className="text-lg font-bold">Ingredients</h3>
               <hr></hr>
-              {recipe?.ingredient.map((item) => (
-                <ul className="space-y-3 list-disc mt-4 pl-4 text-sm">
-                  <li>
+              <ul className="space-y-3 mt-4 pl-4 text-sm list-disc">
+                {recipe?.ingredient.map((item) => (
+                  <li key={item.name} className="mr-4">
                     <input
                       type="checkbox"
                       onChange={chechBoxSelector}
@@ -157,28 +153,31 @@ const RecipeDetails = ({ user, list, setList }) => {
                     />
                     {item?.amount} {item?.unit} : {item?.name}
                   </li>
-                </ul>
-              ))}
+                ))}
+              </ul>
+              <button
+                onClick={() => {
+                  addToCart(shoppingList)
+                }}
+                className="m-2 mt-5 reg-btn "
+              >
+                Add to Grocery List
+              </button>
             </div>
             <div className="mt-8">
               <h3 className="text-lg font-bold">Step by Step</h3>
               <hr></hr>
               <p className="text-l mt-4">
-                {recipe?.steps.replace(/(?:\\[rn]|[\r\n]+)+/g, '')}
+                {recipe?.steps.replace(/(?:\\[rn]|[\r\n]+)+/g, "")}
                 <br />
-                <button
-                  onClick={() => {
-                    addToCart(shoppingList)
-                  }}
-                >
-                  Add to Grocery List
-                </button>
               </p>
             </div>
           </div>
         </div>
-        <div className="">
+        <div className="border border-grey-200 p-10 mb-5 shadow-xl">
           <Creator creator={recipe?.creator} />
+        </div>
+        <div className="border border-grey-200 p-10 mb-5 shadow-xl">
           <Reviews reviews={recipe?.reviews} />
           {user ? <AddReview id={id} ali={ali} /> : null}
         </div>

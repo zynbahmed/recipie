@@ -4,8 +4,18 @@ import axios from "axios"
 import { Link } from "react-router-dom"
 
 const SavedRecipe = ({ user }) => {
-  const recipes = user?.savedRecipes
-  console.log(recipes)
+  const [savedRecipe, setSavedRecipe] = useState([])
+
+  useEffect(() => {
+    const details = async () => {
+      let selected = await Client.get("/")
+      setSavedRecipe(selected.data)
+    }
+    details()
+  }, [])
+
+  const recipes = savedRecipe?.savedRecipes
+  // console.log(recipes)
   const getTimeAgo = (timestamp) => {
     const now = new Date()
     const timeElapsed = parseInt(now) - parseInt(timestamp)
@@ -33,7 +43,7 @@ const SavedRecipe = ({ user }) => {
     <div>
       <h1 className="text-xl font-bold mb-4">Saved Recipes</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
-        {recipes.map((recipe) => (
+        {recipes?.map((recipe) => (
           <div className="overflow-hidden shadow-lg flex flex-col w-full">
             <div key={recipe._id} className="relative">
               <Link to={`/recipeDetails/${recipe._id}`}>

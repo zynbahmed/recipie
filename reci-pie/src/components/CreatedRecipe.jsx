@@ -1,7 +1,18 @@
 import { Link } from "react-router-dom"
+import Client from "../services/api"
+import { useState, useEffect } from "react"
 
 const CreatedRecipe = ({ user }) => {
-  const recipes = user?.myRecipes
+  const [createdRecipe, setCreatedRecipe] = useState([])
+
+  useEffect(() => {
+    const details = async () => {
+      let selected = await Client.get("/")
+      setCreatedRecipe(selected.data)
+    }
+    details()
+  }, [])
+  const recipes = createdRecipe?.myRecipes
 
   const getTimeAgo = (timestamp) => {
     const now = new Date()
@@ -31,7 +42,7 @@ const CreatedRecipe = ({ user }) => {
     <div>
       <h1 className="text-xl font-bold mb-4">Created Recipes</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
-        {recipes.map((recipe) => (
+        {recipes?.map((recipe) => (
           <div className="overflow-hidden shadow-lg flex flex-col w-full">
             <div key={recipe._id} className="relative">
               <Link to={`/recipeDetails/${recipe._id}`}>
