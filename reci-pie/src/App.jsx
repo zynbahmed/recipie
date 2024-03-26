@@ -15,6 +15,7 @@ import AddRecipe from './pages/AddRecipe'
 import AllRecipes from './pages/AllRecipes'
 import RecipeDetails from './pages/RecipeDetails'
 import EditRecipe from './pages/EditRecipe'
+import CreatorProfile from './pages/CreatorProfile'
 import './styles/App.scss'
 
 const App = () => {
@@ -70,6 +71,7 @@ const App = () => {
             }
           />
           <Route path="/editrecipe/:id" element={<EditRecipe />} />
+          <Route path="/creatorprofile/:id" element={<CreatorProfile />} />
         </Routes>
       </div>
     </div>

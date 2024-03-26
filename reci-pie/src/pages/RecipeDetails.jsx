@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react"
-import { useParams, useNavigate } from "react-router-dom"
-import Client from "../services/api"
+import { useEffect, useState } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
+import Client from '../services/api'
 
-import Reviews from "../components/Reviews"
-import AddReview from "../components/AddReview"
-import Creator from "../components/Creator"
+import Reviews from '../components/Reviews'
+import AddReview from '../components/AddReview'
+import Creator from '../components/Creator'
 
 const RecipeDetails = ({ user, list, setList }) => {
   const navigate = useNavigate()
@@ -15,7 +15,7 @@ const RecipeDetails = ({ user, list, setList }) => {
   useEffect(() => {
     const getRecipe = async () => {
       const response = await Client.get(`/recipe/${id}`)
-      console.log(response.data)
+      console.log('In the details page ', response.data)
       setRecipe(response.data)
     }
     getRecipe()
@@ -81,7 +81,7 @@ const RecipeDetails = ({ user, list, setList }) => {
           .map((isFilled, index) => (
             <svg
               key={index}
-              className={`w-5 fill-${isFilled ? "red-800" : "gray !important"}`}
+              className={`w-5 fill-${isFilled ? 'red-800' : 'gray !important'}`}
               viewBox="0 0 14 13"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -168,7 +168,7 @@ const RecipeDetails = ({ user, list, setList }) => {
               <h3 className="text-lg font-bold">Step by Step</h3>
               <hr></hr>
               <p className="text-l mt-4">
-                {recipe?.steps.replace(/(?:\\[rn]|[\r\n]+)+/g, "")}
+                {recipe?.steps.replace(/(?:\\[rn]|[\r\n]+)+/g, '')}
                 <br />
               </p>
             </div>
