@@ -1,15 +1,15 @@
-import { useState } from 'react'
-import Client from '../services/api'
-import { Link } from 'react-router-dom'
+import { useState } from "react"
+import Client from "../services/api"
+import { Link } from "react-router-dom"
 const AddRecipe = ({ user }) => {
   const [addRecipeformValues, setAddRecipeFormValues] = useState({
-    title: '',
-    description: '',
-    cookingTime: '',
-    steps: '',
-    photo: '',
-    ingredients: [{ name: '', amount: '', unit: '' }],
-    category: '',
+    title: "",
+    description: "",
+    cookingTime: "",
+    steps: "",
+    photo: "",
+    ingredients: [{ name: "", amount: "", unit: "" }],
+    category: "",
     creator: user.id
   })
   const handleChange = (event) => {
@@ -25,7 +25,7 @@ const AddRecipe = ({ user }) => {
       ...prevState,
       ingredients: [
         ...prevState.ingredients,
-        { name: '', amount: '', unit: '' }
+        { name: "", amount: "", unit: "" }
       ]
     }))
   }
@@ -66,7 +66,12 @@ const AddRecipe = ({ user }) => {
             <br />
             <div className="relative">
               <label>Select Category</label>
-              <select name="category" id="category" onChange={handleChange}>
+              <select
+                name="category"
+                id="category"
+                onChange={handleChange}
+                className="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-1 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:bored-red-500 focus:outline-none focus:ring-0 focus:border-red-600 peer"
+              >
                 <option value="Beef">Beef</option>
                 <option value="Lamb">Lamb</option>
                 <option value="Chicken">Chicken</option>
@@ -74,7 +79,8 @@ const AddRecipe = ({ user }) => {
                 <option value="Dessert">Dessert</option>
                 <option value="Breakfast">Breakfast</option>
               </select>
-
+            </div>
+            <div className="relative">
               <input
                 type="text"
                 name="title"

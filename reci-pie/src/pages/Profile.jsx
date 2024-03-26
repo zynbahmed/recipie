@@ -2,7 +2,7 @@ import SavedRecipe from "../components/SavedRecipe"
 import CreatedRecipe from "../components/CreatedRecipe"
 
 const Profile = ({ user }) => {
-  console.log(user)
+  // console.log(user)
   return (
     <div>
       <div className="container mx-auto py-8">
