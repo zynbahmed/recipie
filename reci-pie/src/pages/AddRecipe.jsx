@@ -60,7 +60,7 @@ const AddRecipe = ({ user }) => {
     <div className="relative flex min-h-screen flex-col justify-center overflow-hidden py-6 sm:py-12">
       <div className="absolute inset-0 bg-center bg-[url('/pies.jpg')]"></div>
       <div className="relative mx-auto w-full max-w-max px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 sm:rounded-xl sm:px-10 bg-base-100">
-        <div class="w-full">
+        <div className="w-full">
           <form>
             <h1 className="text-2xl font-bold uppercase"> Add a Recipe</h1>
             <br />
