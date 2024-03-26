@@ -1,10 +1,4 @@
 const Reviews = ({ reviews }) => {
-  function calculateAverageRating(reviews) {
-    const totalRating = reviews.reduce((acc, review) => acc + review.rating, 0)
-    const averageRating = totalRating / reviews.length
-    return Array(5).fill(averageRating >= 1) // Assuming rating is out of 5
-  }
-
   return reviews && reviews.length > 0 ? (
     <div>
       <div class="mx-auto text-center md:max-w-xl lg:max-w-3xl">

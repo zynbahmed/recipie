@@ -60,6 +60,44 @@ const RecipeDetails = ({ user, list, setList }) => {
     setList([...list, shoppingList])
     console.log(list)
   }
+
+  const [reviews, setReviews] = useState([]) // Replace with actual reviews data
+
+  // Function to calculate average rating (same as before)
+  function calculateAverageRating(reviews) {
+    if (!reviews || reviews.length === 0) return 0
+
+    const totalRating = reviews.reduce((acc, review) => acc + review.rating, 0)
+    const averageRating = totalRating / reviews.length
+    return averageRating
+  }
+
+  // Function to generate star icons based on rating (same as before)
+  function renderStars(averageRating) {
+    const filledStars = Math.floor(averageRating)
+    const emptyStars = 5 - filledStars
+
+    return (
+      <div className="flex space-x-2 mt-4">
+        {[...Array(filledStars)]
+          .fill(true)
+          .concat(Array(emptyStars).fill(false))
+          .map((isFilled, index) => (
+            <svg
+              key={index}
+              className={`w-5 fill-${isFilled ? "red-800" : "gray !important"}`}
+              viewBox="0 0 14 13"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
+            </svg>
+          ))}
+      </div>
+    )
+  }
+
+  const averageRating = calculateAverageRating(recipe?.reviews)
   return (
     <div className="font-[sans-serif] mx-60">
       <div className="lg:max-w-7xl max-w-2xl max-lg:mx-auto">
@@ -96,8 +134,11 @@ const RecipeDetails = ({ user, list, setList }) => {
           <div className="lg:col-span-2">
             <div className="flex flex-wrap gap-4 mt-4">
               <h1 className="text-2xl font-extrabold">{recipe?.title}</h1>
+              <p className="font-semibold m-auto">
+              (Average Rating: {calculateAverageRating(recipe?.reviews).toFixed(1)})
+            </p>
             </div>
-            <div className="flex space-x-2 mt-4">
+            {/* <div className="flex space-x-2 mt-4">
               <svg
                 className="w-5 fill-red-800"
                 viewBox="0 0 14 13"
@@ -138,6 +179,10 @@ const RecipeDetails = ({ user, list, setList }) => {
               >
                 <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
               </svg>
+            </div> */}
+            <div className="flex space-x-2 mt-4">
+              {renderStars(averageRating)}
+              
             </div>
             <div className="mt-8">
               <h3 className="text-lg font-bold">About the Recipe</h3>
