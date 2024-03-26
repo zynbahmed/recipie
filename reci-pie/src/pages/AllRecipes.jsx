@@ -6,7 +6,6 @@ const AllRecipes = () => {
   let navigate = useNavigate()
   const [allRecipes, setAllRecipes] = useState([])
   const [cat, setCat] = useState(null)
-  const [cat, setCat] = useState(null)
   useEffect(() => {
     const getAllRecipes = async () => {
       let endpoint = "/recipe/recipesbycat"
