@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
-import Client from '../services/api'
+import { useEffect, useState } from "react"
+import { useParams, useNavigate } from "react-router-dom"
+import Client from "../services/api"
 
-import Reviews from '../components/Reviews'
-import AddReview from '../components/AddReview'
-import Creator from '../components/Creator'
+import Reviews from "../components/Reviews"
+import AddReview from "../components/AddReview"
+import Creator from "../components/Creator"
 
 const RecipeDetails = ({ user, list, setList }) => {
   const navigate = useNavigate()
@@ -61,41 +61,41 @@ const RecipeDetails = ({ user, list, setList }) => {
     console.log(list)
   }
   return (
-    <div className="font-[sans-serif]">
+    <div className="font-[sans-serif] mx-60">
       <div className="lg:max-w-7xl max-w-2xl max-lg:mx-auto">
-        <div className="grid items-start grid-cols-1 lg:grid-cols-5 gap-12">
-          <div className="lg:col-span-3 bg-base-100 w-full lg:sticky top-0 text-center p-8">
+        <div className="grid items-start grid-cols-1 lg:grid-cols-5 gap-12 border border-grey-200 p-10 mb-5 shadow-xl">
+          <div className="lg:col-span-3 bg-base-100 w-full top-0 text-center p-8">
             <img src={recipe?.photo} alt={recipe?.title} />
+            {user?.id === recipe?.creator?._id && (
+              <div class="flex flex-wrap gap-4 mt-4">
+                <button
+                  className="text-red-500 font-extrabold uppercase hover:text-red-900"
+                  onClick={() => {
+                    handleDelete(recipe._id)
+                  }}
+                >
+                  Delete
+                </button>
+                <button
+                  onClick={handleEditPage}
+                  className="text-blue-500 font-extrabold uppercase hover:text-blue-900"
+                >
+                  Edit
+                </button>
+              </div>
+            )}
+            <div className="flex flex-wrap gap-4 mt-4">
+              <button
+                onClick={saveRecipe}
+                className="text-green-500 font-extrabold uppercase hover:text-green-900"
+              >
+                Save Recipe
+              </button>
+            </div>
           </div>
           <div className="lg:col-span-2">
             <div className="flex flex-wrap gap-4 mt-4">
               <h1 className="text-2xl font-extrabold">{recipe?.title}</h1>
-              {user?.id === recipe?.creator?._id && (
-                <div class="flex flex-wrap gap-4 mt-4">
-                  <button
-                    className="text-red-500 font-extrabold uppercase hover:text-red-900"
-                    onClick={() => {
-                      handleDelete(recipe._id)
-                    }}
-                  >
-                    Delete
-                  </button>
-                  <button
-                    onClick={handleEditPage}
-                    className="text-blue-500 font-extrabold uppercase hover:text-blue-900"
-                  >
-                    Edit
-                  </button>
-                </div>
-              )}
-              <div className="flex flex-wrap gap-4 mt-4">
-                <button
-                  onClick={saveRecipe}
-                  className="text-green-500 font-extrabold uppercase hover:text-green-900"
-                >
-                  Save Recipe
-                </button>
-              </div>
             </div>
             <div className="flex space-x-2 mt-4">
               <svg
@@ -159,26 +159,29 @@ const RecipeDetails = ({ user, list, setList }) => {
                   </li>
                 </ul>
               ))}
+              <button
+                onClick={() => {
+                  addToCart(shoppingList)
+                }}
+                className="m-2 mt-5 reg-btn "
+              >
+                Add to Grocery List
+              </button>
             </div>
             <div className="mt-8">
               <h3 className="text-lg font-bold">Step by Step</h3>
               <hr></hr>
               <p className="text-l mt-4">
-                {recipe?.steps.replace(/(?:\\[rn]|[\r\n]+)+/g, '')}
+                {recipe?.steps.replace(/(?:\\[rn]|[\r\n]+)+/g, "")}
                 <br />
-                <button
-                  onClick={() => {
-                    addToCart(shoppingList)
-                  }}
-                >
-                  Add to Grocery List
-                </button>
               </p>
             </div>
           </div>
         </div>
-        <div className="">
+        <div className="border border-grey-200 p-10 mb-5 shadow-xl">
           <Creator creator={recipe?.creator} />
+        </div>
+        <div className="border border-grey-200 p-10 mb-5 shadow-xl">
           <Reviews reviews={recipe?.reviews} />
           {user ? <AddReview id={id} ali={ali} /> : null}
         </div>
