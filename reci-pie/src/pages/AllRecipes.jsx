@@ -5,15 +5,17 @@ import RecipeCard from "../components/RecipeCard"
 const AllRecipes = () => {
   let navigate = useNavigate()
   const [allRecipes, setAllRecipes] = useState([])
-  const [cat, setCat] = useState("")
+  const [cat, setCat] = useState(null)
   useEffect(() => {
     const getAllRecipes = async () => {
-      const response = await Client.get("/recipe/recipesbycat", {
-        params: { cat: cat }
-      })
+      let endpoint = "/recipe/recipesbycat"
+      let params = {}
+      if (cat !== null) {
+        params = { cat: cat }
+      }
+      const response = await Client.get(endpoint, { params: params })
 
       console.log(response.data)
-
       setAllRecipes(response.data)
     }
     getAllRecipes()
@@ -28,16 +30,19 @@ const AllRecipes = () => {
 
   return (
     <div className="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
-      {/* <select onChange={handleSelect}>
-        <option value="Beef">Beef</option>
-        <option value="Lamb">Lamb</option>
-        <option value="Sea-food">Seafood</option>
-        <option value="Chicken">Chicken</option>
-      </select> */}
       <button className="reg-btn m-2" onClick={adding}>
         Add Recipe
       </button>
       <div className="grid gap-6 text-center md:grid-cols-6 lg:gap-12 m-2 mb-10">
+        <div>
+          <button
+            onClick={() => {
+              handleSelect(null)
+            }}
+          >
+            All
+          </button>
+        </div>
         <div>
           <button
             onClick={() => {
