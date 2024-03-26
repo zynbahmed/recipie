@@ -5,7 +5,7 @@ import RecipeCard from '../components/RecipeCard'
 const AllRecipes = () => {
   let navigate = useNavigate()
   const [allRecipes, setAllRecipes] = useState([])
-  const [cat, setCat] = useState('')
+  const [cat, setCat] = useState(null)
   useEffect(() => {
     const getAllRecipes = async () => {
       const response = await Client.get('/recipe/recipesbycat', {
@@ -28,7 +28,7 @@ const AllRecipes = () => {
 
   return (
     <div className="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
-      <button
+      {/* <button
         onClick={() => {
           handleSelect('Beef')
         }}
@@ -62,7 +62,22 @@ const AllRecipes = () => {
         }}
       >
         <div>Dessert</div>
-      </button>
+      </button> */}
+      <select
+        name="category"
+        id="category"
+        onChange={(e) => {
+          handleSelect(e.target.value)
+        }}
+      >
+        <option>All</option>
+        <option value="Beef">Beef</option>
+        <option value="Lamb">Lamb</option>
+        <option value="Chicken">Chicken</option>
+        <option value="Sea-food">Sea-Food</option>
+        <option value="Dessert">Dessert</option>
+        <option value="Breakfast">Breakfast</option>
+      </select>
 
       <button className="reg-btn m-2" onClick={adding}>
         Add Recipe
