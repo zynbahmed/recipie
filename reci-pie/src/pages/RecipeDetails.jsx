@@ -6,10 +6,11 @@ import Reviews from '../components/Reviews'
 import AddReview from '../components/AddReview'
 import Creator from '../components/Creator'
 
-const RecipeDetails = ({ user }) => {
+const RecipeDetails = ({ user, list, setList }) => {
   const navigate = useNavigate()
   let { id } = useParams()
   const [recipe, setRecipe] = useState(null)
+  const [shoppingList, setShoppingList] = useState([])
 
   useEffect(() => {
     const getRecipe = async () => {
@@ -37,7 +38,28 @@ const RecipeDetails = ({ user }) => {
     console.log(id)
     await Client.post(`/recipe/${id}`, id)
   }
-
+  const chechBoxSelector = () => {
+    const checkBoxes = document.querySelectorAll('ul input[type="checkbox"]')
+    const checked = []
+    checkBoxes.forEach((cb) => {
+      if (cb.checked) {
+        checked.push(cb.value)
+      }
+    })
+    setShoppingList(checked)
+    console.log(checked)
+    console.log(shoppingList)
+  }
+  const addToCart = (shoppingList) => {
+    const existingItemIndex = list.findIndex(
+      (itemInCart) => itemInCart.name === shoppingList.name
+    )
+    if (existingItemIndex !== -1) {
+      return
+    }
+    setList([...list, shoppingList])
+    console.log(list)
+  }
   return (
     <div className="font-[sans-serif]">
       <div className="lg:max-w-7xl max-w-2xl max-lg:mx-auto">
@@ -128,6 +150,11 @@ const RecipeDetails = ({ user }) => {
               {recipe?.ingredient.map((item) => (
                 <ul className="space-y-3 list-disc mt-4 pl-4 text-sm">
                   <li>
+                    <input
+                      type="checkbox"
+                      onChange={chechBoxSelector}
+                      value={item.name}
+                    />
                     {item?.amount} {item?.unit} : {item?.name}
                   </li>
                 </ul>
@@ -138,6 +165,14 @@ const RecipeDetails = ({ user }) => {
               <hr></hr>
               <p className="text-l mt-4">
                 {recipe?.steps.replace(/(?:\\[rn]|[\r\n]+)+/g, '')}
+                <br />
+                <button
+                  onClick={() => {
+                    addToCart(shoppingList)
+                  }}
+                >
+                  Add to Grocery List
+                </button>
               </p>
             </div>
           </div>
