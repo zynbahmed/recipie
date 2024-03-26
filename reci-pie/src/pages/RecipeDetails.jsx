@@ -61,9 +61,6 @@ const RecipeDetails = ({ user, list, setList }) => {
     console.log(list)
   }
 
-  const [reviews, setReviews] = useState([]) // Replace with actual reviews data
-
-  // Function to calculate average rating (same as before)
   function calculateAverageRating(reviews) {
     if (!reviews || reviews.length === 0) return 0
 
@@ -72,7 +69,6 @@ const RecipeDetails = ({ user, list, setList }) => {
     return averageRating
   }
 
-  // Function to generate star icons based on rating (same as before)
   function renderStars(averageRating) {
     const filledStars = Math.floor(averageRating)
     const emptyStars = 5 - filledStars
@@ -98,6 +94,7 @@ const RecipeDetails = ({ user, list, setList }) => {
   }
 
   const averageRating = calculateAverageRating(recipe?.reviews)
+
   return (
     <div className="font-[sans-serif] mx-60">
       <div className="lg:max-w-7xl max-w-2xl max-lg:mx-auto">
@@ -134,13 +131,9 @@ const RecipeDetails = ({ user, list, setList }) => {
           <div className="lg:col-span-2">
             <div className="flex flex-wrap gap-4 mt-4">
               <h1 className="text-2xl font-extrabold">{recipe?.title}</h1>
-              <p className="font-semibold m-auto">
-              (Average Rating: {calculateAverageRating(recipe?.reviews).toFixed(1)})
-            </p>
             </div>
             <div className="flex space-x-2 mt-4">
               {renderStars(averageRating)}
-              
             </div>
             <div className="mt-8">
               <h3 className="text-lg font-bold">About the Recipe</h3>
@@ -150,9 +143,9 @@ const RecipeDetails = ({ user, list, setList }) => {
             <div className="mt-8">
               <h3 className="text-lg font-bold">Ingredients</h3>
               <hr></hr>
-              {recipe?.ingredient.map((item) => (
-                <ul className="space-y-3 list-disc mt-4 pl-4 text-sm">
-                  <li>
+              <ul className="space-y-3 mt-4 pl-4 text-sm list-disc">
+                {recipe?.ingredient.map((item) => (
+                  <li key={item.name} className="mr-4">
                     <input
                       type="checkbox"
                       onChange={chechBoxSelector}
@@ -160,8 +153,8 @@ const RecipeDetails = ({ user, list, setList }) => {
                     />
                     {item?.amount} {item?.unit} : {item?.name}
                   </li>
-                </ul>
-              ))}
+                ))}
+              </ul>
               <button
                 onClick={() => {
                   addToCart(shoppingList)
