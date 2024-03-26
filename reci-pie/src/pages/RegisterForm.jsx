@@ -3,6 +3,7 @@ import { RegisterUser } from '../services/Auth'
 import { SignInUser } from '../services/Auth'
 import '../styles/form.css'
 import { useNavigate } from 'react-router-dom'
+import { GoogleLogin } from '@react-oauth/google'
 
 const RegistrationForm = ({ setUser }) => {
   let navigate = useNavigate()
@@ -46,6 +47,13 @@ const RegistrationForm = ({ setUser }) => {
   const handleToggleContainer = (isActive) => {
     const container = document.getElementById('container')
     container.classList.toggle('right-panel-active', isActive)
+  }
+
+  const responseMessage = (response) => {
+    console.log(response)
+  }
+  const errorMessage = (error) => {
+    console.log(error)
   }
 
   return (
@@ -120,6 +128,12 @@ const RegistrationForm = ({ setUser }) => {
             >
               Sign In
             </button>
+            <div>
+              <h2>React Google Login</h2>
+              <br />
+              <br />
+              <GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
+            </div>
           </form>
         </div>
         <div className="overlay-container">

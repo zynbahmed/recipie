@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom'
 import { CheckSession } from './services/Auth'
 
 import Header from './components/Header'
+import GoogleOk from './pages/GoogleOk'
 import NavBar from './components/NavBar'
 import Home from './pages/Home'
 import Recipes from './pages/Recipes'
@@ -45,6 +46,10 @@ const App = () => {
       </div>
       <div>
         <Routes>
+          <Route
+            path="/googleok"
+            element={<GoogleOk checkToken={checkToken} />}
+          ></Route>
           <Route path="/profile" element={<Profile user={user} />} />
           <Route
             path="/register"
