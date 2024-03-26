@@ -65,13 +65,15 @@ const AddRecipe = ({ user }) => {
             <h1 className="text-2xl font-bold uppercase"> Add a Recipe</h1>
             <br />
             <div className="relative">
-              <label>Select Category</label>
               <select
                 name="category"
                 id="category"
                 onChange={handleChange}
-                className="block px-2.5 pb-2.5 pt-4 w-full text-sm bg-transparent rounded-lg border-1 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:bored-red-500 focus:outline-none focus:ring-0 focus:border-red-600 peer"
+                className="block px-2.5 pb-2.5 pt-4 w-full border border-gray-300 text-gray-900 dark:border-gray-600 rounded-lg focus:ring-red-500 focus:border-red-500 "
               >
+                <option selected disabled>
+                  Select a Category
+                </option>
                 <option value="Beef">Beef</option>
                 <option value="Lamb">Lamb</option>
                 <option value="Chicken">Chicken</option>
@@ -80,6 +82,7 @@ const AddRecipe = ({ user }) => {
                 <option value="Breakfast">Breakfast</option>
               </select>
             </div>
+            <br />
             <div className="relative">
               <input
                 type="text"
