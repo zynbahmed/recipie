@@ -7,7 +7,6 @@ const Header = ({ user, handleLogOut }) => {
   return (
     <>
       <div>
-        <a href={`${import.meta.env.VITE_BACKEND_URL}/auth/google`}>Google</a>
         <div
           onClick={() => {
             setIsActive(!isActive)

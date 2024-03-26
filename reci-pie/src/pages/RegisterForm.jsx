@@ -1,22 +1,22 @@
-import { useState } from 'react'
-import { RegisterUser } from '../services/Auth'
-import { SignInUser } from '../services/Auth'
-import '../styles/form.css'
-import { useNavigate } from 'react-router-dom'
-import { GoogleLogin } from '@react-oauth/google'
+import { useState } from "react"
+import { RegisterUser } from "../services/Auth"
+import { SignInUser } from "../services/Auth"
+import "../styles/form.css"
+import { useNavigate } from "react-router-dom"
+import { GoogleLogin } from "@react-oauth/google"
 
 const RegistrationForm = ({ setUser }) => {
   let navigate = useNavigate()
   const initialState = {
-    email: '',
-    password: ''
+    email: "",
+    password: ""
   }
   const [init, setInit] = useState(initialState)
   const [formValues, setFormValues] = useState({
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: ''
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: ""
   })
   const handleChange = (event) => {
     setFormValues({ ...formValues, [event.target.name]: event.target.value })
@@ -41,12 +41,12 @@ const RegistrationForm = ({ setUser }) => {
     setInit(initialState)
     setUser(payload)
     console.log(init)
-    navigate('/')
+    navigate("/")
   }
 
   const handleToggleContainer = (isActive) => {
-    const container = document.getElementById('container')
-    container.classList.toggle('right-panel-active', isActive)
+    const container = document.getElementById("container")
+    container.classList.toggle("right-panel-active", isActive)
   }
 
   const responseMessage = (response) => {
@@ -58,6 +58,13 @@ const RegistrationForm = ({ setUser }) => {
 
   return (
     <div className="body">
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+      />
       <div className="reg-container" id="container">
         <div className="form-container sign-up-container">
           <form className="reg-form" onSubmit={handleLogin}>
@@ -128,11 +135,13 @@ const RegistrationForm = ({ setUser }) => {
             >
               Sign In
             </button>
+            <br/>
+            <p className="text-sm">Or Sign in With Your Google Account</p>
+            <br/>
             <div>
-              <h2>React Google Login</h2>
-              <br />
-              <br />
-              <GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
+              <a href={`${import.meta.env.VITE_BACKEND_URL}/auth/google`}>
+                <GoogleLogin />
+              </a>
             </div>
           </form>
         </div>
