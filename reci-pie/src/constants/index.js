@@ -33,5 +33,10 @@ export const userItem = [
   {
     title: "Profile",
     href: "/profile"
+  },
+  {
+    title: "Shopping List",
+    href: "/shopping-list"
   }
+
 ]
