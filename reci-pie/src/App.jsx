@@ -72,6 +72,8 @@ const App = () => {
           />
           <Route path="/editrecipe/:id" element={<EditRecipe />} />
           <Route path="/creatorprofile/:id" element={<CreatorProfile />} />
+          <Route path="/creatorprofile/:id" element={<CreatorProfile />} />
+{/*  */}
         </Routes>
       </div>
     </div>
