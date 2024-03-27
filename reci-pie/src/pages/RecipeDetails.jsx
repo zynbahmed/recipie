@@ -50,12 +50,12 @@ const RecipeDetails = ({ user, list, setList }) => {
 
   const saveRecipe = async () => {
     // console.log(id)
+
     await Client.post(`/recipe/${id}`, id)
     Setsaved(true)
   }
   const unsaveRecipe = async () => {
-    // console.log('got to the unsave ')
-    // await Client.put(`/recipe/${id}`, id)
+    await Client.delete(`/unsave/${id}`)
     Setsaved(false)
   }
 
@@ -68,8 +68,7 @@ const RecipeDetails = ({ user, list, setList }) => {
       }
     })
     setShoppingList(checked)
-    // console.log(checked)
-    // console.log(shoppingList)
+
   }
   const addToCart = (shoppingList) => {
     const existingItemIndex = list.findIndex(
