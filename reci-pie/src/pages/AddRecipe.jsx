@@ -2,6 +2,7 @@ import { useState } from "react"
 import Client from "../services/api"
 import { Link } from "react-router-dom"
 const AddRecipe = ({ user }) => {
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false)
   const [addRecipeformValues, setAddRecipeFormValues] = useState({
     title: "",
     description: "",
@@ -42,10 +43,21 @@ const AddRecipe = ({ user }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    await Client.post(`/recipe`, addRecipeformValues)
+    try {
+      await Client.post(`/recipe`, addRecipeformValues)
+      setShowSuccessMessage(true) // Show success message after successful submission
+    } catch (error) {
+      console.error("Error submitting recipe:", error)
+      // Handle errors appropriately, e.g., display an error message to the user
+    }
 
-    console.log(addRecipeformValues)
+    // console.log(addRecipeformValues)
   }
+
+  const close = () => {
+    setShowSuccessMessage(false)
+  }
+
   const handleDelete = (index, event) => {
     if (index > 0) {
       setAddRecipeFormValues((prevState) => {
@@ -59,6 +71,44 @@ const AddRecipe = ({ user }) => {
   return (
     <div className="relative flex min-h-screen flex-col justify-center overflow-hidden py-6 sm:py-12">
       <div className="absolute inset-0 bg-center bg-[url('/pies.jpg')]"></div>
+      {showSuccessMessage && (
+        <div className="fixed bg-green-200 px-6 py-4 mx-2 my-4 rounded-md text-lg flex items-center mx-auto max-w-lg z-50">
+          <svg
+            viewBox="0 0 24 24"
+            className="text-green-600 w-5 h-5 sm:w-5 sm:h-5 mr-3"
+          >
+            <path
+              fill="currentColor"
+              d="M12,0A12,12,0,1,0,24,12,12.014,12.014,0,0,0,12,0Zm6.927,8.2-6.845,9.289a1.011,1.011,0,0,1-1.43.188L5.764,13.769a1,1,0,1,1,1.25-1.562l4.076,3.261,6.227-8.451A1,1,0,1,1,18.927,8.2Z"
+            />
+          </svg>
+          <span className="text-green-800">Your recipe has been added.</span>
+          <button
+            onClick={close}
+            type="button"
+            class="ml-auto -mx-1.5 -my-1.5 text-gray-400 rounded-lg focus:ring-2  p-1.5 inline-flex items-center justify-center h-8 w-8 "
+            data-dismiss-target="#toast-success"
+            aria-label="Close"
+          >
+            <span class="sr-only">Close</span>
+            <svg
+              class="w-3 h-3"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 14 14"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+              />
+            </svg>
+          </button>
+        </div>
+      )}
       <div className="relative mx-auto w-full max-w-max px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 sm:rounded-xl sm:px-10 bg-base-100">
         <div className="w-full">
           <form>
