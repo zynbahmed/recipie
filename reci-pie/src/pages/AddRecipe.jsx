@@ -1,15 +1,15 @@
-import { useState } from 'react'
-import Client from '../services/api'
-import { Link } from 'react-router-dom'
+import { useState } from "react"
+import Client from "../services/api"
+import { Link } from "react-router-dom"
 const AddRecipe = ({ user }) => {
   const [addRecipeformValues, setAddRecipeFormValues] = useState({
-    title: '',
-    description: '',
-    cookingTime: '',
-    steps: '',
-    photo: '',
-    ingredients: [{ name: '', amount: '', unit: '' }],
-    category: '',
+    title: "",
+    description: "",
+    cookingTime: "",
+    steps: "",
+    photo: "",
+    ingredients: [{ name: "", amount: "", unit: "" }],
+    category: "",
     creator: user.id
   })
   const handleChange = (event) => {
@@ -25,7 +25,7 @@ const AddRecipe = ({ user }) => {
       ...prevState,
       ingredients: [
         ...prevState.ingredients,
-        { name: '', amount: '', unit: '' }
+        { name: "", amount: "", unit: "" }
       ]
     }))
   }
@@ -60,13 +60,20 @@ const AddRecipe = ({ user }) => {
     <div className="relative flex min-h-screen flex-col justify-center overflow-hidden py-6 sm:py-12">
       <div className="absolute inset-0 bg-center bg-[url('/pies.jpg')]"></div>
       <div className="relative mx-auto w-full max-w-max px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 sm:rounded-xl sm:px-10 bg-base-100">
-        <div class="w-full">
+        <div className="w-full">
           <form>
             <h1 className="text-2xl font-bold uppercase"> Add a Recipe</h1>
             <br />
             <div className="relative">
-              <label>Select Category</label>
-              <select name="category" id="category" onChange={handleChange}>
+              <select
+                name="category"
+                id="category"
+                onChange={handleChange}
+                className="block px-2.5 pb-2.5 pt-4 w-full border border-gray-300 text-gray-900 dark:border-gray-600 rounded-lg focus:ring-red-500 focus:border-red-500 "
+              >
+                <option selected disabled>
+                  Select a Category
+                </option>
                 <option value="Beef">Beef</option>
                 <option value="Lamb">Lamb</option>
                 <option value="Chicken">Chicken</option>
@@ -74,7 +81,9 @@ const AddRecipe = ({ user }) => {
                 <option value="Dessert">Dessert</option>
                 <option value="Breakfast">Breakfast</option>
               </select>
-
+            </div>
+            <br />
+            <div className="relative">
               <input
                 type="text"
                 name="title"

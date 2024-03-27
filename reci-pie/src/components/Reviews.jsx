@@ -16,51 +16,26 @@ const Reviews = ({ reviews }) => {
                 />
               </div>
               <h5 class="mb-4 text-xl font-semibold">{review.userName}</h5>
-              <p class="mb-4">{review.content}</p>
+              
               <div class="flex space-x-2 mt-4 items-center justify-center">
-                <svg
-                  class="w-5 fill-red-800"
-                  viewBox="0 0 14 13"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
-                </svg>
-                <svg
-                  class="w-5 fill-red-800"
-                  viewBox="0 0 14 13"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
-                </svg>
-                <svg
-                  class="w-5 fill-red-800"
-                  viewBox="0 0 14 13"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
-                </svg>
-                <svg
-                  class="w-5 fill-red-800"
-                  viewBox="0 0 14 13"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
-                </svg>
-                <svg
-                  class="w-5 fill-[#CED5D8]"
-                  viewBox="0 0 14 13"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
-                </svg>
+                {Array(Math.floor(review.rating))
+                  .fill(true)
+                  .concat(Array(5 - Math.floor(review.rating)).fill(false))
+                  .map((isFilled, index) => (
+                    <svg
+                      key={index}
+                      class={`w-5 fill-${
+                        isFilled ? "red-800" : "grey-50"
+                      }`}
+                      viewBox="0 0 14 13"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
+                    </svg>
+                  ))}
               </div>
-              {/* <h3 className=""> {review.rating}</h3> */}
-              {/* <hr /> */}
+              <p class="my-4">{review.content}</p>
             </div>
           ))}
         </div>

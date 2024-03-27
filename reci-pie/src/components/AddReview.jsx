@@ -39,8 +39,8 @@ const AddReview = ({ id, ali }) => {
   return (
     <div class="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-8">
       <form onSubmit={handleSubmit}>
-        <h1 className="text-2xl font-bold uppercase"> Add a Review</h1>
-        <div className="rating">
+        <h1 className="text-2xl font-bold uppercase my-2"> Add a Review</h1>
+        <div className="rating my-2">
           {[1, 2, 3, 4, 5].map((starValue) => (
             <label key={starValue}>
               <input
@@ -57,7 +57,7 @@ const AddReview = ({ id, ali }) => {
             </label>
           ))}
         </div>
-        <div className="relative">
+        <div className="relative my-2">
           <textarea
             className="block px-2.5 pb-2.5 pt-4 w-full text-sm  bg-transparent rounded-lg border-1 border border-gray-300 appearance-none dark:border-gray-600 dark:focus:bored-red-500 focus:outline-none focus:ring-0 focus:border-red-600 peer"
             placeholder=""
