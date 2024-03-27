@@ -1,9 +1,11 @@
-import { useEffect, useState, useRef } from 'react'
-import { useNavigate } from 'react-router-dom'
-import Client from '../services/api'
-import RecipeCard from '../components/RecipeCard'
-import SearchDB from '../components/SearchDB'
-import RecipeDB from '../components/RecipeDB'
+import { useEffect, useState, useRef } from "react"
+import { useNavigate } from "react-router-dom"
+import Client from "../services/api"
+import RecipeCard from "../components/RecipeCard"
+import SearchDB from "../components/SearchDB"
+import RecipeDB from "../components/RecipeDB"
+
+
 const AllRecipes = () => {
   let navigate = useNavigate()
   const dishRef = useRef(null)
@@ -15,7 +17,7 @@ const AllRecipes = () => {
 
   useEffect(() => {
     const getAllRecipes = async () => {
-      let endpoint = '/recipe/recipesbycat'
+      let endpoint = "/recipe/recipesbycat"
       let params = {}
       if (cat !== null) {
         params = { cat: cat }
@@ -25,7 +27,7 @@ const AllRecipes = () => {
       setAllRecipes(response.data)
     }
     const getSearchRecipe = async () => {
-      const res = await Client.get('/recipe')
+      const res = await Client.get("/recipe")
       setDishes(res.data)
     }
 
@@ -42,7 +44,7 @@ const AllRecipes = () => {
     setClick(true)
   }
   const adding = () => {
-    navigate('/addrecipe')
+    navigate("/addrecipe")
   }
 
   const handleSelect = (selected) => {
@@ -71,7 +73,7 @@ const AllRecipes = () => {
         <div>
           <button
             onClick={() => {
-              handleSelect('Beef')
+              handleSelect("Beef")
             }}
           >
             Beef
@@ -80,7 +82,7 @@ const AllRecipes = () => {
         <div>
           <button
             onClick={() => {
-              handleSelect('Lamb')
+              handleSelect("Lamb")
             }}
           >
             Lamb
@@ -89,7 +91,7 @@ const AllRecipes = () => {
         <div>
           <button
             onClick={() => {
-              handleSelect('Chicken')
+              handleSelect("Chicken")
             }}
           >
             Chicken
@@ -98,7 +100,7 @@ const AllRecipes = () => {
         <div>
           <button
             onClick={() => {
-              handleSelect('Sea-food')
+              handleSelect("Sea-food")
             }}
           >
             Sea-food
@@ -107,7 +109,7 @@ const AllRecipes = () => {
         <div>
           <button
             onClick={() => {
-              handleSelect('Dessert')
+              handleSelect("Dessert")
             }}
           >
             Dessert
@@ -116,7 +118,6 @@ const AllRecipes = () => {
       </div>
       {click ? (
         <div>
-          <h1>Recipes</h1>
           <RecipeDB dishes={dishes} search={search} />
         </div>
       ) : (

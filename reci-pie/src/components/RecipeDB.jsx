@@ -1,7 +1,14 @@
-import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { useState, useEffect } from "react"
+import { Link } from "react-router-dom"
+import { Paginator } from "primereact/paginator"
 
 const RecipeDB = ({ dishes, search }) => {
+  const [first, setFirst] = useState(0)
+  const [rows, setRows] = useState(3)
+  const onPageChange = (event) => {
+    setFirst(event.first)
+    setRows(event.rows)
+  }
   const [filter, setFilter] = useState([])
 
   useEffect(() => {
@@ -22,24 +29,24 @@ const RecipeDB = ({ dishes, search }) => {
     const year = 365 * day
 
     if (timeElapsed < minute) {
-      return Math.floor(timeElapsed / 1000) + ' seconds ago'
+      return Math.floor(timeElapsed / 1000) + " seconds ago"
     } else if (timeElapsed < hour) {
-      return Math.floor(timeElapsed / minute) + ' minutes ago'
+      return Math.floor(timeElapsed / minute) + " minutes ago"
     } else if (timeElapsed < day) {
-      return Math.floor(timeElapsed / hour) + ' hours ago'
+      return Math.floor(timeElapsed / hour) + " hours ago"
     } else if (timeElapsed < month) {
-      return Math.floor(timeElapsed / day) + ' days ago'
+      return Math.floor(timeElapsed / day) + " days ago"
     } else if (timeElapsed < year) {
-      return Math.floor(timeElapsed / month) + ' months ago'
+      return Math.floor(timeElapsed / month) + " months ago"
     } else {
-      return Math.floor(timeElapsed / year) + ' years ago'
+      return Math.floor(timeElapsed / year) + " years ago"
     }
   }
 
   return (
     <div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
-        {filter.map((recipe) => (
+        {filter.slice(first, first + rows).map((recipe) => (
           <div className="overflow-hidden shadow-lg flex flex-col w-full">
             <div key={recipe._id} className="relative">
               <Link to={`/recipeDetails/${recipe._id}`}>
@@ -82,7 +89,15 @@ const RecipeDB = ({ dishes, search }) => {
             </div>
           </div>
         ))}
+        
       </div>
+      <Paginator
+          first={first}
+          rows={rows}
+          totalRecords={filter.length}
+          onPageChange={onPageChange}
+          template="FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
+        />
     </div>
   )
 }

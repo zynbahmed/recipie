@@ -1,4 +1,13 @@
+import { Paginator } from "primereact/paginator"
+import { useState } from "react"
+
 const Reviews = ({ reviews }) => {
+  const [first, setFirst] = useState(0)
+  const [rows, setRows] = useState(3)
+  const onPageChange = (event) => {
+    setFirst(event.first)
+    setRows(event.rows)
+  }
   return reviews && reviews.length > 0 ? (
     <div>
       <div class="mx-auto text-center md:max-w-xl lg:max-w-3xl">
@@ -6,7 +15,7 @@ const Reviews = ({ reviews }) => {
       </div>
       <div class="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-8">
         <div class="grid gap-6 text-center md:grid-cols-3 lg:gap-12">
-          {reviews.map((review) => (
+          {reviews.slice(first, first + rows).map((review) => (
             <div className="" key={review._id}>
               <div class="mb-6 flex justify-center">
                 <img
@@ -16,7 +25,7 @@ const Reviews = ({ reviews }) => {
                 />
               </div>
               <h5 class="mb-4 text-xl font-semibold">{review.userName}</h5>
-              
+
               <div class="flex space-x-2 mt-4 items-center justify-center">
                 {Array(Math.floor(review.rating))
                   .fill(true)
@@ -24,9 +33,7 @@ const Reviews = ({ reviews }) => {
                   .map((isFilled, index) => (
                     <svg
                       key={index}
-                      class={`w-5 fill-${
-                        isFilled ? "red-800" : "grey-50"
-                      }`}
+                      class={`w-5 fill-${isFilled ? "red-800" : "grey-50"}`}
                       viewBox="0 0 14 13"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
@@ -39,6 +46,13 @@ const Reviews = ({ reviews }) => {
             </div>
           ))}
         </div>
+        <Paginator
+          first={first}
+          rows={rows}
+          totalRecords={reviews.length}
+          onPageChange={onPageChange}
+          template="FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
+        />
       </div>
     </div>
   ) : (

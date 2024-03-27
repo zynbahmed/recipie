@@ -1,5 +1,14 @@
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom"
+import { Paginator } from "primereact/paginator"
+import { useState } from "react"
+
 const RecipeCard = ({ allRecipes }) => {
+  const [first, setFirst] = useState(0)
+  const [rows, setRows] = useState(6)
+  const onPageChange = (event) => {
+    setFirst(event.first)
+    setRows(event.rows)
+  }
   const getTimeAgo = (timestamp) => {
     const now = new Date()
     const timeElapsed = parseInt(now) - parseInt(timestamp)
@@ -10,24 +19,24 @@ const RecipeCard = ({ allRecipes }) => {
     const year = 365 * day
 
     if (timeElapsed < minute) {
-      return Math.floor(timeElapsed / 1000) + ' seconds ago'
+      return Math.floor(timeElapsed / 1000) + " seconds ago"
     } else if (timeElapsed < hour) {
-      return Math.floor(timeElapsed / minute) + ' minutes ago'
+      return Math.floor(timeElapsed / minute) + " minutes ago"
     } else if (timeElapsed < day) {
-      return Math.floor(timeElapsed / hour) + ' hours ago'
+      return Math.floor(timeElapsed / hour) + " hours ago"
     } else if (timeElapsed < month) {
-      return Math.floor(timeElapsed / day) + ' days ago'
+      return Math.floor(timeElapsed / day) + " days ago"
     } else if (timeElapsed < year) {
-      return Math.floor(timeElapsed / month) + ' months ago'
+      return Math.floor(timeElapsed / month) + " months ago"
     } else {
-      return Math.floor(timeElapsed / year) + ' years ago'
+      return Math.floor(timeElapsed / year) + " years ago"
     }
   }
 
   return (
     <div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
-        {allRecipes.map((recipe) => (
+        {allRecipes.slice(first, first + rows).map((recipe) => (
           <div className="overflow-hidden shadow-lg flex flex-col w-full">
             <div key={recipe._id} className="relative">
               <Link to={`/recipeDetails/${recipe._id}`}>
@@ -71,6 +80,14 @@ const RecipeCard = ({ allRecipes }) => {
           </div>
         ))}
       </div>
+      <br />
+      <Paginator
+        first={first}
+        rows={rows}
+        totalRecords={allRecipes.length}
+        onPageChange={onPageChange}
+        template="FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
+      />
     </div>
   )
 }
