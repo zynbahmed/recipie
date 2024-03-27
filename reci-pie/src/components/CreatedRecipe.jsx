@@ -1,7 +1,29 @@
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom"
+import { Paginator } from "primereact/paginator"
+import { useState, useEffect } from "react"
+
+import Client from '../services/api'
+
 
 const CreatedRecipe = ({ user }) => {
-  const recipes = user?.myRecipes
+  const [createdRecipe, setCreatedRecipe] = useState([])
+
+  const [first, setFirst] = useState(0)
+  const [rows, setRows] = useState(3)
+  const onPageChange = (event) => {
+    setFirst(event.first)
+    setRows(event.rows)
+  }
+
+  useEffect(() => {
+    const details = async () => {
+      let selected = await Client.get("/")
+      setCreatedRecipe(selected.data)
+    }
+    details()
+  }, [])
+
+  const recipes = createdRecipe?.myRecipes
 
   const getTimeAgo = (timestamp) => {
     const time = new Date(timestamp)
@@ -15,17 +37,17 @@ const CreatedRecipe = ({ user }) => {
     const year = 365 * day
 
     if (differenceInMs < minute) {
-      return Math.floor(differenceInMs / 1000) + ' seconds ago'
+      return Math.floor(differenceInMs / 1000) + " seconds ago"
     } else if (differenceInMs < hour) {
-      return Math.floor(differenceInMs / minute) + ' minutes ago'
+      return Math.floor(differenceInMs / minute) + " minutes ago"
     } else if (differenceInMs < day) {
-      return Math.floor(differenceInMs / hour) + ' hours ago'
+      return Math.floor(differenceInMs / hour) + " hours ago"
     } else if (differenceInMs < month) {
-      return Math.floor(differenceInMs / day) + ' days ago'
+      return Math.floor(differenceInMs / day) + " days ago"
     } else if (differenceInMs < year) {
-      return Math.floor(differenceInMs / month) + ' months ago'
+      return Math.floor(differenceInMs / month) + " months ago"
     } else {
-      return Math.floor(differenceInMs / year) + ' years ago'
+      return Math.floor(differenceInMs / year) + " years ago"
     }
   }
 
@@ -33,11 +55,15 @@ const CreatedRecipe = ({ user }) => {
     <div>
       <h1 className="text-xl font-bold mb-4">Created Recipes</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
-        {recipes?.map((recipe) => (
+        {recipes?.slice(first, first + rows).map((recipe) => (
           <div className="overflow-hidden shadow-lg flex flex-col w-full">
             <div key={recipe._id} className="relative">
               <Link to={`/recipeDetails/${recipe._id}`}>
-                <img src={recipe?.photo} alt={recipe?.title} className="w-full" />
+                <img
+                  src={recipe?.photo}
+                  alt={recipe?.title}
+                  className="w-full"
+                />
                 <div className="hover:bg-transparent transition duration-300 absolute bottom-0 top-0 right-0 left-0 bg-gray-900 opacity-25"></div>
               </Link>
               <div className="px-6 py-4 mb-auto">
@@ -70,13 +96,22 @@ const CreatedRecipe = ({ user }) => {
                       d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
                     ></path>
                   </svg>
-                  <span className="ml-1">{recipe?.reviews?.length} Comments</span>
+                  <span className="ml-1">
+                    {recipe?.reviews?.length} Comments
+                  </span>
                 </span>
               </div>
             </div>
           </div>
         ))}
       </div>
+      <Paginator
+        first={first}
+        rows={rows}
+        totalRecords={recipes?.length}
+        onPageChange={onPageChange}
+        template="FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
+      />
     </div>
   )
 }

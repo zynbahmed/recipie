@@ -1,16 +1,16 @@
-import { useState } from 'react'
-import Client from '../services/api'
+import { useState } from "react"
+import Client from "../services/api"
 
 const AddRecipe = ({ user }) => {
   const [showSuccessMessage, setShowSuccessMessage] = useState(false)
   const [addRecipeformValues, setAddRecipeFormValues] = useState({
-    title: '',
-    description: '',
-    cookingTime: '',
-    steps: '',
-    photo: '',
-    ingredients: [{ name: '', amount: '', unit: '' }],
-    category: '',
+    title: "",
+    description: "",
+    cookingTime: "",
+    steps: "",
+    photo: "",
+    ingredients: [{ name: "", amount: "", unit: "" }],
+    category: "",
     creator: user.id
   })
 
@@ -28,7 +28,7 @@ const AddRecipe = ({ user }) => {
       ...prevState,
       ingredients: [
         ...prevState.ingredients,
-        { name: '', amount: '', unit: '' }
+        { name: "", amount: "", unit: "" }
       ]
     }))
   }
@@ -49,17 +49,17 @@ const AddRecipe = ({ user }) => {
       await Client.post(`/recipe`, addRecipeformValues)
       setShowSuccessMessage(true)
     } catch (error) {
-      console.error('Error submitting recipe:', error)
+      console.error("Error submitting recipe:", error)
     }
 
     setAddRecipeFormValues({
-      title: '',
-      description: '',
-      cookingTime: '',
-      steps: '',
-      photo: '',
-      ingredients: [{ name: '', amount: '', unit: '' }],
-      category: '',
+      title: "",
+      description: "",
+      cookingTime: "",
+      steps: "",
+      photo: "",
+      ingredients: [{ name: "", amount: "", unit: "" }],
+      category: "",
       creator: user.id
     })
   }
@@ -100,7 +100,7 @@ const AddRecipe = ({ user }) => {
             data-dismiss-target="#toast-success"
             aria-label="Close"
           >
-            <span Breakfast="sr-only">Close</span>
+            <span className="sr-only">Close</span>
             <svg
               className="w-3 h-3"
               aria-hidden="true"

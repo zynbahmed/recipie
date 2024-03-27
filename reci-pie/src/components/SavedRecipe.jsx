@@ -1,10 +1,18 @@
 import Client from '../services/api'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { Paginator } from 'primereact/paginator'
 
 const SavedRecipe = ({ user }) => {
   const [savedRecipe, setSavedRecipe] = useState([])
-
+  
+  const [first, setFirst] = useState(0)
+  const [rows, setRows] = useState(3)
+  const onPageChange = (event) => {
+    setFirst(event.first)
+    setRows(event.rows)
+  }
+  
   useEffect(() => {
     const details = async () => {
       let selected = await Client.get('/')
@@ -43,7 +51,7 @@ const SavedRecipe = ({ user }) => {
     <div>
       <h1 className="text-xl font-bold mb-4">Saved Recipes</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
-        {recipes?.map((recipe) => (
+        {recipes?.slice(first, first + rows).map((recipe) => (
           <div className="overflow-hidden shadow-lg flex flex-col w-full">
             <div key={recipe._id} className="relative">
               <Link to={`/recipeDetails/${recipe._id}`}>
@@ -87,6 +95,13 @@ const SavedRecipe = ({ user }) => {
           </div>
         ))}
       </div>
+      <Paginator
+        first={first}
+        rows={rows}
+        totalRecords={recipes?.length}
+        onPageChange={onPageChange}
+        template="FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
+      />
     </div>
   )
 }
