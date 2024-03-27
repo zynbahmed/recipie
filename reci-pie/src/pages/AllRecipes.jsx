@@ -1,35 +1,62 @@
-import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
-import Client from "../services/api"
-import RecipeCard from "../components/RecipeCard"
+import { useEffect, useState, useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
+import Client from '../services/api'
+import RecipeCard from '../components/RecipeCard'
+import SearchDB from '../components/SearchDB'
+import RecipeDB from '../components/RecipeDB'
 const AllRecipes = () => {
   let navigate = useNavigate()
+  const dishRef = useRef(null)
   const [allRecipes, setAllRecipes] = useState([])
   const [cat, setCat] = useState(null)
+  const [search, setSearch] = useState([])
+  const [click, setClick] = useState(false)
+  const [dishes, setDishes] = useState([])
+  const [filter, setFilter] = useState([])
+
   useEffect(() => {
     const getAllRecipes = async () => {
-      let endpoint = "/recipe/recipesbycat"
+      let endpoint = '/recipe/recipesbycat'
       let params = {}
       if (cat !== null) {
         params = { cat: cat }
       }
       const response = await Client.get(endpoint, { params: params })
 
-      console.log(response.data)
+      // console.log(response.data)
       setAllRecipes(response.data)
     }
+    const getSearchRecipe = async () => {
+      const res = await Client.get('/recipe')
+      setDishes(res.data)
+    }
+
     getAllRecipes()
+    getSearchRecipe()
+    filteredRecipes()
+    console.log(dishRef)
   }, [cat])
 
-  const adding = () => {
-    navigate("/addrecipe")
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const food = dishRef.current.value
+    setSearch(food)
+    setClick(true)
   }
+  const adding = () => {
+    navigate('/addrecipe')
+  }
+
   const handleSelect = (selected) => {
     setCat(selected)
+    setClick(false)
   }
+
+  const filteredRecipes = () => {}
 
   return (
     <div className="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
+      <SearchDB onSubmit={handleSubmit} dishRef={dishRef} />
       <button className="reg-btn m-2" onClick={adding}>
         Add Recipe
       </button>
@@ -46,7 +73,7 @@ const AllRecipes = () => {
         <div>
           <button
             onClick={() => {
-              handleSelect("Beef")
+              handleSelect('Beef')
             }}
           >
             Beef
@@ -55,7 +82,7 @@ const AllRecipes = () => {
         <div>
           <button
             onClick={() => {
-              handleSelect("Lamb")
+              handleSelect('Lamb')
             }}
           >
             Lamb
@@ -64,7 +91,7 @@ const AllRecipes = () => {
         <div>
           <button
             onClick={() => {
-              handleSelect("Chicken")
+              handleSelect('Chicken')
             }}
           >
             Chicken
@@ -73,7 +100,7 @@ const AllRecipes = () => {
         <div>
           <button
             onClick={() => {
-              handleSelect("Sea-food")
+              handleSelect('Sea-food')
             }}
           >
             Sea-food
@@ -82,15 +109,21 @@ const AllRecipes = () => {
         <div>
           <button
             onClick={() => {
-              handleSelect("Dessert")
+              handleSelect('Dessert')
             }}
           >
             Dessert
           </button>
         </div>
       </div>
-
-      <RecipeCard allRecipes={allRecipes} />
+      {click ? (
+        <div>
+          <h1>Recipes</h1>
+          <RecipeDB dishes={dishes} search={search} />
+        </div>
+      ) : (
+        <RecipeCard allRecipes={allRecipes} />
+      )}
     </div>
   )
 }

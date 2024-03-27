@@ -1,5 +1,17 @@
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-const RecipeCard = ({ allRecipes }) => {
+
+const RecipeDB = ({ dishes, search }) => {
+  const [filter, setFilter] = useState([])
+
+  useEffect(() => {
+    const searchWord = search.toLowerCase()
+    const filteredDishes = dishes.filter((dish) =>
+      dish.title.toLowerCase().includes(searchWord)
+    )
+    setFilter(filteredDishes)
+  }, [dishes, search])
+
   const getTimeAgo = (timestamp) => {
     const now = new Date()
     const timeElapsed = parseInt(now) - parseInt(timestamp)
@@ -24,10 +36,20 @@ const RecipeCard = ({ allRecipes }) => {
     }
   }
 
+  // return (
+  //   <div>
+  //     {filter.map((food) => (
+  //       <div>
+  //         <h1>{food.title}</h1>
+  //         <img src={food.photo} alt={food.title} />
+  //       </div>
+  //     ))}
+  //   </div>
+  // )
   return (
     <div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
-        {allRecipes.map((recipe) => (
+        {filter.map((recipe) => (
           <div className="overflow-hidden shadow-lg flex flex-col w-full">
             <div key={recipe._id} className="relative">
               <Link to={`/recipeDetails/${recipe._id}`}>
@@ -74,5 +96,4 @@ const RecipeCard = ({ allRecipes }) => {
     </div>
   )
 }
-
-export default RecipeCard
+export default RecipeDB
