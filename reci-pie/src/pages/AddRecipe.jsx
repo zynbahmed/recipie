@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Client from '../services/api'
-import { Link } from 'react-router-dom'
+
 const AddRecipe = ({ user }) => {
   const [showSuccessMessage, setShowSuccessMessage] = useState(false)
   const [addRecipeformValues, setAddRecipeFormValues] = useState({
@@ -93,13 +93,13 @@ const AddRecipe = ({ user }) => {
           <button
             onClick={close}
             type="button"
-            class="ml-auto -mx-1.5 -my-1.5 text-gray-400 rounded-lg focus:ring-2  p-1.5 inline-flex items-center justify-center h-8 w-8 "
+            className="ml-auto -mx-1.5 -my-1.5 text-gray-400 rounded-lg focus:ring-2  p-1.5 inline-flex items-center justify-center h-8 w-8 "
             data-dismiss-target="#toast-success"
             aria-label="Close"
           >
             <span class="sr-only">Close</span>
             <svg
-              class="w-3 h-3"
+              className="w-3 h-3"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
