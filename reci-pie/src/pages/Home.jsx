@@ -10,7 +10,7 @@ const Home = ({ user }) => {
   }
 
   const recRavigation = () => {
-    navigate("/recipes")
+    navigate("/allrecipes")
   }
 
   return (
