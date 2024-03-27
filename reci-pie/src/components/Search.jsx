@@ -14,9 +14,6 @@ const Search = ({ onSubmit, mealRef }) => {
     // </form>
 
     <form className="max-w-5xl mx-auto" onSubmit={onSubmit}>
-      <label for="default-search" class="mb-2 text-sm font-medium  sr-only ">
-        Search
-      </label>
       <div className="relative">
         <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
           <svg

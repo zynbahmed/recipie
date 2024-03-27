@@ -168,7 +168,7 @@ const RecipeDetails = ({ user, list, setList }) => {
           <div className="grid items-start grid-cols-1 lg:grid-cols-5 gap-12 border border-grey-200 p-10 mb-5 shadow-xl">
             <div className="lg:col-span-3 bg-base-100 w-full top-0 text-center p-8">
               <img src={recipe?.photo} alt={recipe?.title} />
-              {user?.id === recipe?.creator?._id && (
+              {user && user?.id === recipe?.creator?._id && (
                 <div class="flex flex-wrap gap-4 mt-4">
                   <button
                     className="text-red-500 font-extrabold uppercase hover:text-red-900"
@@ -204,6 +204,7 @@ const RecipeDetails = ({ user, list, setList }) => {
                 saved={saved}
                 saveRecipe={saveRecipe}
                 unsaveRecipe={unsaveRecipe}
+                user={user}
               />
             </div>
             <div className="lg:col-span-2">

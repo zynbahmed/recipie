@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom'
-import { useParams } from 'react-router-dom'
-import { useEffect, useState } from 'react'
-import Client from '../services/api'
+import { Link } from "react-router-dom"
+import { useParams } from "react-router-dom"
+import { useEffect, useState } from "react"
+import Client from "../services/api"
 const CreatorProfile = () => {
   const [profile, setProfile] = useState(null)
   let { id } = useParams()
@@ -9,7 +9,7 @@ const CreatorProfile = () => {
     const getProfile = async () => {
       const responce = await Client.get(`/user/${id}`)
       setProfile(responce.data)
-      console.log('this is the creator profile', responce.data)
+      console.log("this is the creator profile", responce.data)
     }
     getProfile()
   }, [])
@@ -26,17 +26,17 @@ const CreatorProfile = () => {
     const year = 365 * day
 
     if (differenceInMs < minute) {
-      return Math.floor(differenceInMs / 1000) + ' seconds ago'
+      return Math.floor(differenceInMs / 1000) + " seconds ago"
     } else if (differenceInMs < hour) {
-      return Math.floor(differenceInMs / minute) + ' minutes ago'
+      return Math.floor(differenceInMs / minute) + " minutes ago"
     } else if (differenceInMs < day) {
-      return Math.floor(differenceInMs / hour) + ' hours ago'
+      return Math.floor(differenceInMs / hour) + " hours ago"
     } else if (differenceInMs < month) {
-      return Math.floor(differenceInMs / day) + ' days ago'
+      return Math.floor(differenceInMs / day) + " days ago"
     } else if (differenceInMs < year) {
-      return Math.floor(differenceInMs / month) + ' months ago'
+      return Math.floor(differenceInMs / month) + " months ago"
     } else {
-      return Math.floor(differenceInMs / year) + ' years ago'
+      return Math.floor(differenceInMs / year) + " years ago"
     }
   }
 
@@ -55,6 +55,12 @@ const CreatorProfile = () => {
                 <h1 className="text-xl font-bold"></h1>
               </div>
               <hr className="my-6 border-t border-gray-300"></hr>
+              <div className="flex flex-col">
+                <span className="uppercase font-bold tracking-wider mb-2">
+                  Recipes Created:
+                </span>
+                {profile?.myRecipes?.length} recipes
+              </div>
             </div>
           </div>
 
@@ -68,15 +74,15 @@ const CreatorProfile = () => {
                       <div key={recipe._id} className="relative">
                         <Link to={`/recipeDetails/${recipe._id}`}>
                           <img
-                            src={recipe.photo}
-                            alt={recipe.title}
+                            src={recipe?.photo}
+                            alt={recipe?.title}
                             className="w-full"
                           />
                           <div className="hover:bg-transparent transition duration-300 absolute bottom-0 top-0 right-0 left-0 bg-gray-900 opacity-25"></div>
                         </Link>
                         <div className="px-6 py-4 mb-auto">
                           <Link className="font-medium text-lg  hover:text-indigo-600 transition duration-500 ease-in-out inline-block mb-2">
-                            {recipe.title}
+                            {recipe?.title}
                           </Link>
                         </div>
                         <div className="px-6 py-3 flex flex-row items-center justify-between">
@@ -85,7 +91,7 @@ const CreatorProfile = () => {
                             className="py-1 text-xs font-regular  mr-1 flex flex-row items-center"
                           >
                             <span className="ml-1">
-                              {getTimeAgo(recipe.createdAt)}
+                              {getTimeAgo(recipe?.createdAt)}
                             </span>
                           </span>
 
@@ -107,7 +113,7 @@ const CreatorProfile = () => {
                               ></path>
                             </svg>
                             <span className="ml-1">
-                              {recipe.reviews.length} Comments
+                              {recipe?.reviews?.length} Comments
                             </span>
                           </span>
                         </div>

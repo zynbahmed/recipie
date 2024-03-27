@@ -34,9 +34,15 @@ const EditProfile = () => {
     })
   }
 
-  const handleSubmit = async () => {
-    await Client.put("/update", addProfileFromValues)
-    // navigate('/profile')
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    try {
+      await Client.put("/update", addProfileFromValues)
+      setShowSuccessMessage(true)
+      navigate("/profile")
+    } catch (error) {
+      console.error("Error submitting recipe:", error)
+    }
   }
   const close = () => {
     setShowSuccessMessage(false)
@@ -140,7 +146,9 @@ const EditProfile = () => {
               </label>
             </div>
             <br />
-            <button onClick={handleSubmit} className="reg-btn">Submit</button>
+            <button onClick={handleSubmit} className="reg-btn">
+              Submit
+            </button>
             <br />
           </form>
         </div>

@@ -1,12 +1,12 @@
-import SavedRecipe from '../components/SavedRecipe'
-import CreatedRecipe from '../components/CreatedRecipe'
-import { useNavigate, useParams } from 'react-router-dom'
-import { useEffect, useState } from 'react'
-import Client from '../services/api'
+import SavedRecipe from "../components/SavedRecipe"
+import CreatedRecipe from "../components/CreatedRecipe"
+import { useNavigate, useParams } from "react-router-dom"
+import { useEffect, useState } from "react"
+import Client from "../services/api"
 
 const Profile = ({ user }) => {
   const navigate = useNavigate()
-  const [id, setId] = useState('')
+  const [id, setId] = useState("")
   const [profile, setProfile] = useState([])
 
   useEffect(() => {
@@ -14,7 +14,7 @@ const Profile = ({ user }) => {
   })
 
   const getUserId = async () => {
-    const res = await Client.get('/')
+    const res = await Client.get("/")
     setId(res.data._id)
     setProfile(res.data)
   }
@@ -37,18 +37,12 @@ const Profile = ({ user }) => {
                 <h1 className="text-xl font-bold">{profile.name}</h1>
               </div>
               <hr className="my-6 border-t border-gray-300"></hr>
-              {/* <div className="flex flex-col">
-                <span className="text-gray-700 uppercase font-bold tracking-wider mb-2">
-                  Skills
+              <div className="flex flex-col">
+                <span className="uppercase font-bold tracking-wider mb-2">
+                  Recipes Created:
                 </span>
-                <ul>
-                  <li className="mb-2">JavaScript</li>
-                  <li className="mb-2">React</li>
-                  <li className="mb-2">Node.js</li>
-                  <li className="mb-2">HTML/CSS</li>
-                  <li className="mb-2">Tailwind Css</li>
-                </ul>
-              </div> */}
+                {profile?.myRecipes?.length} recipes
+              </div>
             </div>
           </div>
           <div className="col-span-4 sm:col-span-9">
