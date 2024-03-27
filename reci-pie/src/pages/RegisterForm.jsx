@@ -293,7 +293,7 @@ const RegistrationForm = ({ setUser }) => {
             <p className="text-sm">Or Sign in With Your Google Account</p>
             <br />
             <div>
-              <a href={`${import.meta.env.VITE_BACKEND_URL}/auth/google`}>
+              <a href={"http://localhost:3001/auth/google"}>
                 <GoogleLogin />
               </a>
             </div>
