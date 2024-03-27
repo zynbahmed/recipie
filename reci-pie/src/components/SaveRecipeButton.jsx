@@ -4,16 +4,16 @@ const SaveRecipeButton = ({ saved, unsaveRecipe, saveRecipe }) => {
       {saved ? (
         <button
           onClick={unsaveRecipe}
-          className="text-green-500 font-extrabold uppercase hover:text-green-900"
+          className="text-gray-500 font-extrabold uppercase hover:text-gray-900"
         >
-          UnSave recipe
+          Remove From Favourites
         </button>
       ) : (
         <button
           onClick={saveRecipe}
-          className="text-green-500 font-extrabold uppercase hover:text-green-900"
+          className="text-orange-500 font-extrabold uppercase hover:text-orange-900"
         >
-          Save
+          Save to Favourites
         </button>
       )}
     </div>

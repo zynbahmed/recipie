@@ -5,10 +5,6 @@ export const navItems = [
   },
   {
     title: "Recipes",
-    href: "/recipes"
-  },
-  {
-    title: "RecipesDB",
     href: "/allrecipes"
   },
   {
@@ -24,10 +20,6 @@ export const userItem = [
   },
   {
     title: "Recipes",
-    href: "/recipes"
-  },
-  {
-    title: "RecipesDB",
     href: "/allrecipes"
   },
   {
@@ -38,5 +30,4 @@ export const userItem = [
     title: "Shopping List",
     href: "/shopping-list"
   }
-
 ]
