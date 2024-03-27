@@ -94,7 +94,7 @@ const RecipeDetails = ({ user, list, setList }) => {
     const filledStars = Math.floor(averageRating)
     const emptyStars = 5 - filledStars
 
-    return (
+    return averageRating > 0 ? (
       <div className="flex space-x-2 mt-4">
         {[...Array(filledStars)]
           .fill(true)
@@ -102,7 +102,7 @@ const RecipeDetails = ({ user, list, setList }) => {
           .map((isFilled, index) => (
             <svg
               key={index}
-              className={`w-5 fill-${isFilled ? "red-800" : "gray-800"}`}
+              className={`w-5 fill-${isFilled ? "red-800" : "white"}`}
               viewBox="0 0 14 13"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -111,6 +111,8 @@ const RecipeDetails = ({ user, list, setList }) => {
             </svg>
           ))}
       </div>
+    ) : (
+      <p className="text-l">No reviews yet</p>
     )
   }
 
@@ -225,61 +227,81 @@ const RecipeDetails = ({ user, list, setList }) => {
               <div className="mt-8">
                 <h3 className="text-lg font-bold">About the Recipe</h3>
                 <hr></hr>
+                {recipe?.description ? (
+                  <p className="text-l mt-4">{recipe?.description}</p>
+                ) : (
+                  <p className="text-l mt-4">
+                    Description of the recipe has not been added.
+                  </p>
+                )}
               </div>
-              <p>{recipe?.description}</p>
               <div className="mt-8">
                 <h3 className="text-lg font-bold">Ingredients</h3>
                 <hr></hr>
-                <ul className="space-y-3 mt-4 pl-4 text-sm list-disc">
-                  {recipe?.ingredient.map((item) => (
-                    <li key={item.name} className="mr-4">
-                      <input
-                        type="checkbox"
-                        onChange={chechBoxSelector}
-                        value={item.name}
-                      />
-                      {item?.amount} {item?.unit} : {item?.name}
-                    </li>
-                  ))}
-                </ul>
-                {shoppingList && shoppingList.length > 0 && (
+                {recipe?.ingredient?.length > 0 ? (
                   <>
-                    <button
-                      onClick={() => {
-                        addToCart(shoppingList)
-                      }}
-                      className="btn mt-4"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        fill="currentColor"
-                        className="bi bi-list-task"
-                        viewBox="0 0 16 16"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M2 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5zM3 3H2v1h1z"
-                        />
-                        <path d="M5 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M5.5 7a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1zm0 4a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1z" />
-                        <path
-                          fill-rule="evenodd"
-                          d="M1.5 7a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5zM2 7h1v1H2zm0 3.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm1 .5H2v1h1z"
-                        />
-                      </svg>
-                      Add to Grocery List
-                    </button>
+                    <ul className="space-y-3 mt-4 pl-4 text-l list-disc">
+                      {recipe?.ingredient.map((item) => (
+                        <li key={item.name} className="mr-4">
+                          {user && (
+                            <input
+                              type="checkbox"
+                              onChange={chechBoxSelector}
+                              value={item.name}
+                            />
+                          )}
+                          {item?.amount} {item?.unit} : {item?.name}
+                        </li>
+                      ))}
+                    </ul>
+                    {shoppingList && shoppingList.length > 0 && (
+                      <>
+                        <button
+                          onClick={() => addToCart(shoppingList)}
+                          className="btn mt-4"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            fill="currentColor"
+                            className="bi bi-list-task"
+                            viewBox="0 0 16 16"
+                          >
+                            <path
+                              fill-rule="evenodd"
+                              d="M2 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5zM3 3H2v1h1z"
+                            />
+                            <path d="M5 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M5.5 7a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1zm0 4a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1z" />
+                            <path
+                              fill-rule="evenodd"
+                              d="M1.5 7a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5zM2 7h1v1H2zm0 3.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm1 .5H2v1h1z"
+                            />
+                          </svg>
+                          Add to Grocery List
+                        </button>
+                      </>
+                    )}
                   </>
+                ) : (
+                  <p className="text-l mt-4">
+                    Ingredients of the recipe has not been added.
+                  </p>
                 )}
               </div>
               <div className="mt-8">
                 <h3 className="text-lg font-bold">Step by Step</h3>
                 <hr></hr>
-                <p className="text-l mt-4">
-                  {recipe?.steps.replace(/(?:\\[rn]|[\r\n]+)+/g, "")}
-                  <br />
-                </p>
+                {recipe?.steps ? (
+                  <p className="text-l mt-4">
+                    {recipe?.steps.replace(/(?:\\[rn]|[\r\n]+)+/g, "")}
+                    <br />
+                  </p>
+                ) : (
+                  <p className="text-l mt-4">
+                    Instructions of the recipe has not been added.
+                  </p>
+                )}
               </div>
             </div>
           </div>
