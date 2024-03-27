@@ -34,6 +34,7 @@ const AddReview = ({ id, ali }) => {
       })
 
     setReview(initialState)
+    setRating(0)
   }
 
   return (
