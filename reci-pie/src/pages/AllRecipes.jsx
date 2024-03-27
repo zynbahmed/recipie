@@ -12,7 +12,6 @@ const AllRecipes = () => {
   const [search, setSearch] = useState([])
   const [click, setClick] = useState(false)
   const [dishes, setDishes] = useState([])
-  const [filter, setFilter] = useState([])
 
   useEffect(() => {
     const getAllRecipes = async () => {
@@ -23,7 +22,6 @@ const AllRecipes = () => {
       }
       const response = await Client.get(endpoint, { params: params })
 
-      // console.log(response.data)
       setAllRecipes(response.data)
     }
     const getSearchRecipe = async () => {

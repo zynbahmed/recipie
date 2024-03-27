@@ -36,16 +36,6 @@ const RecipeDB = ({ dishes, search }) => {
     }
   }
 
-  // return (
-  //   <div>
-  //     {filter.map((food) => (
-  //       <div>
-  //         <h1>{food.title}</h1>
-  //         <img src={food.photo} alt={food.title} />
-  //       </div>
-  //     ))}
-  //   </div>
-  // )
   return (
     <div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
