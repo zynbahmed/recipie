@@ -1,6 +1,6 @@
 const SaveRecipeButton = ({ saved, unsaveRecipe, saveRecipe, user }) => {
   return user ? (
-    <div className="flex flex-wrap gap-4 mt-4">
+    <div>
       {saved ? (
         // <button
         //   onClick={unsaveRecipe}
