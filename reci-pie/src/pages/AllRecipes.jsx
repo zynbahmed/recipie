@@ -69,6 +69,7 @@ const AllRecipes = ({ user }) => {
             onClick={() => {
               handleSelect(null)
             }}
+            className="hover:font-bold"
           >
             All
           </button>
@@ -78,6 +79,7 @@ const AllRecipes = ({ user }) => {
             onClick={() => {
               handleSelect("Beef")
             }}
+            className="hover:font-bold"
           >
             Beef
           </button>
@@ -87,6 +89,7 @@ const AllRecipes = ({ user }) => {
             onClick={() => {
               handleSelect("Lamb")
             }}
+            className="hover:font-bold"
           >
             Lamb
           </button>
@@ -96,6 +99,7 @@ const AllRecipes = ({ user }) => {
             onClick={() => {
               handleSelect("Chicken")
             }}
+            className="hover:font-bold"
           >
             Chicken
           </button>
@@ -105,6 +109,7 @@ const AllRecipes = ({ user }) => {
             onClick={() => {
               handleSelect("Sea-food")
             }}
+            className="hover:font-bold"
           >
             Sea-food
           </button>
@@ -114,6 +119,7 @@ const AllRecipes = ({ user }) => {
             onClick={() => {
               handleSelect("Dessert")
             }}
+            className="hover:font-bold"
           >
             Dessert
           </button>
@@ -123,6 +129,7 @@ const AllRecipes = ({ user }) => {
             onClick={() => {
               handleSelect("Breakfast")
             }}
+            className="hover:font-bold"
           >
             Breakfast
           </button>
