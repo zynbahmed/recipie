@@ -1,18 +1,19 @@
-import { useState } from 'react'
-import Client from '../services/api'
-import { Link } from 'react-router-dom'
+import { useState } from "react"
+import Client from "../services/api"
+
 const AddRecipe = ({ user }) => {
   const [showSuccessMessage, setShowSuccessMessage] = useState(false)
   const [addRecipeformValues, setAddRecipeFormValues] = useState({
-    title: '',
-    description: '',
-    cookingTime: '',
-    steps: '',
-    photo: '',
-    ingredients: [{ name: '', amount: '', unit: '' }],
-    category: '',
+    title: "",
+    description: "",
+    cookingTime: "",
+    steps: "",
+    photo: "",
+    ingredients: [{ name: "", amount: "", unit: "" }],
+    category: "",
     creator: user.id
   })
+
   const handleChange = (event) => {
     event.preventDefault()
     setAddRecipeFormValues({
@@ -20,13 +21,14 @@ const AddRecipe = ({ user }) => {
       [event.target.name]: event.target.value
     })
   }
+
   const handleAdd = (event) => {
     event.preventDefault()
     setAddRecipeFormValues((prevState) => ({
       ...prevState,
       ingredients: [
         ...prevState.ingredients,
-        { name: '', amount: '', unit: '' }
+        { name: "", amount: "", unit: "" }
       ]
     }))
   }
@@ -47,16 +49,17 @@ const AddRecipe = ({ user }) => {
       await Client.post(`/recipe`, addRecipeformValues)
       setShowSuccessMessage(true)
     } catch (error) {
-      console.error('Error submitting recipe:', error)
+      console.error("Error submitting recipe:", error)
     }
+
     setAddRecipeFormValues({
-      title: '',
-      description: '',
-      cookingTime: '',
-      steps: '',
-      photo: '',
-      ingredients: [{ name: '', amount: '', unit: '' }],
-      category: '',
+      title: "",
+      description: "",
+      cookingTime: "",
+      steps: "",
+      photo: "",
+      ingredients: [{ name: "", amount: "", unit: "" }],
+      category: "",
       creator: user.id
     })
   }
@@ -93,13 +96,13 @@ const AddRecipe = ({ user }) => {
           <button
             onClick={close}
             type="button"
-            class="ml-auto -mx-1.5 -my-1.5 text-gray-400 rounded-lg focus:ring-2  p-1.5 inline-flex items-center justify-center h-8 w-8 "
+            className="ml-auto -mx-1.5 -my-1.5 text-gray-400 rounded-lg focus:ring-2  p-1.5 inline-flex items-center justify-center h-8 w-8 "
             data-dismiss-target="#toast-success"
             aria-label="Close"
           >
-            <span class="sr-only">Close</span>
+            <span className="sr-only">Close</span>
             <svg
-              class="w-3 h-3"
+              className="w-3 h-3"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"

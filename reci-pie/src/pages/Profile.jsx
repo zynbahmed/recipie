@@ -1,6 +1,7 @@
 import SavedRecipe from "../components/SavedRecipe"
 import CreatedRecipe from "../components/CreatedRecipe"
-import { useNavigate, useParams } from "react-router-dom"
+
+import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 import Client from "../services/api"
 

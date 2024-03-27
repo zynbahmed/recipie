@@ -9,6 +9,7 @@ const RecipeCard = ({ allRecipes }) => {
     setFirst(event.first)
     setRows(event.rows)
   }
+
   const getTimeAgo = (timestamp) => {
     const time = new Date(timestamp)
     const now = new Date()
@@ -34,7 +35,6 @@ const RecipeCard = ({ allRecipes }) => {
       return Math.floor(differenceInMs / year) + ' years ago'
     }
   }
-  console.log(allRecipes)
 
   return (
     <div>

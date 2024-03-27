@@ -1,5 +1,4 @@
 const Recipe = ({ rec }) => {
-  console.log(rec, "in recipe")
   return (
     <div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">

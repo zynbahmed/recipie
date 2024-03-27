@@ -1,12 +1,15 @@
 import Client from "../services/api"
 import { useState, useEffect } from "react"
+
 const ShoppingList = ({ list, user, setList }) => {
   const flattenedList = list.flat()
+
   const add = async () => {
     const request = { flattenedList, user }
     await Client.post("/list", request)
     setList([])
   }
+  
   const clear = () => {
     setList([])
   }

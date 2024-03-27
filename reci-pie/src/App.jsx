@@ -5,9 +5,7 @@ import { CheckSession } from './services/Auth'
 
 import Header from './components/Header'
 import GoogleOk from './pages/GoogleOk'
-import NavBar from './components/NavBar'
 import Home from './pages/Home'
-import Recipes from './pages/Recipes'
 import Profile from './pages/Profile'
 import ShoppingList from './pages/ShoppingList'
 import RegistartionForm from './pages/RegisterForm'
@@ -17,6 +15,7 @@ import RecipeDetails from './pages/RecipeDetails'
 import EditRecipe from './pages/EditRecipe'
 import EditProfile from './pages/EditProfile'
 import CreatorProfile from './pages/CreatorProfile'
+
 import './styles/App.scss'
 
 const App = () => {
@@ -29,7 +28,6 @@ const App = () => {
   }
 
   const handleLogOut = () => {
-    //Reset all auth related state and clear localStorage
     setUser(null)
     localStorage.clear()
   }
@@ -74,7 +72,6 @@ const App = () => {
           <Route path="/profile_update/:id" element={<CreatorProfile />} />
           <Route path="/creatorprofile/:id" element={<CreatorProfile />} />
           <Route path="/editprofile/:id" element={<EditProfile />} />
-          {/*  */}
         </Routes>
       </div>
     </div>
