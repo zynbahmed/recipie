@@ -2,13 +2,11 @@
 
 
 ## About the app
-> The app is a recipe sharing and discovery app. It will allow users to share and discover various recipes shared by other users. The app will also include an additional option of adding the ingredients of the recipe to a grocery-list to avoid last minute trips to the store. The app will also make use of an API which will allow users to discover recipes not shared by other users or have an option of searching for an alternate recipe. 
-
-
+> The app is a recipe sharing and discovery app. It allows users to share and discover various recipes shared by other users. The app includes an additional option of adding the ingredients of the recipe to a grocery-list to avoid last minute trips to the store. Users of the App can create, edit, and delete recipes created by them and review and save recipes by other users. The App can be considered a recipe focused social media App.
 
 ## Team
 
-The building of the site will be a team effort. The team was composed of:
+The building of the site was a team effort. The team was composed of:
 
 - [Zainab](https://github.com/zynbahmed)
 - [Nayef](https://github.com/nakz57)
@@ -19,24 +17,18 @@ The development of the app was organized using a [Trello](https://trello.com/inv
 
 ## Development Outline
 
-> The site will be developed using the Express JS framework as the back-end and React JS as the front-end . A dedicated API will be used to fetch the searched recipes. There will be two types-of user authentication, a custom authentication and a Google OAuth.  User will be able to create an account, share recipes, browse recipes and search recipes as well as add reviews of other recipes. The site will be developed and designed using the conceptualized ERD below. The ERD has three four (Recipe, User, Ingredient, Review) with recipe and ingredients having a many to-many relationship along with the user to ingredient relationship. However the user to review has a one to-many relationship along with the user to recipe relationship.
-
-![Alt text](https://github.com/zynbahmed/recipie/blob/main/images/image.png)
-
-> The wireframe of the conceptualized app is included below. The wireframe includes the recipe search page, user register and login page, saved recipe page, recipe card and profile page listing the recipes of a user.
-
-![Alt text](https://github.com/zynbahmed/recipie/blob/main/images/wireFrame.png)
-
-> The component hierarchy diagram is included below and highlights the relationship between various components of the app.
-
-![Alt text](https://github.com/zynbahmed/recipie/blob/main/images/hierarchy.png)
-
-
-
+> The site was developed using the Express JS framework as the back-end and React JS as the front-end . Users are Authenticated using a custom OAuth as well as by using Google OAuth. Users are able to create an account, share recipes, browse recipes and search recipes as well as add reviews of other recipes. Non-authenticated users are only allowed to view recipes. 
 
 ## Coding the App
 
-The app will be developed using the ExpressJS framework as the back-end and which will use MongoDB as the database and React JS as the front-end. Mongoose will be used in the ExpressJS framework to interact with the Mongo database. An API will be used  to fetch recipes in the search function. To manage the database, a user, recipe, review and ingredient schema will be created.
+> The app was coded using React JS and made use of react's properties such as hooks, components and props to build a single page app. Express JS was used for the back-end and calls to the back-end were made using Axios to the appropriate routes. To design the app Tailwind CSS was used. The app uses Mongo Schemas to create documents of objects which are stored in the Mongo Database. These objects are queried, updated or deleted using Mongoose.
+
+## Cloning and running the app
+
+> The app can be cloned and run on a local machine. This is the repo of the front-end of the app which will also require [this back-endl](https://github.com/zynbahmed/recipie-backend) to run. Once cloned run npm install to install all the dependencies. The front-end will need a .env files which will have the Mongo DB connection string, Google client ID, secret and callback along with the saltrounds and the app secret in the .env file. 
+
+## Screenshots of the app 
+
 
 ## :computer: Technologies Used
 
