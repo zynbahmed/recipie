@@ -177,6 +177,7 @@ const RecipeDetails = ({ user, list, setList }) => {
         <div className="border border-grey-200 p-10 mb-5 shadow-xl">
           <Creator creator={recipe?.creator} />
         </div>
+
         <div className="border border-grey-200 p-10 mb-5 shadow-xl">
           <Reviews reviews={recipe?.reviews} />
           {user ? <AddReview id={id} ali={ali} /> : null}
