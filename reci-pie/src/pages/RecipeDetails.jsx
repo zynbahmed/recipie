@@ -54,22 +54,12 @@ const RecipeDetails = ({ user, list, setList }) => {
   }
 
   const saveRecipe = async () => {
-    try {
-      await Client.post(`/recipe/${id}`, id)
-      Setsaved(true)
-      setShowSuccessMessage(true)
-    } catch (error) {
-      console.error("Error submitting recipe:", error)
-    }
+    await Client.post(`/recipe/${id}`, id)
+    Setsaved(true)
   }
   const unsaveRecipe = async () => {
-    try {
-      await Client.delete(`/unsave/${id}`)
-      Setsaved(false)
-      setShowSuccessMessage(true)
-    } catch (error) {
-      console.error("Error submitting recipe:", error)
-    }
+    await Client.delete(`/unsave/${id}`)
+    Setsaved(false)
   }
 
   const chechBoxSelector = () => {
