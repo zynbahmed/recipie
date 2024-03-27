@@ -27,13 +27,15 @@ const Reviews = ({ reviews }) => {
               <h5 class="mb-4 text-xl font-semibold">{review.userName}</h5>
 
               <div class="flex space-x-2 mt-4 items-center justify-center">
-                {Array(Math.floor(review.rating))
+                {Array(Math.floor(review?.rating))
                   .fill(true)
                   .concat(Array(5 - Math.floor(review.rating)).fill(false))
                   .map((isFilled, index) => (
                     <svg
                       key={index}
-                      class={`w-5 fill-${isFilled ? "red-800" : "grey-50"}`}
+                      class={`w-5 fill-${isFilled ? "red-800" : "gray-800"}`}
+                      // class="w-5 fill-red-800"
+                      // class={`w-5 fill-${isFilled ? "blue-800" : "grey-50"}`}
                       viewBox="0 0 14 13"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"

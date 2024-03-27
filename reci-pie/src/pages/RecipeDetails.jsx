@@ -103,7 +103,7 @@ const RecipeDetails = ({ user, list, setList }) => {
           .map((isFilled, index) => (
             <svg
               key={index}
-              className={`w-5 fill-${isFilled ? "red-800" : "gray !important"}`}
+              class={`w-5 fill-${isFilled ? "red-800" : "gray-800"}`}
               viewBox="0 0 14 13"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -125,7 +125,7 @@ const RecipeDetails = ({ user, list, setList }) => {
     <div>
       <>
         {showSuccessMessage && (
-          <div className="fixed bg-red-200 px-6 py-4 mx-2 my-4 rounded-md text-lg flex items-center mx-auto max-w-lg z-50">
+          <div className="fixed bg-red-200 px-6 py-4 my-4 rounded-md text-lg flex items-center mx-auto max-w-lg z-50">
             <svg
               viewBox="0 0 24 24"
               className="text-red-600 w-5 h-5 sm:w-5 sm:h-5 mr-3"
