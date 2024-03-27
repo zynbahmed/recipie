@@ -37,3 +37,4 @@ The development of the app was organized using a [Trello](https://trello.com/inv
 - ![JS badge](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
 - ![Express badge](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=express&logoColor=F7DF1E)
 - ![ReactJS](https://img.shields.io/badge/-ReactJs-61DAFB?logo=react&logoColor=white&style=for-the-badge)
+- ![Tailwind](https://img.shields.io/badge/tailwindcss-0F172A?&logo=tailwindcss&logoColor=white&style=for-the-badge)
