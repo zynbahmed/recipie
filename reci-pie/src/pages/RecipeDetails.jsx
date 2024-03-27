@@ -80,7 +80,6 @@ const RecipeDetails = ({ user, list, setList }) => {
       return
     }
     setList([...list, shoppingList])
-    // console.log(list)
   }
 
   function calculateAverageRating(reviews) {
@@ -103,7 +102,7 @@ const RecipeDetails = ({ user, list, setList }) => {
           .map((isFilled, index) => (
             <svg
               key={index}
-              class={`w-5 fill-${isFilled ? "red-800" : "gray-800"}`}
+              className={`w-5 fill-${isFilled ? "red-800" : "gray-800"}`}
               viewBox="0 0 14 13"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -139,13 +138,13 @@ const RecipeDetails = ({ user, list, setList }) => {
             <button
               onClick={close}
               type="button"
-              class="ml-auto -mx-1.5 -my-1.5 text-gray-400 rounded-lg focus:ring-2  p-1.5 inline-flex items-center justify-center h-8 w-8 "
+              className="ml-auto -mx-1.5 -my-1.5 text-gray-400 rounded-lg focus:ring-2  p-1.5 inline-flex items-center justify-center h-8 w-8 "
               data-dismiss-target="#toast-success"
               aria-label="Close"
             >
-              <span class="sr-only">Close</span>
+              <span className="sr-only">Close</span>
               <svg
-                class="w-3 h-3"
+                className="w-3 h-3"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -168,7 +167,7 @@ const RecipeDetails = ({ user, list, setList }) => {
           <div className="grid items-start grid-cols-1 lg:grid-cols-5 gap-12 border border-grey-200 p-10 mb-5 shadow-xl">
             <div className="lg:col-span-3 bg-base-100 w-full top-0 text-center p-8">
               <img src={recipe?.photo} alt={recipe?.title} />
-              <div class="flex flex-wrap gap-4 mt-4">
+              <div className="flex flex-wrap gap-4 mt-4">
                 {user && user?.id === recipe?.creator?._id && (
                   <>
                     <button
@@ -182,7 +181,7 @@ const RecipeDetails = ({ user, list, setList }) => {
                         width="16"
                         height="16"
                         fill="currentColor"
-                        class="bi bi-trash"
+                        className="bi bi-trash"
                         viewBox="0 0 16 16"
                       >
                         <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
@@ -199,7 +198,7 @@ const RecipeDetails = ({ user, list, setList }) => {
                         width="16"
                         height="16"
                         fill="currentColor"
-                        class="bi bi-pen"
+                        className="bi bi-pen"
                         viewBox="0 0 16 16"
                       >
                         <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708z" />
@@ -249,8 +248,26 @@ const RecipeDetails = ({ user, list, setList }) => {
                       onClick={() => {
                         addToCart(shoppingList)
                       }}
-                      className="m-2 mt-5 reg-btn "
+                      className="btn mt-4"
                     >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        className="bi bi-list-task"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M2 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5zM3 3H2v1h1z"
+                        />
+                        <path d="M5 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M5.5 7a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1zm0 4a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1z" />
+                        <path
+                          fill-rule="evenodd"
+                          d="M1.5 7a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5zM2 7h1v1H2zm0 3.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm1 .5H2v1h1z"
+                        />
+                      </svg>
                       Add to Grocery List
                     </button>
                   </>

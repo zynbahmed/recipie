@@ -1,13 +1,7 @@
 const SaveRecipeButton = ({ saved, unsaveRecipe, saveRecipe, user }) => {
   return user ? (
-    <div>
+    <>
       {saved ? (
-        // <button
-        //   onClick={unsaveRecipe}
-        //   className="text-gray-500 font-extrabold uppercase hover:text-gray-900"
-        // >
-        //   Remove From Favourites
-        // </button>
         <button className="btn bg-orange-500 text-white" onClick={unsaveRecipe}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -26,12 +20,6 @@ const SaveRecipeButton = ({ saved, unsaveRecipe, saveRecipe, user }) => {
           Remove
         </button>
       ) : (
-        // <button
-        //   onClick={saveRecipe}
-        //   className="text-orange-500 font-extrabold uppercase hover:text-orange-900"
-        // >
-        //   Save to Favourites
-        // </button>
         <button className="btn hover:bg-orange-200" onClick={saveRecipe}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -50,7 +38,7 @@ const SaveRecipeButton = ({ saved, unsaveRecipe, saveRecipe, user }) => {
           Save
         </button>
       )}
-    </div>
+    </>
   ) : null
 }
 
