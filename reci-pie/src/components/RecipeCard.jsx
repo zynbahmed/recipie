@@ -1,5 +1,14 @@
 import { Link } from 'react-router-dom'
+import { Paginator } from 'primereact/paginator'
+import { useState } from 'react'
+
 const RecipeCard = ({ allRecipes }) => {
+  const [first, setFirst] = useState(0)
+  const [rows, setRows] = useState(6)
+  const onPageChange = (event) => {
+    setFirst(event.first)
+    setRows(event.rows)
+  }
   const getTimeAgo = (timestamp) => {
     const time = new Date(timestamp)
     const now = new Date()
@@ -30,7 +39,7 @@ const RecipeCard = ({ allRecipes }) => {
   return (
     <div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
-        {allRecipes.map((recipe) => (
+        {allRecipes.slice(first, first + rows).map((recipe) => (
           <div className="overflow-hidden shadow-lg flex flex-col w-full">
             <div key={recipe._id} className="relative">
               <Link to={`/recipeDetails/${recipe._id}`}>
@@ -74,6 +83,14 @@ const RecipeCard = ({ allRecipes }) => {
           </div>
         ))}
       </div>
+      <br />
+      <Paginator
+        first={first}
+        rows={rows}
+        totalRecords={allRecipes.length}
+        onPageChange={onPageChange}
+        template="FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
+      />
     </div>
   )
 }

@@ -40,8 +40,7 @@ const Search = ({ onSubmit, mealRef }) => {
           id="default-search"
           ref={mealRef}
           className="block w-full p-4 ps-10 text-sm  border border-red-100 focus:ring-red-500 focus:border-red-500"
-          placeholder="Search Recipes, Ingredients..."
-          required
+          placeholder="Search Recipes by Title"
         />
         <button
           type="submit"

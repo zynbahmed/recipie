@@ -1,16 +1,16 @@
-import { useState } from "react"
-import Client from "../services/api"
-import { Link } from "react-router-dom"
+import { useState } from 'react'
+import Client from '../services/api'
+import { Link } from 'react-router-dom'
 const AddRecipe = ({ user }) => {
   const [showSuccessMessage, setShowSuccessMessage] = useState(false)
   const [addRecipeformValues, setAddRecipeFormValues] = useState({
-    title: "",
-    description: "",
-    cookingTime: "",
-    steps: "",
-    photo: "",
-    ingredients: [{ name: "", amount: "", unit: "" }],
-    category: "",
+    title: '',
+    description: '',
+    cookingTime: '',
+    steps: '',
+    photo: '',
+    ingredients: [{ name: '', amount: '', unit: '' }],
+    category: '',
     creator: user.id
   })
   const handleChange = (event) => {
@@ -26,7 +26,7 @@ const AddRecipe = ({ user }) => {
       ...prevState,
       ingredients: [
         ...prevState.ingredients,
-        { name: "", amount: "", unit: "" }
+        { name: '', amount: '', unit: '' }
       ]
     }))
   }
@@ -45,13 +45,20 @@ const AddRecipe = ({ user }) => {
     event.preventDefault()
     try {
       await Client.post(`/recipe`, addRecipeformValues)
-      setShowSuccessMessage(true) // Show success message after successful submission
+      setShowSuccessMessage(true)
     } catch (error) {
-      console.error("Error submitting recipe:", error)
-      // Handle errors appropriately, e.g., display an error message to the user
+      console.error('Error submitting recipe:', error)
     }
-
-    // console.log(addRecipeformValues)
+    setAddRecipeFormValues({
+      title: '',
+      description: '',
+      cookingTime: '',
+      steps: '',
+      photo: '',
+      ingredients: [{ name: '', amount: '', unit: '' }],
+      category: '',
+      creator: user.id
+    })
   }
 
   const close = () => {
