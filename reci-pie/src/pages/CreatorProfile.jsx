@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom"
-import { useParams } from "react-router-dom"
-import { useEffect, useState } from "react"
-import Client from "../services/api"
+import { Link } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import Client from '../services/api'
 const CreatorProfile = () => {
   const [profile, setProfile] = useState(null)
   let { id } = useParams()
@@ -9,32 +9,34 @@ const CreatorProfile = () => {
     const getProfile = async () => {
       const responce = await Client.get(`/user/${id}`)
       setProfile(responce.data)
-      console.log("this is the creator profile", responce.data)
+      console.log('this is the creator profile', responce.data)
     }
     getProfile()
   }, [])
 
   const getTimeAgo = (timestamp) => {
+    const time = new Date(timestamp)
     const now = new Date()
-    const timeElapsed = parseInt(now) - parseInt(timestamp)
+    const differenceInMs = now.getTime() - time.getTime()
+
     const minute = 60 * 1000
     const hour = 60 * minute
     const day = 24 * hour
     const month = 30 * day
     const year = 365 * day
 
-    if (timeElapsed < minute) {
-      return Math.floor(timeElapsed / 1000) + " seconds ago"
-    } else if (timeElapsed < hour) {
-      return Math.floor(timeElapsed / minute) + " minutes ago"
-    } else if (timeElapsed < day) {
-      return Math.floor(timeElapsed / hour) + " hours ago"
-    } else if (timeElapsed < month) {
-      return Math.floor(timeElapsed / day) + " days ago"
-    } else if (timeElapsed < year) {
-      return Math.floor(timeElapsed / month) + " months ago"
+    if (differenceInMs < minute) {
+      return Math.floor(differenceInMs / 1000) + ' seconds ago'
+    } else if (differenceInMs < hour) {
+      return Math.floor(differenceInMs / minute) + ' minutes ago'
+    } else if (differenceInMs < day) {
+      return Math.floor(differenceInMs / hour) + ' hours ago'
+    } else if (differenceInMs < month) {
+      return Math.floor(differenceInMs / day) + ' days ago'
+    } else if (differenceInMs < year) {
+      return Math.floor(differenceInMs / month) + ' months ago'
     } else {
-      return Math.floor(timeElapsed / year) + " years ago"
+      return Math.floor(differenceInMs / year) + ' years ago'
     }
   }
 
