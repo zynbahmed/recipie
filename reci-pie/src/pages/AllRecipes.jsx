@@ -4,6 +4,8 @@ import Client from "../services/api"
 import RecipeCard from "../components/RecipeCard"
 import SearchDB from "../components/SearchDB"
 import RecipeDB from "../components/RecipeDB"
+
+
 const AllRecipes = () => {
   let navigate = useNavigate()
   const dishRef = useRef(null)
@@ -116,7 +118,6 @@ const AllRecipes = () => {
       </div>
       {click ? (
         <div>
-          <h1>Recipes</h1>
           <RecipeDB dishes={dishes} search={search} />
         </div>
       ) : (

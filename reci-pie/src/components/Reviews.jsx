@@ -8,7 +8,6 @@ const Reviews = ({ reviews }) => {
     setFirst(event.first)
     setRows(event.rows)
   }
-
   return reviews && reviews.length > 0 ? (
     <div>
       <div class="mx-auto text-center md:max-w-xl lg:max-w-3xl">
