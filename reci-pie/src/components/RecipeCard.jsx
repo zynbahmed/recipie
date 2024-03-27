@@ -79,14 +79,15 @@ const RecipeCard = ({ allRecipes }) => {
             </div>
           </div>
         ))}
-        <Paginator
-          first={first}
-          rows={rows}
-          totalRecords={allRecipes.length}
-          onPageChange={onPageChange}
-          template="FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
-        />
       </div>
+      <br />
+      <Paginator
+        first={first}
+        rows={rows}
+        totalRecords={allRecipes.length}
+        onPageChange={onPageChange}
+        template="FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
+      />
     </div>
   )
 }
