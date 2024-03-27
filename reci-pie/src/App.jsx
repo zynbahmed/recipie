@@ -15,6 +15,7 @@ import AddRecipe from './pages/AddRecipe'
 import AllRecipes from './pages/AllRecipes'
 import RecipeDetails from './pages/RecipeDetails'
 import EditRecipe from './pages/EditRecipe'
+import EditProfile from './pages/EditProfile'
 import CreatorProfile from './pages/CreatorProfile'
 import './styles/App.scss'
 
@@ -71,9 +72,10 @@ const App = () => {
             }
           />
           <Route path="/editrecipe/:id" element={<EditRecipe />} />
+          <Route path="/profile_update/:id" element={<CreatorProfile />} />
           <Route path="/creatorprofile/:id" element={<CreatorProfile />} />
-          <Route path="/creatorprofile/:id" element={<CreatorProfile />} />
-{/*  */}
+          <Route path="/editprofile/:id" element={<EditProfile />} />
+          {/*  */}
         </Routes>
       </div>
     </div>

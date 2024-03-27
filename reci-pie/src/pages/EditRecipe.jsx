@@ -1,16 +1,16 @@
-import { useParams } from "react-router-dom"
-import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
-import Client from "../services/api"
+import { useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import Client from '../services/api'
 const EditRecipe = () => {
   let { id } = useParams()
   const [editRecipe, setEditRecipe] = useState(null)
   const [addRecipeformValues, setAddRecipeFormValues] = useState({
-    title: "",
-    description: "",
-    cookingTime: "",
-    steps: "",
-    photo: ""
+    title: '',
+    description: '',
+    cookingTime: '',
+    steps: '',
+    photo: ''
   })
   useEffect(() => {
     const getRecipe = async () => {
@@ -36,7 +36,7 @@ const EditRecipe = () => {
   }
   const handleSubmit = async () => {
     await Client.put(`/recipe/${id}`, addRecipeformValues)
-    navigate("/allrecipes")
+    navigate('/allrecipes')
     // navigate(`/recipeDetails/${id}`)
   }
 

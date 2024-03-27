@@ -1,22 +1,22 @@
-import { useState } from "react"
-import { RegisterUser } from "../services/Auth"
-import { SignInUser } from "../services/Auth"
-import "../styles/form.css"
-import { useNavigate } from "react-router-dom"
-import { GoogleLogin } from "@react-oauth/google"
+import { useState } from 'react'
+import { RegisterUser } from '../services/Auth'
+import { SignInUser } from '../services/Auth'
+import '../styles/form.css'
+import { useNavigate } from 'react-router-dom'
+import { GoogleLogin } from '@react-oauth/google'
 
 const RegistrationForm = ({ setUser }) => {
   let navigate = useNavigate()
   const initialState = {
-    email: "",
-    password: ""
+    email: '',
+    password: ''
   }
   const [init, setInit] = useState(initialState)
   const [formValues, setFormValues] = useState({
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: ""
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
   })
   const handleChange = (event) => {
     setFormValues({ ...formValues, [event.target.name]: event.target.value })
@@ -41,19 +41,12 @@ const RegistrationForm = ({ setUser }) => {
     setInit(initialState)
     setUser(payload)
     console.log(init)
-    navigate("/")
+    navigate('/')
   }
 
   const handleToggleContainer = (isActive) => {
-    const container = document.getElementById("container")
-    container.classList.toggle("right-panel-active", isActive)
-  }
-
-  const responseMessage = (response) => {
-    console.log(response)
-  }
-  const errorMessage = (error) => {
-    console.log(error)
+    const container = document.getElementById('container')
+    container.classList.toggle('right-panel-active', isActive)
   }
 
   return (
@@ -135,9 +128,9 @@ const RegistrationForm = ({ setUser }) => {
             >
               Sign In
             </button>
-            <br/>
+            <br />
             <p className="text-sm">Or Sign in With Your Google Account</p>
-            <br/>
+            <br />
             <div>
               <a href={`${import.meta.env.VITE_BACKEND_URL}/auth/google`}>
                 <GoogleLogin />
