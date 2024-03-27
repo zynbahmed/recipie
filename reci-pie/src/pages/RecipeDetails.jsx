@@ -5,24 +5,38 @@ import Client from '../services/api'
 import Reviews from '../components/Reviews'
 import AddReview from '../components/AddReview'
 import Creator from '../components/Creator'
+import SaveRecipeButton from '../components/SaveRecipeButton'
 
 const RecipeDetails = ({ user, list, setList }) => {
+  console.log('this is the user', user)
   const navigate = useNavigate()
   let { id } = useParams()
   const [recipe, setRecipe] = useState(null)
+  const [saved, Setsaved] = useState(false)
   const [shoppingList, setShoppingList] = useState([])
 
   useEffect(() => {
     const getRecipe = async () => {
       const response = await Client.get(`/recipe/${id}`)
-      console.log('In the details page ', response.data)
       setRecipe(response.data)
+      let userdata = (await Client.get('/')).data
+      if (
+        userdata?.savedRecipes
+          .map((recipe) => {
+            return recipe._id.toString()
+          })
+          .includes(id)
+      ) {
+        Setsaved(true)
+      } else {
+        Setsaved(false)
+      }
     }
     getRecipe()
-  }, [])
+  }, [user])
 
   const handleDelete = async (id) => {
-    console.log(`/recipe/${id}`)
+    // console.log(`/recipe/${id}`)
     await Client.delete(`/recipe/${id}`)
   }
 
@@ -35,9 +49,16 @@ const RecipeDetails = ({ user, list, setList }) => {
   }
 
   const saveRecipe = async () => {
-    console.log(id)
+    // console.log(id)
     await Client.post(`/recipe/${id}`, id)
+    Setsaved(true)
   }
+  const unsaveRecipe = async () => {
+    // console.log('got to the unsave ')
+    // await Client.put(`/recipe/${id}`, id)
+    Setsaved(false)
+  }
+
   const chechBoxSelector = () => {
     const checkBoxes = document.querySelectorAll('ul input[type="checkbox"]')
     const checked = []
@@ -47,8 +68,8 @@ const RecipeDetails = ({ user, list, setList }) => {
       }
     })
     setShoppingList(checked)
-    console.log(checked)
-    console.log(shoppingList)
+    // console.log(checked)
+    // console.log(shoppingList)
   }
   const addToCart = (shoppingList) => {
     const existingItemIndex = list.findIndex(
@@ -58,7 +79,7 @@ const RecipeDetails = ({ user, list, setList }) => {
       return
     }
     setList([...list, shoppingList])
-    console.log(list)
+    // console.log(list)
   }
 
   function calculateAverageRating(reviews) {
@@ -119,14 +140,25 @@ const RecipeDetails = ({ user, list, setList }) => {
                 </button>
               </div>
             )}
-            <div className="flex flex-wrap gap-4 mt-4">
+            {/* <div className="flex flex-wrap gap-4 mt-4">
               <button
                 onClick={saveRecipe}
                 className="text-green-500 font-extrabold uppercase hover:text-green-900"
               >
-                Save Recipe
+                UnSave Recipe
               </button>
-            </div>
+              <button
+                onClick={unsaveRecipe}
+                className="text-green-500 font-extrabold uppercase hover:text-green-900"
+              >
+                Unsave
+              </button>
+            </div> */}
+            <SaveRecipeButton
+              saved={saved}
+              saveRecipe={saveRecipe}
+              unsaveRecipe={unsaveRecipe}
+            />
           </div>
           <div className="lg:col-span-2">
             <div className="flex flex-wrap gap-4 mt-4">
