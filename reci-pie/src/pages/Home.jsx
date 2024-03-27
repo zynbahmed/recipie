@@ -1,12 +1,12 @@
-import '../styles/home.css'
+import "../styles/home.css"
 
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from "react-router-dom"
 
 const Home = ({ user }) => {
   let navigate = useNavigate()
 
   const navigation = () => {
-    navigate('/register')
+    navigate("/register")
   }
 
   const recRavigation = () => {
@@ -19,13 +19,13 @@ const Home = ({ user }) => {
         <h1 className="text-3xl text-white">Reci-Pie</h1>
       </div>
       <div className="banner-button">
-        <button onClick={navigation}>
-          Join Us
-        </button>
-        <br/>
-        <button onClick={recRavigation}>
-          Discover Recipes
-        </button>
+        {!user && (
+          <>
+            <button onClick={navigation}>Join Us</button>
+            <br />
+          </>
+        )}
+        <button onClick={recRavigation}>Discover Recipes</button>
       </div>
     </div>
   )
