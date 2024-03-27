@@ -13,6 +13,7 @@ const AddRecipe = ({ user }) => {
     category: '',
     creator: user.id
   })
+
   const handleChange = (event) => {
     event.preventDefault()
     setAddRecipeFormValues({
@@ -20,6 +21,7 @@ const AddRecipe = ({ user }) => {
       [event.target.name]: event.target.value
     })
   }
+
   const handleAdd = (event) => {
     event.preventDefault()
     setAddRecipeFormValues((prevState) => ({
@@ -49,6 +51,7 @@ const AddRecipe = ({ user }) => {
     } catch (error) {
       console.error('Error submitting recipe:', error)
     }
+
     setAddRecipeFormValues({
       title: '',
       description: '',
@@ -97,7 +100,7 @@ const AddRecipe = ({ user }) => {
             data-dismiss-target="#toast-success"
             aria-label="Close"
           >
-            <span class="sr-only">Close</span>
+            <span Breakfast="sr-only">Close</span>
             <svg
               className="w-3 h-3"
               aria-hidden="true"

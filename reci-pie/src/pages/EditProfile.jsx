@@ -13,10 +13,10 @@ const EditProfile = () => {
     avatar: "",
     email: ""
   })
+
   useEffect(() => {
     const getUser = async () => {
       const res = await Client.get(`user/${id}`)
-      console.log(res.data)
       setEditProfile(res.data)
       setAddProfileFromValues({
         name: res.data.name,
@@ -26,6 +26,7 @@ const EditProfile = () => {
     }
     getUser()
   }, [])
+
   const handleChange = (event) => {
     event.preventDefault()
     setAddProfileFromValues({
@@ -44,9 +45,11 @@ const EditProfile = () => {
       console.error("Error submitting recipe:", error)
     }
   }
+
   const close = () => {
     setShowSuccessMessage(false)
   }
+
   return (
     <div className="relative flex min-h-screen flex-col justify-center overflow-hidden py-6 sm:py-12">
       <div className="absolute inset-0 bg-center bg-[url('/pies.jpg')]"></div>
@@ -65,13 +68,13 @@ const EditProfile = () => {
           <button
             onClick={close}
             type="button"
-            class="ml-auto -mx-1.5 -my-1.5 text-gray-400 rounded-lg focus:ring-2  p-1.5 inline-flex items-center justify-center h-8 w-8 "
+            className="ml-auto -mx-1.5 -my-1.5 text-gray-400 rounded-lg focus:ring-2  p-1.5 inline-flex items-center justify-center h-8 w-8 "
             data-dismiss-target="#toast-success"
             aria-label="Close"
           >
-            <span class="sr-only">Close</span>
+            <span className="sr-only">Close</span>
             <svg
-              class="w-3 h-3"
+              className="w-3 h-3"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"

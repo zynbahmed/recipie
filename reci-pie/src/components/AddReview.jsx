@@ -26,7 +26,6 @@ const AddReview = ({ id, ali }) => {
     e.preventDefault()
     Client.post(`/recipe/${id}/review`, review)
       .then((response) => {
-        console.log(response.data)
         ali(response.data)
       })
       .catch((error) => {

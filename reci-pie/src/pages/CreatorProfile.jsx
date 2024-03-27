@@ -2,14 +2,15 @@ import { Link } from "react-router-dom"
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import Client from "../services/api"
+
 const CreatorProfile = () => {
   const [profile, setProfile] = useState(null)
   let { id } = useParams()
+
   useEffect(() => {
     const getProfile = async () => {
       const responce = await Client.get(`/user/${id}`)
       setProfile(responce.data)
-      console.log("this is the creator profile", responce.data)
     }
     getProfile()
   }, [])
@@ -123,15 +124,6 @@ const CreatorProfile = () => {
                 </div>
               </div>
             </div>
-
-            {/* {profile?.myRecipes?.map((recipe) => (
-              <div>
-                <Link to={`/recipeDetails/${recipe._id}`}>
-                  <h3>{recipe.title}</h3>
-                  <img src={recipe.photo} alt="" />
-                </Link>
-              </div>
-            ))} */}
           </div>
         </div>
       </div>

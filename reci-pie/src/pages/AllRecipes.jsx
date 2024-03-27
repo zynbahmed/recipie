@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react"
 import { useNavigate } from "react-router-dom"
 import Client from "../services/api"
+
 import RecipeCard from "../components/RecipeCard"
 import SearchDB from "../components/SearchDB"
 import RecipeDB from "../components/RecipeDB"
@@ -25,6 +26,7 @@ const AllRecipes = ({ user }) => {
 
       setAllRecipes(response.data)
     }
+
     const getSearchRecipe = async () => {
       const res = await Client.get("/recipe")
       setDishes(res.data)
@@ -33,7 +35,6 @@ const AllRecipes = ({ user }) => {
     getAllRecipes()
     getSearchRecipe()
     filteredRecipes()
-    console.log(dishRef)
   }, [cat])
 
   const handleSubmit = async (e) => {
@@ -62,7 +63,7 @@ const AllRecipes = ({ user }) => {
         </button>
       )}
 
-      <div className="grid gap-6 text-center md:grid-cols-6 lg:gap-12 m-2 mb-10">
+      <div className="grid text-center md:grid-cols-7 lg:gap-12 m-2 mb-10">
         <div>
           <button
             onClick={() => {
@@ -115,6 +116,15 @@ const AllRecipes = ({ user }) => {
             }}
           >
             Dessert
+          </button>
+        </div>
+        <div>
+          <button
+            onClick={() => {
+              handleSelect("Breakfast")
+            }}
+          >
+            Breakfast
           </button>
         </div>
       </div>

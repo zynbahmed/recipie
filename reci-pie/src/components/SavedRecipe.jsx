@@ -1,6 +1,5 @@
 import Client from '../services/api'
 import { useState, useEffect } from 'react'
-import axios from 'axios'
 import { Link } from 'react-router-dom'
 
 const SavedRecipe = ({ user }) => {
@@ -15,7 +14,6 @@ const SavedRecipe = ({ user }) => {
   }, [])
 
   const recipes = savedRecipe?.savedRecipes
-  // console.log(recipes)
   const getTimeAgo = (timestamp) => {
     const time = new Date(timestamp)
     const now = new Date()

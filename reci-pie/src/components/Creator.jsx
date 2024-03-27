@@ -1,10 +1,8 @@
 import { useNavigate } from "react-router-dom"
-import { useEffect, useState } from "react"
+
 const Creator = ({ creator }) => {
-  console.log("this is the ", creator)
   let navigate = useNavigate()
   const viewProfile = (id) => {
-    // setProfile(creator)
     navigate(`/creatorprofile/${id}`, { state: { creator } })
   }
   return creator ? (

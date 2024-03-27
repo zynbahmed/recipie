@@ -1,16 +1,19 @@
 import { useState } from "react"
 import { RegisterUser } from "../services/Auth"
 import { SignInUser } from "../services/Auth"
-import "../styles/form.css"
 import { useNavigate } from "react-router-dom"
 import { GoogleLogin } from "@react-oauth/google"
 
+import "../styles/form.css"
+
 const RegistrationForm = ({ setUser }) => {
   let navigate = useNavigate()
+
   const initialState = {
     email: "",
     password: ""
   }
+
   const [init, setInit] = useState(initialState)
   const [formValues, setFormValues] = useState({
     name: "",
@@ -18,6 +21,7 @@ const RegistrationForm = ({ setUser }) => {
     password: "",
     confirmPassword: ""
   })
+
   const handleChange = (event) => {
     setFormValues({ ...formValues, [event.target.name]: event.target.value })
   }
@@ -93,18 +97,13 @@ const RegistrationForm = ({ setUser }) => {
             />
             <button
               className="reg-btn mt-16"
-              // disabled={
-              //   !emailRef.current.value &&
-              //   !passRef.current.value &&
-              //   conPassRef.current.value === passRef.current.value
-              // }
             >
               Sign Up
             </button>
           </form>
         </div>
         <div className="form-container sign-in-container">
-          <form className="reg-form" action="#" onSubmit={handleSubmitIn}>
+          <form className="reg-form" onSubmit={handleSubmitIn}>
             <h1 className="form-title">Sign in</h1>
             <input
               className="mx-0 my-2 py-3 px-4"
@@ -122,9 +121,6 @@ const RegistrationForm = ({ setUser }) => {
             />
             <button
               className="reg-btn mt-16"
-              // disabled={
-              //   !loginEmailRef.current.value && !loginPassRef.current.value
-              // }
             >
               Sign In
             </button>
