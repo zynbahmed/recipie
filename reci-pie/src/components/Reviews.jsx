@@ -34,8 +34,6 @@ const Reviews = ({ reviews }) => {
                     <svg
                       key={index}
                       class={`w-5 fill-${isFilled ? "red-800" : "gray-800"}`}
-                      // class="w-5 fill-red-800"
-                      // class={`w-5 fill-${isFilled ? "blue-800" : "grey-50"}`}
                       viewBox="0 0 14 13"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
@@ -58,7 +56,6 @@ const Reviews = ({ reviews }) => {
       </div>
     </div>
   ) : (
-    // </div>
     <div>
       <div class="mx-auto text-center md:max-w-xl lg:max-w-3xl items-center">
         <h3 class="mb-6 text-3xl font-bold">Reviews:</h3>
@@ -66,9 +63,6 @@ const Reviews = ({ reviews }) => {
       <div class="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-8">
         <div class="gap-6 text-center">
           <h5 class="mb-4 text-xl font-semibold">No Reviews Available</h5>
-
-          {/* <h3 className=""> {review.rating}</h3> */}
-          {/* <hr /> */}
         </div>
       </div>
     </div>
