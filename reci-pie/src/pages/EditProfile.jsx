@@ -34,9 +34,15 @@ const EditProfile = () => {
     })
   }
 
-  const handleSubmit = async () => {
-    await Client.put("/update", addProfileFromValues)
-    // navigate('/profile')
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    try {
+      await Client.put("/update", addProfileFromValues)
+      setShowSuccessMessage(true)
+      navigate("/profile")
+    } catch (error) {
+      console.error("Error submitting recipe:", error)
+    }
   }
   const close = () => {
     setShowSuccessMessage(false)
@@ -45,7 +51,7 @@ const EditProfile = () => {
     <div className="relative flex min-h-screen flex-col justify-center overflow-hidden py-6 sm:py-12">
       <div className="absolute inset-0 bg-center bg-[url('/pies.jpg')]"></div>
       {showSuccessMessage && (
-        <div className="fixed bg-green-200 px-6 py-4 mx-2 my-4 rounded-md text-lg flex items-center mx-auto max-w-lg z-50">
+        <div className="fixed bg-green-200 px-6 py-4 my-4 rounded-md text-lg flex items-center mx-auto max-w-lg z-50">
           <svg
             viewBox="0 0 24 24"
             className="text-green-600 w-5 h-5 sm:w-5 sm:h-5 mr-3"
@@ -140,7 +146,9 @@ const EditProfile = () => {
               </label>
             </div>
             <br />
-            <button onClick={handleSubmit} className="reg-btn">Submit</button>
+            <button onClick={handleSubmit} className="reg-btn">
+              Submit
+            </button>
             <br />
           </form>
         </div>

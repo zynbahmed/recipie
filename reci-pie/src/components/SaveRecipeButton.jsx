@@ -1,5 +1,5 @@
-const SaveRecipeButton = ({ saved, unsaveRecipe, saveRecipe }) => {
-  return (
+const SaveRecipeButton = ({ saved, unsaveRecipe, saveRecipe, user }) => {
+  return user ? (
     <div className="flex flex-wrap gap-4 mt-4">
       {saved ? (
         <button
@@ -17,7 +17,7 @@ const SaveRecipeButton = ({ saved, unsaveRecipe, saveRecipe }) => {
         </button>
       )}
     </div>
-  )
+  ) : null
 }
 
 export default SaveRecipeButton

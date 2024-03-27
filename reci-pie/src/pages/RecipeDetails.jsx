@@ -103,7 +103,7 @@ const RecipeDetails = ({ user, list, setList }) => {
           .map((isFilled, index) => (
             <svg
               key={index}
-              className={`w-5 fill-${isFilled ? "red-800" : "gray !important"}`}
+              class={`w-5 fill-${isFilled ? "red-800" : "gray-800"}`}
               viewBox="0 0 14 13"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -125,7 +125,7 @@ const RecipeDetails = ({ user, list, setList }) => {
     <div>
       <>
         {showSuccessMessage && (
-          <div className="fixed bg-red-200 px-6 py-4 mx-2 my-4 rounded-md text-lg flex items-center mx-auto max-w-lg z-50">
+          <div className="fixed bg-red-200 px-6 py-4 my-4 rounded-md text-lg flex items-center mx-auto max-w-lg z-50">
             <svg
               viewBox="0 0 24 24"
               className="text-red-600 w-5 h-5 sm:w-5 sm:h-5 mr-3"
@@ -168,7 +168,7 @@ const RecipeDetails = ({ user, list, setList }) => {
           <div className="grid items-start grid-cols-1 lg:grid-cols-5 gap-12 border border-grey-200 p-10 mb-5 shadow-xl">
             <div className="lg:col-span-3 bg-base-100 w-full top-0 text-center p-8">
               <img src={recipe?.photo} alt={recipe?.title} />
-              {user?.id === recipe?.creator?._id && (
+              {user && user?.id === recipe?.creator?._id && (
                 <div class="flex flex-wrap gap-4 mt-4">
                   <button
                     className="text-red-500 font-extrabold uppercase hover:text-red-900"
@@ -204,6 +204,7 @@ const RecipeDetails = ({ user, list, setList }) => {
                 saved={saved}
                 saveRecipe={saveRecipe}
                 unsaveRecipe={unsaveRecipe}
+                user={user}
               />
             </div>
             <div className="lg:col-span-2">

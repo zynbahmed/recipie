@@ -58,13 +58,12 @@ const App = () => {
             element={<RegistartionForm setUser={setUser} />}
           />
           <Route path="/" element={<Home user={user} />} />
-          <Route path="/recipes" element={<Recipes />} />
           <Route
             path="/shopping-list"
             element={<ShoppingList list={list} setList={setList} user={user} />}
           />
           <Route path="/addrecipe" element={<AddRecipe user={user} />} />
-          <Route path="/allrecipes" element={<AllRecipes />} />
+          <Route path="/allrecipes" element={<AllRecipes user={user}/>} />
           <Route
             path="/recipeDetails/:id"
             element={
