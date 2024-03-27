@@ -56,12 +56,12 @@ const AllRecipes = ({ user }) => {
 
   return (
     <div className="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
-      <SearchDB onSubmit={handleSubmit} dishRef={dishRef} />
       {user && (
         <button className="reg-btn m-2" onClick={adding}>
           Add Recipe
         </button>
       )}
+      <SearchDB onSubmit={handleSubmit} dishRef={dishRef} />
 
       <div className="grid text-center md:grid-cols-7 lg:gap-12 m-2 mb-10">
         <div>

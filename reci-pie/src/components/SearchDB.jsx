@@ -1,6 +1,6 @@
 const SearchDB = ({ onSubmit, dishRef }) => {
   return (
-    <form className="max-w-5xl mx-auto" onSubmit={onSubmit}>
+    <form className="max-w-l mx-auto" onSubmit={onSubmit}>
       <div className="relative">
         <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
           <svg
