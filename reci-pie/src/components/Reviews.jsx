@@ -1,5 +1,5 @@
-import { Paginator } from "primereact/paginator"
-import { useState } from "react"
+import { Paginator } from 'primereact/paginator'
+import { useState } from 'react'
 
 const Reviews = ({ reviews }) => {
   const [first, setFirst] = useState(0)
@@ -15,25 +15,27 @@ const Reviews = ({ reviews }) => {
       </div>
       <div class="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-8">
         <div class="grid gap-6 text-center md:grid-cols-3 lg:gap-12">
-          {reviews?.slice(first, first + rows).map((review) => (
-            <div className="" key={review?._id}>
+          {reviews.slice(first, first + rows).map((review) => (
+            <div className="" key={review._id}>
               <div class="mb-6 flex justify-center">
                 <img
                   className=""
-                  src={review?.userAvatar}
+                  src={review.userAvatar}
                   class="w-32 rounded-full shadow-lg "
                 />
               </div>
-              <h5 class="mb-4 text-xl font-semibold">{review?.userName}</h5>
+              <h5 class="mb-4 text-xl font-semibold">{review.userName}</h5>
 
               <div class="flex space-x-2 mt-4 items-center justify-center">
                 {Array(Math.floor(review?.rating))
                   .fill(true)
-                  .concat(Array(5 - Math.floor(review?.rating)).fill(false))
+                  .concat(Array(5 - Math.floor(review.rating)).fill(false))
                   .map((isFilled, index) => (
                     <svg
                       key={index}
-                      class={`w-5 fill-${isFilled ? "red-800" : "gray-800"}`}
+                      class={`w-5 fill-${isFilled ? 'red-800' : 'gray-800'}`}
+                      // class="w-5 fill-red-800"
+                      // class={`w-5 fill-${isFilled ? "blue-800" : "grey-50"}`}
                       viewBox="0 0 14 13"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
@@ -42,20 +44,21 @@ const Reviews = ({ reviews }) => {
                     </svg>
                   ))}
               </div>
-              <p class="my-4">{review?.content}</p>
+              <p class="my-4">{review.content}</p>
             </div>
           ))}
         </div>
         <Paginator
           first={first}
           rows={rows}
-          totalRecords={reviews?.length}
+          totalRecords={reviews.length}
           onPageChange={onPageChange}
           template="FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
         />
       </div>
     </div>
   ) : (
+    // </div>
     <div>
       <div class="mx-auto text-center md:max-w-xl lg:max-w-3xl items-center">
         <h3 class="mb-6 text-3xl font-bold">Reviews:</h3>
@@ -63,6 +66,9 @@ const Reviews = ({ reviews }) => {
       <div class="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-8">
         <div class="gap-6 text-center">
           <h5 class="mb-4 text-xl font-semibold">No Reviews Available</h5>
+
+          {/* <h3 className=""> {review.rating}</h3> */}
+          {/* <hr /> */}
         </div>
       </div>
     </div>
