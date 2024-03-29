@@ -1,10 +1,10 @@
-import { useState } from "react"
-import { RegisterUser } from "../services/Auth"
-import { SignInUser } from "../services/Auth"
-import { useNavigate } from "react-router-dom"
-import { GoogleLogin } from "@react-oauth/google"
+import { useState } from 'react'
+import { RegisterUser } from '../services/Auth'
+import { SignInUser } from '../services/Auth'
+import { useNavigate } from 'react-router-dom'
+import { GoogleLogin } from '@react-oauth/google'
 
-import "../styles/form.css"
+import '../styles/form.css'
 
 const RegistrationForm = ({ setUser }) => {
   let navigate = useNavigate()
@@ -25,16 +25,16 @@ const RegistrationForm = ({ setUser }) => {
     setIsLogPasswordVisible((prevState) => !prevState)
   }
   const initialState = {
-    email: "",
-    password: ""
+    email: '',
+    password: ''
   }
 
   const [init, setInit] = useState(initialState)
   const [formValues, setFormValues] = useState({
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: ""
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
   })
 
   const handleChange = (event) => {
@@ -60,12 +60,12 @@ const RegistrationForm = ({ setUser }) => {
     setInit(initialState)
     setUser(payload)
     console.log(init)
-    navigate("/allrecipes")
+    navigate('/allrecipes')
   }
 
   const handleToggleContainer = (isActive) => {
-    const container = document.getElementById("container")
-    container.classList.toggle("right-panel-active", isActive)
+    const container = document.getElementById('container')
+    container.classList.toggle('right-panel-active', isActive)
   }
 
   return (
@@ -99,7 +99,7 @@ const RegistrationForm = ({ setUser }) => {
               <input
                 onChange={handleChange}
                 className="mx-0 my-2 py-3 px-4"
-                type={isPasswordVisible ? "text" : "password"}
+                type={isPasswordVisible ? 'text' : 'password'}
                 name="password"
                 id="hs-toggle-password"
                 placeholder="Please Enter a Password"
@@ -159,7 +159,7 @@ const RegistrationForm = ({ setUser }) => {
               <input
                 onChange={handleChange}
                 className="mx-0 my-2 py-3 px-4"
-                type={isConPasswordVisible ? "text" : "password"}
+                type={isConPasswordVisible ? 'text' : 'password'}
                 placeholder="Please Enter a Password Again"
                 name="confirmPassword"
                 id="hs-toggle-conpassword"
@@ -232,7 +232,7 @@ const RegistrationForm = ({ setUser }) => {
             <div className="relative w-full">
               <input
                 className="mx-0 my-2 py-3 px-4"
-                type={isLogPasswordVisible ? "text" : "password"}
+                type={isLogPasswordVisible ? 'text' : 'password'}
                 name="password"
                 placeholder="Password"
                 onChange={handleChangeIn}
@@ -293,7 +293,7 @@ const RegistrationForm = ({ setUser }) => {
             <p className="text-sm">Or Sign in With Your Google Account</p>
             <br />
             <div>
-              <a href={"http://localhost:3001/auth/google"}>
+              <a href={'http://recipie.fly.dev/auth/google'}>
                 <GoogleLogin />
               </a>
             </div>
